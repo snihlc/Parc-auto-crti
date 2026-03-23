@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+                <link rel="stylesheet" href="style.css">
+
+        <Title>Gestion des Chauffeurs</Title>
+        
+    </head>
+        <body>
+
+            <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
+            <div class="container-fluid ">
+                <div class="row">
+                    <div class="col-md-3 col-lg-2 md-block p-0" id="sidebar">
+                        <div class="p-4">
+                            <h4 class="text-center mt-4"><i class="bi bi-person-gear"></i> Chef du parc</h4>
+                            <hr>
+                            <a href="ChefDeParc.html" class="sidebar-link mb-2 text-center mt-5" onclick="showdashboard()"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                            <a class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-envelope-paper"></i> Demandes</a>
+                            <a href="2.Chauffeurs.html" class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-person-badge"></i> Chauffeurs</a>
+                            <a href="3.Véhicules.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-car-front-fill"></i> Véhicules</a>
+
+
+                                                    
+                            <button id="logout-btn" class="btn btn-danger" onclick="logout()">Deconnecter</button>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-lg-10 p-0">
+                        <nav class="navbar navbar-light bg-light shadow-sm px-3 w-100" id="top-navbar">
+                            <button class="btn btn-dark d-md-none mb-2" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
+                            <span class="navbar-brand mx-auto mx-md-0">
+                                <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60">
+                            </span>
+                            <div class="ms-auto d-flex align-items-end gap-4">
+                                <i class="bi bi-envelope fs-5"></i>
+                                <i class="bi bi-bell fs-5"></i>
+                            </div>
+                        </nav>
+                            <div class="p-4" id="content">
+                                <h2 class="text-center">Gestion des chauffeurs</h2>
+                                <br>
+        <form class="d-flex" role="search">
+        <input class="form-control" type="search" placeholder="Rechercher Chauffeur..." aria-label="Search">
+        <select class= "form-select-sm ms-2 me-3" aria-label="Statut" >
+            <option selected hidden>Statut</option>
+            <option>Disponible</option>
+            <option>En mission</option>
+            <option>En congé</option>
+            <option>Absent</option>
+        </select>
+        
+            <button class="btn" style="background-color: #30447d;color:aliceblue;" type="submit"><i class="bi bi-search"></i></button>
+ 
+ </form>           
+
+    </form>
+                                <br>
+                                <button type="button" class="btn btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-Chauff"> + Ajouter un chauffeur</button>
+                                <br><br>
+                        
+        <div class="modal fade" tabindex="-1" id="ajout-Chauff">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nouveau Chauffeur</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<form>
+
+    <div class="row">
+    <div class="col-md-6 mb-3">
+       <label for="genre" class="form-label">Genre</label>
+       <select class="form-select">
+        <option>Homme</option>
+        <option>Femme</option>
+       </select>
+    </div>
+      <div class="col-md-6 mb-3">
+    <label for="name" class="form-label">Nom</label>
+    <input type="text" class="form-control" id="name">
+  </div>
+</div>
+
+    <div class="row">
+  <div class="col-md-6 mb-3">
+        <label for="prenom" class="form-label">Prénom</label>
+    <input type="text" class="form-control" id="prenom">
+  </div>
+    
+  <div class="col-md-6 mb-3">
+        <label for="username" class="form-label">Nom d'utilisateur</label>
+    <input type="text" class="form-control" id="username">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 mb-3">
+        <label for="telChauff" class="form-label">Numéro de téléphone</label>
+    <input type="tel" class="form-control" id="telChauff" required>
+</div>
+
+<div class="col-md-6 mb-3">
+    <label for="mailChauff" class="form-label">Adresse mail</label>
+    <input type="email" class="form-control" id="mailChauff">
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label for="age" class="form-label">Date de naissance</label>
+        <input type="date" class="form-control" id="age">
+    </div>  
+      <div class="col-md-6 mb-3">
+        <label for="prenom" class="form-label">Etat de santé</label>
+    <input type="text" class="form-control" id="prenom">
+  </div>
+</div>
+
+    <div class="row">
+
+
+  <div class="col-md-6 mb-3">
+<label for="permis">Catégorie de permis</label>
+<select id="permis" class="form-select" required>
+    <option selected hidden>Choisir la catégorie</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+    <option>D</option>
+</select>
+</div> 
+
+<div class="col-md-6 mb-3">
+    <label for="numPermis" class="form-label">Numéro de permis</label>
+    <input type="text" class="form-control" id="numPermis" required>
+</div>
+
+</div>
+
+    <div class="row">
+
+<div class="col-md-6 mb-3">
+    <label for="dateExp" class="form-label">Date d'expiration du permis</label>
+    <input type="date" class="form-control" id="dateExp">
+</div>
+<div class="col-md-6 mb-3">
+    <label for="dateExp" class="form-label">Date de mise à disposition</label>
+    <input type="date" class="form-control" id="dateExp">
+</div>
+</div>
+</form>
+
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn " style="background-color: #30447d;color:aliceblue;">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+                                <table class="table table-striped table-hover" style="border-radius:20px;">
+                                    <th>ID</th>
+                                    <th>Chauffeur</th>
+                                    <th>Numéro de téléphone</th>
+                                    <th>Email</th>
+                                    <th>Statut</th>
+                                    <th>Mission actuelle</th>
+                                    <th>Actions</th>
+                                    <tr>
+                                    <td>1</td>
+                                    <td>Halliche Ines</td>
+                                    <td>0549216835</td>
+                                    <td>Hallicheines@gmail.com</td>
+                                    <td>
+                                    <div class="dispo">Disponible</div>
+                                    </td>
+                                    <td>-</td>                                        
+
+                                    <td><a href="2.detail-chauffeur.html" class="btn btn-primary">Consulter</a>
+                                        <a class="btn btn-warning">Modifier</a>
+                                        <a class="btn btn-danger">Supprimer</a>
+
+</td>
+                                    </tr>
+                                    <tr>
+                                    <td>2</td>
+                                    <td>Amimour Yasmine</td>
+                                    <td>0487578245</td>
+                                    <td>Amimouryasmine@gmail.com</td>
+                                    <td>
+                                    <div class="mission">En mission</div>
+                                    </td>
+                                    <td>Mission...</td>                                        
+
+                                    <td><button type="button" class="btn btn-primary">Consulter</button>
+                                        <button type="button" class="btn btn-warning">Modifier</button>
+                                        <button type="button" class="btn btn-danger">Supprimer</button>
+
+</td>
+                                    </tr>
+                                    <tr>
+                                      <td>3</td>  
+                                      <td>Aliouane Sabrina</td>
+                                      <td>0125467985</td>
+                                      <td>AliouaneSabrina@gmail.com</td>
+                                      <td>
+                                        <div class="conge">En congé</div>
+                                      </td>
+                                      <td>-</td>
+                                      <td>
+                                        <button type="button" class="btn btn-primary">Consulter</button>
+                                        <button type="button" class="btn btn-warning">Modifier</button>
+                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                      </td>
+                                    </tr>
+                                     </tr>
+                                    <tr>
+                                    <td>4</td>
+                                    <td>Boucherou Sarah</td>
+                                    <td>078452654</td>
+                                    <td>BoucherouSarah@gmail.com</td>
+                                    <td>
+                                    <div class="absent">Absent</div>
+                                    </td>
+                                    <td> - </td>                                        
+
+                                    <td><button type="button" class="btn btn-primary">Consulter</button>
+                                        <button type="button" class="btn btn-warning">Modifier</button>
+                                        <button type="button" class="btn btn-danger">Supprimer</button>
+
+</td>
+                                    </tr>
+                                    <tr>
+
+            </table>
+                            </div>
+                               
+            </div></div></div></div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        </body>
+</html>
