@@ -68,36 +68,180 @@
     <h5 style="color:#0c183b;"><i class="bi bi-files"></i> Documents administratifs</h5>
                 <button type="button" class="btn btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-doc"> + Ajouter un document</button>
 </div>
-    
-  <div class="modal fade" tabindex="-1" id="ajout-doc">
+<div class="modal fade" id="ajout-doc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Nouveau document</h5>
+        <h1 class="modal-title fs-5" id="ajout-doc">Nouveau document</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-<form>
 
+    <div class="col-md-12 mb-3 type-document">
+      <label for="type-doc" class="form-label ">Type de document</label>
+    <select class="form-select" id="type-doc" onchange="afficherChamps()">
+        <option selected hidden>Selectionnez le type de document</option>
+        <option value="carte-grise">Carte grise</option>
+        <option value="assurance">Assurance</option>
+        <option value="vignette">Vignette</option>
+        <option value="controle-tech">Contrôle technique</option>
+    </select>
+    </div>
 
-
-
-
-
-
-</form>
- </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn " style="background-color: #30447d;color:aliceblue;">Enregistrer</button>
-      </div>
+<div id="assurance" style="display:none;">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="assurance-type" class="form-label">Type d'assurance</label>
+      <select id="assurance-type" class="form-select">
+        <option>Tous Risques</option>
+        <option>Responsabilité Civile</option>
+        <option>Tiers Étendu</option>
+        <option>Au Tiers</option>
+      </select>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="compagnie-assurance" class="form-label">Compagnie d'assurance</label>
+      <input type="text" class="form-control" id="compagnie-assurance">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="date-debut-assurance" class="form-label">Date de début</label>
+      <input type="date" class="form-control" id="date-debut-assurance">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="date-expiration-assurance" class="form-label">Date d'expiration</label>
+      <input type="date" class="form-control" id="date-expiration-assurance">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="montant-assurance" class="form-label">Montant</label>
+      <input type="text" class="form-control" id="montant-assurance">
     </div>
   </div>
 </div>
 
+<div id="vignette" style="display:none;">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="date-achat-vignette" class="form-label">Date d'achat</label>
+      <input type="date" class="form-control" id="date-achat-vignette">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="montant-vignette" class="form-label">Montant</label>
+      <input type="text" class="form-control" id="montant-vignette">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="date-expiration-vignette" class="form-label">Date d'expiration</label>
+      <input type="date" class="form-control" id="date-expiration-vignette">
+    </div>
+  </div>
+</div>
+
+<div id="controle" style="display:none;">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="date-controle" class="form-label">Date de contrôle</label>
+      <input type="date" class="form-control" id="date-controle">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="centre-controle" class="form-label">Centre de contrôle</label>
+      <input type="text" class="form-control" id="centre-controle">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="resultat-controle" class="form-label">Résultat</label>
+      <input type="text" class="form-control" id="resultat-controle">
+    </div>
+  <div class="col-md-6 mb-3">
+      <label for="montant-controle" class="form-label">Montant</label>
+      <input type="text" class="form-control" id="montant-controle">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="prochain-controle" class="form-label">Prochain contrôle</label>
+      <input type="date" class="form-control" id="prochain-controle">
+    </div>
+  </div>
+</div>
+  
+<div id="carte-grise" style="display:none;">
+<div class="row">
+  <div class="col-md-8 mb-3">
+    <label for="pdf-cg" class="form-label"></label>
+    <input type="file" class="form-control" id="pdf-cg">
+  </div>
+</div>
+</div>
 
 
-                
+
+
+
+
+
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn" style="background-color: #30447d;color:aliceblue;">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="detail-vt d-flex justify-content-between align-items-center">
+
+    <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Carte grise</strong></h4>
+     <a href="#" target="_blank" class="btn ms-3"style="background-color: #30447d; color:aliceblue;">Télécharger</a>
+</div>
+
+<div class="detail-vt">
+    <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Assurance</strong></h5>
+    <div class="info-doc">
+        <ul>
+        <li><strong>Compagnie d'assurance :</strong> SAA assurance</li>
+        <li><strong>Type d'assurance :</strong> Tous Risques</li>
+        <li><strong>Montant :</strong> 45000 DA</li>
+       <li><strong>Date de début :</strong> 24/01/2026</li>
+        <li><strong>Date d'expiration :</strong> 23/01/2027</li>
+ </ul>   
+ <a href="#" target="_blank" class="btn ms-3"style="background-color: #30447d; color:aliceblue;">Télécharger</a>
+</div>
+</div>
+    
+<div class="detail-vt">
+    <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Vignette</strong></h5>
+    <div class="info-doc">
+        <ul>
+        <li><strong>Date d'achat :</strong> 01/01/2026</li>
+        <li><strong>Montant :</strong> 2000 DA</li>
+        <li><strong>Date d'expiration :</strong> 01/01/2027</li>
+
+ </ul>   
+ <a href="#" target="_blank" class="btn ms-3"style="background-color: #30447d; color:aliceblue;">Télécharger</a>
+</div>
+</div>
+<div class="detail-vt">
+    <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Contrôle technique</strong></h5>
+   
+        <ul>
+        <li><strong>Centre :</strong> Centre de Contrôle Technique "En-Nadjah" (El Harrach)</li>
+        <li><strong>Date de contrôle :</strong> 15/03/2026</li>
+        <li><strong>Résultat :</strong> Favorable</li>
+        <li><strong>Prochain contrôle :</strong> 15/03/2027</li>
+        <li><strong>Montant :</strong> 1200</li>
+
+
+ </ul>   
+
+
+ <a href="#" target="_blank" class="btn ms-3 "style="background-color: #30447d; color:aliceblue;">Télécharger</a>
+
+</div>
 
 
         </div>
@@ -107,12 +251,10 @@
 </div>
 
 </div>
-
-
                             </div>
                                
             </div></div></div></div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+            <script src="script.js"></script>
         </body>
 </html>

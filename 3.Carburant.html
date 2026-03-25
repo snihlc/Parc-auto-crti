@@ -65,18 +65,57 @@
 <div class="details">
 <div class="d-flex justify-content-between align-items-center">
     <h5 style="color:#0c183b;"><i class="bi bi-fuel-pump"></i> Consommation de carburant</h5>
-                <button type="button" class="btn btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-carb"> + Ajouter un plein</button>
+                <button type="button" class="btn btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-carb"> + Ajouter un ravitaillement</button>
 </div>
 
   <div class="modal fade" tabindex="-1" id="ajout-carb">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Nouveau plein</h5>
+        <h5 class="modal-title">Nouveau ravitaillement</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 <form>
+<div class="row">
+    <div class="col-md-6 mb-3">
+    <label for="date-plein" class="form-label">Date du ravitaillement</label>
+    <input type="date" class="form-control" id="date-plein">
+    </div>
+        <div class="col-md-6 mb-3">
+    <label for="station" class="form-label">Station de service</label>
+    <input type="text" class="form-control" id="station">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+    <label for="carburant" class="form-label">Type du carburant</label>
+    <select id="carburant" class="form-select" required>
+    <option selected hidden>Selectionnez le type du carburant</option>
+    <option>GPL</option>
+    <option>Gasoil</option>
+    <option>Essence normal</option>
+    <option>Essence super</option>
+    <option>Electrique</option>
+</select>
+    </div>
+        <div class="col-md-6 mb-3">
+    <label for="qte-carb" class="form-label">Quantité </label>
+    <input type="text" class="form-control" id="qte-carb">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+    <label for="kilometrage" class="form-label">Kilométrage</label>
+    <input type="text" class="form-control" id="kilometrage">
+    </div>
+        <div class="col-md-6 mb-3">
+    <label for="montant-carb" class="form-label">Montant</label>
+    <input type="text" class="form-control" id="montant-carb">
+    </div>
+</div>
 
 
 
@@ -94,8 +133,17 @@
   </div>
 </div>
 
-<div class="detail-carb">
-<h6><strong>date du ravitaillement</strong></h6>
+<div class="detail-vt">
+<h5 style="color:#0c183b"><strong><i class="bi bi-calendar"></i> Ravitaillement du dd/mm/yyyy</strong></h5>
+<ul>
+    <li><strong>Station de service :</strong> Naftal (Birtouta) </li>
+    <li><strong>Type de carburant : </strong> Gasoil</li>
+    <li><strong>Quantité :</strong> 45L</li>
+    <li><strong>Kilométrage :</strong> 124800 Km</li>
+    <li><strong>Montant :</strong> 3500 DA</li>
+
+</ul>
+ <a href="#" target="_blank" class="btn ms-3"style="background-color: #30447d; color:aliceblue;">Voir le reçu</a>
 
 
 </div>
