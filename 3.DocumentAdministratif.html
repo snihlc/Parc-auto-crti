@@ -76,9 +76,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
+<form>
     <div class="col-md-12 mb-3 type-document">
-      <label for="type-doc" class="form-label ">Type de document</label>
+      <label for="type-doc" class="form-label fw-bold">Type de document</label>
     <select class="form-select" id="type-doc" onchange="afficherChamps()">
         <option selected hidden>Selectionnez le type de document</option>
         <option value="carte-grise">Carte grise</option>
@@ -91,7 +91,7 @@
 <div id="assurance" style="display:none;">
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="assurance-type" class="form-label">Type d'assurance</label>
+      <label for="assurance-type" class="form-label fw-bold">Type d'assurance</label>
       <select id="assurance-type" class="form-select">
         <option>Tous Risques</option>
         <option>Responsabilité Civile</option>
@@ -100,23 +100,23 @@
       </select>
     </div>
     <div class="col-md-6 mb-3">
-      <label for="compagnie-assurance" class="form-label">Compagnie d'assurance</label>
+      <label for="compagnie-assurance" class="form-label fw-bold">Compagnie d'assurance</label>
       <input type="text" class="form-control" id="compagnie-assurance">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="date-debut-assurance" class="form-label">Date de début</label>
+      <label for="date-debut-assurance" class="form-label fw-bold">Date de début</label>
       <input type="date" class="form-control" id="date-debut-assurance">
     </div>
     <div class="col-md-6 mb-3">
-      <label for="date-expiration-assurance" class="form-label">Date d'expiration</label>
+      <label for="date-expiration-assurance" class="form-label fw-bold">Date d'expiration</label>
       <input type="date" class="form-control" id="date-expiration-assurance">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="montant-assurance" class="form-label">Montant</label>
+      <label for="montant-assurance" class="form-label fw-bold">Montant</label>
       <input type="text" class="form-control" id="montant-assurance">
     </div>
   </div>
@@ -125,17 +125,17 @@
 <div id="vignette" style="display:none;">
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="date-achat-vignette" class="form-label">Date d'achat</label>
+      <label for="date-achat-vignette" class="form-label fw-bold">Date d'achat</label>
       <input type="date" class="form-control" id="date-achat-vignette">
     </div>
     <div class="col-md-6 mb-3">
-      <label for="montant-vignette" class="form-label">Montant</label>
+      <label for="montant-vignette" class="form-label fw-bold">Montant</label>
       <input type="text" class="form-control" id="montant-vignette">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="date-expiration-vignette" class="form-label">Date d'expiration</label>
+      <label for="date-expiration-vignette" class="form-label fw-bold">Date d'expiration</label>
       <input type="date" class="form-control" id="date-expiration-vignette">
     </div>
   </div>
@@ -144,27 +144,27 @@
 <div id="controle" style="display:none;">
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="date-controle" class="form-label">Date de contrôle</label>
+      <label for="date-controle" class="form-label fw-bold">Date de contrôle</label>
       <input type="date" class="form-control" id="date-controle">
     </div>
     <div class="col-md-6 mb-3">
-      <label for="centre-controle" class="form-label">Centre de contrôle</label>
+      <label for="centre-controle" class="form-label fw-bold">Centre de contrôle</label>
       <input type="text" class="form-control" id="centre-controle">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="resultat-controle" class="form-label">Résultat</label>
+      <label for="resultat-controle" class="form-label fw-bold">Résultat</label>
       <input type="text" class="form-control" id="resultat-controle">
     </div>
   <div class="col-md-6 mb-3">
-      <label for="montant-controle" class="form-label">Montant</label>
+      <label for="montant-controle" class="form-label fw-bold">Montant</label>
       <input type="text" class="form-control" id="montant-controle">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="prochain-controle" class="form-label">Prochain contrôle</label>
+      <label for="prochain-controle" class="form-label fw-bold">Prochain contrôle</label>
       <input type="date" class="form-control" id="prochain-controle">
     </div>
   </div>
@@ -173,17 +173,12 @@
 <div id="carte-grise" style="display:none;">
 <div class="row">
   <div class="col-md-8 mb-3">
-    <label for="pdf-cg" class="form-label"></label>
+    <label for="pdf-cg" class="form-label fw-bold"></label>
     <input type="file" class="form-control" id="pdf-cg">
   </div>
 </div>
 </div>
-
-
-
-
-
-
+</form>
 
     </div>
       <div class="modal-footer">

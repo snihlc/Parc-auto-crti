@@ -25,7 +25,7 @@
 
 
                                                     
-                            <button id="logout-btn" class="btn btn-danger" onclick="logout()">Deconnecter</button>
+                            <button id="logout-btn" class="btn btn-danger" onclick="logout()"><i class="bi bi-box-arrow-left"></i> Deconnecter</button>
                         </div>
                     </div>
                     <div class="col-md-9 col-lg-10 p-0">
@@ -71,24 +71,24 @@
 <form>
     <div class="row">
   <div class="col-md-6 mb-3">
-    <label for="immatric-vehicule" class="form-label">Immatriculation</label>
+    <label for="immatric-vehicule" class="form-label fw-bold">Immatriculation</label>
     <input type="text" class="form-control" id="immatric-vehicule">
   </div>
     
   <div class="col-md-6 mb-3">
-        <label for="marque-vehicule" class="form-label">Marque</label>
+        <label for="marque-vehicule" class="form-label fw-bold">Marque</label>
     <input type="text" class="form-control" id="marque-vehicule">
   </div>
 </div>
 <div class="row">
   <div class="col-md-6 mb-3">
-        <label for="modele-vehicule" class="form-label">Modèle</label>
+        <label for="modele-vehicule" class="form-label fw-bold">Modèle</label>
     <input type="text" class="form-control" id="modele-vehicule" required>
 
     
 </div>
 <div class="col-md-6 mb-3">
-    <label for="NbPlaces" class="form-label">Capacité</label>
+    <label for="NbPlaces" class="form-label fw-bold">Capacité</label>
     <div class="input-group">
     <input type="number" class="form-control " id="NbPlaces">
         <select class="form-select" style="max-width:100px;">
@@ -106,7 +106,7 @@
 
     <div class="row">
     <div class="col-md-6 mb-3">
-         <label for="type-vehicule" class="form-label">Type du véhicule</label>
+         <label for="type-vehicule" class="form-label fw-bold">Type du véhicule</label>
         <select class="form-select">
         <option selected hidden>Selectionnez le type du véhicule</option>
         <option>Type A - Deux-roues</option>
@@ -117,7 +117,7 @@
   </div>
 
     <div class="col-md-6 mb-3">
-    <label for="annee-vehicule" class="form-label">Année</label>
+    <label for="annee-vehicule" class="form-label fw-bold">Année</label>
    <input type="number" class="form-control" id="annee-vehicule">
   </div>
 
@@ -126,12 +126,12 @@
     <div class="row">
 
   <div class="col-md-6 mb-3">
-        <label for="kilometrage" class="form-label">Kilométrage</label>
+        <label for="kilometrage" class="form-label fw-bold">Kilométrage</label>
     <input type="text" class="form-control" id="kilometrage">
 </div>
 
 <div class="col-md-6 mb-3">
-<label for="chassis" class="form-label">Numéro de châssis (VIN)</label>
+<label for="chassis" class="form-label fw-bold">Numéro de châssis (VIN)</label>
 <input type="text" id="chassis" class="form-control">
 </div>
 
@@ -139,7 +139,7 @@
 
 <div class="row">
     <div class="col-md-6 mb-3">
-    <label for="etat-vehicule" class="form-label">Etat technique</label>
+    <label for="etat-vehicule" class="form-label fw-bold">Etat technique</label>
     <select id="etat-vehicule" class="form-select">
         <option selected hidden>Selectionnez l'état du véhicule</option>
         <option>Très bon</option>
@@ -149,7 +149,7 @@
 </div>
 
     <div class="col-md-6 mb-3">
-        <label for="carburant" class="form-label">Type du carburant</label>
+        <label for="carburant" class="form-label fw-bold">Type du carburant</label>
     <select id="carburant" class="form-select" required>
     <option selected hidden>Selectionnez le type du carburant</option>
     <option>GPL</option>
@@ -165,7 +165,7 @@
 <div class="row">
 
          <div class="col-md-6 mb-3">
-        <label for="assurance" class="form-label">Type d'assurance</label>
+        <label for="assurance" class="form-label fw-bold">Type d'assurance</label>
         <select id="assurance" class="form-select">
             <option selected hidden>Selectionnez le type d'assurance</option>
             <option>Tous Risques</option> 
@@ -176,13 +176,13 @@
 </div> 
 
        <div class="col-md-6 mb-3">
-    <label for="date-circulation" class="form-label">Date de mise à disposition</label>
+    <label for="date-circulation" class="form-label fw-bold">Date de mise à disposition</label>
     <input type="date" class="form-control" id="date-circulation">
     </div>
 
 </div>
     <div class="col-12 mb-3">
-        <label for="carte-grise" class="form-label">Carte Grise</label>
+        <label for="carte-grise" class="form-label fw-bold">Carte Grise</label>
         <input type="file" class="form-control" id="carte-grise">
     </div>
 </form>
@@ -275,5 +275,7 @@
                                
             </div></div></div></div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="script.js"></script>
+
         </body>
 </html>

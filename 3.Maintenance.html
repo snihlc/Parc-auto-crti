@@ -60,14 +60,138 @@
 <a href="3.Carburant.html" class="btn det"><i class="bi bi-fuel-pump"></i> Carburant</a>
 
 
+<div class="details">
+    <div class="d-flex justify-content-between align-items-center">
+        <h5 style="color:#0c183b;"><i class="bi bi-tools"></i> Historique des maintenances</h5>
+                <button type="button" class="btn btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-maintenance"> + Ajouter une maintenance</button>
+    </div>
+ <div class="modal fade" tabindex="-1" id="ajout-maintenance">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nouvelle maintenance</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    <form>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="type-maintenance" class="form-label fw-bold">Type de maintenance</label>
+            <select id="type-maintenance" class="form-select" onchange="affTypeMaintenance()">
+                <option selected hidden>Selectionner le type de maintenance</option>
+                <option value="periodique">Périodique</option>
+                <option value="corrective">Corrective</option>
+            </select>
+        </div>
+
+        <div class="mt-periodique col-md-6 mb-3" style="display:none;">
+            <label for="type-periodique" class="form-label fw-bold">Sous-type</label>
+            <select id="type-periodique" class="form-select" onchange="affTypeMaintenance()">
+                <option selected hidden>Selectionner le sous-type</option>
+                <option value="vidange">Vidange</option>
+                <option value="controle-frein">Contrôle de freins</option>
+                <option value="autre">Autre</option>
+            </select>
+        </div>
+
+        <div class="mt-corrective col-md-6 mb-3" style="display:none;">
+            <label for="mt-panne" class="form-label fw-bold">Panne</label>
+            <select id="mt-panne" class="form-select">
+                <option hidden selected>Selectionner la panne</option>
+                <option>exp</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="vidange" style="display:none;">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="freq" class="form-label fw-bold">Kilométrage</label>
+                <input type="number" class="form-control" id="freq">
+            </div>
+
+        <div class="col-md-6 mb-3">
+            <label for="huile" class="form-label fw-bold">Type d'huile</label>
+            <select id="huile" class="form-select">
+                <option selected hidden>Selectionner le type d'huile</option>
+                <option value="diesel">Diesel</option>
+                <option value="essence">Essence</option>
+            </select>
+        </div> 
+        </div>
+    </div>
+
+    <div class="controle-frein" style="display:none;">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="plaquettes" class="form-label fw-bold">Etat des plaquettes</label>
+                <input type="text" class="form-control" id="plaquettes">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="disques" class="form-label fw-bold">Etat des disques</label>
+                <input type="text" class="form-control" id="disques">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="date-maintenance" class="form-label fw-bold">Date de la maintenance</label>
+            <input type="date" id="date-maintenance" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="desc" class="form-label fw-bold">Description</label>
+            <textarea id="desc" class="form-control" rows="2"></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="statut-maintenance" class="form-label fw-bold">Statut</label>
+            <select id="statut-maintenance" class="form-select">
+                <option value="prog">Programmée</option>
+                <option value="en_cours">En cours</option>
+                <option value="terminee">Terminée</option>
+                <option value="annulee">Annulée</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="prix" class="form-label fw-bold">Montant</label>
+            <input type="number" class="form-control" id="prix">
+        </div>
+    </div>
+</form>
 
 </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn " style="background-color: #30447d;color:aliceblue;">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
 
 
                             </div>
                                
             </div></div></div></div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="script.js"></script>
 
         </body>
 </html>
