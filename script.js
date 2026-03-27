@@ -75,3 +75,67 @@ function affTypeMaintenance(){
         document.querySelector(".controle-frein").style.display = "none";
     }
 }
+
+function enregistrerRavitaillement(){
+let datePlein= document.getElementById("date-plein").value;
+let station = document.getElementById("station").value;
+let typeCarb = document.getElementById("type-carburant").value;
+let quantiteCarb = document.getElementById("qte-carb").value;
+let km = document.getElementById("kilometrage-carb").value;
+let montantCarb = document.getElementById("montant-carb").value;
+
+let tabCarb = document.querySelector("table tbody");
+let nvlLigne =  `
+    <tr>
+        <td>${datePlein}</td>
+        <td>${station}</td>
+        <td>${typeCarb}</td>
+        <td>${quantiteCarb} L</td>
+        <td>${km} Km</td>
+        <td>${montantCarb} DA</td>
+        <td><a href="#" class="btn ms-3" style="background-color:#30447d;color:aliceblue;">Voir le reçu</a>
+        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ajout-carb">Modifier</button>
+        <button class="btn btn-danger supprimer" onclick="supprimerLigne(this)">Supprimer</button></td>
+    </tr></td>
+    </tr>
+`;
+tabCarb.innerHTML += nvlLigne;
+
+document.getElementById("date-plein").value="";
+document.getElementById("station").value="";
+document.getElementById("type-carburant").value="";
+document.getElementById("qte-carb").value="";
+document.getElementById("montant-carb").value="";
+
+let modal = bootstrap.Modal.getInstance(document.getElementById("ajout-carb"));
+modal.hide();
+
+}
+function supprimerLigne(btn) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce ravitaillement ?")) {
+        btn.closest("tr").remove();
+    }
+}
+
+function filtrerChauffeurs() {
+    let stat = document.getElementById("stat-chauf").value;
+    let lignes = document.querySelectorAll("table tbody tr");
+
+    lignes.forEach(function(ligne) {
+        let statut = ligne.querySelector("td:nth-child(5)").innerText.trim();
+
+        if (stat === "Statut" || stat === "") {
+            ligne.style.display = "";
+        } else if (stat === "dispo" && statut === "Disponible") {
+            ligne.style.display = "";
+        } else if (stat === "mission" && statut === "En mission") {
+            ligne.style.display = "";
+        } else if (stat === "conge" && statut === "En congé") {
+            ligne.style.display = "";
+        } else if (stat === "absent" && statut === "Absent") {
+            ligne.style.display = "";
+        } else {
+            ligne.style.display = "none";
+        }
+    });
+}

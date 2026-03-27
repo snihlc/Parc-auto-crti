@@ -64,7 +64,7 @@
 
 <div class="details">
 <div class="d-flex justify-content-between align-items-center">
-    <h5 style="color:#0c183b;"><i class="bi bi-fuel-pump"></i> Consommation de carburant</h5>
+    <h4 style="color:#0c183b;"><i class="bi bi-fuel-pump"></i> Consommation de carburant</h4>
                 <button type="button" class="btn btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-carb"> + Ajouter un ravitaillement</button>
 </div>
 
@@ -90,8 +90,8 @@
 
 <div class="row">
     <div class="col-md-6 mb-3">
-    <label for="carburant" class="form-label fw-bold">Type du carburant</label>
-    <select id="carburant" class="form-select" required>
+    <label for="type-carburant" class="form-label fw-bold">Type du carburant</label>
+    <select id="type-carburant" class="form-select" required>
     <option selected hidden>Selectionnez le type du carburant</option>
     <option>GPL</option>
     <option>Gasoil</option>
@@ -102,18 +102,18 @@
     </div>
         <div class="col-md-6 mb-3">
     <label for="qte-carb" class="form-label fw-bold">Quantité </label>
-    <input type="text" class="form-control" id="qte-carb">
+    <input type="number" class="form-control" id="qte-carb">
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-6 mb-3">
-    <label for="kilometrage" class="form-label fw-bold">Kilométrage</label>
-    <input type="text" class="form-control" id="kilometrage">
+    <label for="kilometrage-carb" class="form-label fw-bold">Kilométrage</label>
+    <input type="number" class="form-control" id="kilometrage-carb">
     </div>
         <div class="col-md-6 mb-3">
     <label for="montant-carb" class="form-label fw-bold">Montant</label>
-    <input type="text" class="form-control" id="montant-carb">
+    <input type="number" class="form-control" id="montant-carb">
     </div>
 </div>
 
@@ -127,14 +127,14 @@
  </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn " style="background-color: #30447d;color:aliceblue;">Enregistrer</button>
+        <button type="button" class="btn btn " style="background-color: #30447d;color:aliceblue;" onclick="enregistrerRavitaillement()" >Enregistrer</button>
       </div>
     </div>
   </div>
 </div>
 
-
-<table class="table table-bordered table-striped table-hover mt-3">
+<div class="table-responsive">
+<table class="table table-bordered table-hover mt-3">
     <th>Date de ravitaillement</th>
     <th>Station de service</th>
     <th>Type de carburant</th>
@@ -142,7 +142,7 @@
     <th>Kilométrage</th>
     <th>Montant</th>
     <th>Actions</th>
-
+<tbody>
     <tr>
         <td>12/02/2025</td>
         <td>Naftal (Birtouta)</td>
@@ -150,21 +150,15 @@
         <td>45L</td>
         <td>1248000 Km</td>
         <td>3500 DA</td>
-        <td><a href="#" target="_blank" class="btn ms-3"style="background-color: #30447d; color:aliceblue;">Voir le reçu</a></td>
+        <td><a href="#" target="_blank" class="btn ms-3"style="background-color: #30447d; color:aliceblue;">Voir le reçu</a>
+          <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ajout-carb">Modifier</button>
+            <button class="btn btn-danger supprimer" onclick="supprimerLigne(this)">Supprimer</button></td>
     </tr>
 
-        <tr>
-        <td>12/02/2025</td>
-        <td>Naftal (Birtouta)</td>
-        <td>Diesel</td>
-        <td>45L</td>
-        <td>1248000 Km</td>
-        <td>3500 DA</td>
-        <td><a href="#" target="_blank" class="btn ms-3"style="background-color: #30447d; color:aliceblue;">Voir le reçu</a></td>
-    </tr>
+</tbody>
 </table>
 
-
+</div>
 
 </div>
 

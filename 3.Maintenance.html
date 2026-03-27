@@ -62,7 +62,7 @@
 
 <div class="details">
     <div class="d-flex justify-content-between align-items-center">
-        <h5 style="color:#0c183b;"><i class="bi bi-tools"></i> Historique des maintenances</h5>
+        <h4 style="color:#0c183b;" ><i class="bi bi-tools"></i> Historique des maintenances</h4>
                 <button type="button" class="btn btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-maintenance"> + Ajouter une maintenance</button>
     </div>
  <div class="modal fade" tabindex="-1" id="ajout-maintenance">
@@ -171,10 +171,136 @@
   </div>
 </div>
 
+<div class="detail-vt">
+    <div class="d-flex justify-content-between align-items-center">
+    
+        <h4 class="fw-semibold" style="color:#0c183b;"><i class="bi bi-clock-history"></i> Périodique - <span class="h5">Vidange</span></h4>
+    <span class="terminee fs-6">Terminée</span>
+
+</div>
+<hr class="mt-1">
+<ul>
+    <li><strong>Kilométrage : </strong> 124800 Km</li>
+    <li><strong>Type d'huile : </strong> Diesel </li>
+    <li><strong>Description : </strong> Vidange effectuée avec filtre remplacé.</li>
+</ul>
+<hr class="mt-1">
+<div class="d-flex justify-content-between align-items-center">
+<span class="ms-2"><i class="bi bi-calendar2"></i> 12/05/2025</span>
+<span class="badge text-bg fs-6" style="background-color: #30447d;">5000 DA</span>
+</div>
+</div>
+
+<div class="detail-vt">
+    <div class="d-flex justify-content-between align-items-center">
+    
+        
+    <h4 class="fw-semibold" style="color:#0c183b;"><i class="bi bi-clock-history"></i> Périodique - <span class="h5">Contrôle de freins</span></h4>
+    <div class="d-flex align-items-center gap-2">
+        <span class="en-cours fs-6">En cours</span>
+    <button class="btn btn-sm" style="background-color:rgba(178, 178, 178, 0.362);color:rgb(54, 54, 54);" data-bs-toggle="modal" data-bs-target="#modif-statut-mt"><i class="bi bi-pencil"></i></button>
+</div>
+
+</div>
+
+<hr class="mt-1">
+<ul>
+    <li><strong>Etat des plaquettes : </strong>  </li>
+    <li><strong>Etat des disques: </strong>  </li>
+    <li><strong>Description : </strong> Contrôle complet du système de freinage : vérification de l'usure des plaquettes, de l'état des disques et du niveau de liquide de frein.</li>
+</ul>
+<hr class="mt-1">
+<div class="d-flex justify-content-between align-items-center">
+<span class="ms-2"><i class="bi bi-calendar2"></i> 10/04/2025</span>
+<span class="badge text-bg fs-6" style="background-color: #30447d;"> - DA</span>
+</div>
+</div>
+
+<div class="detail-vt">
+    <div class="d-flex justify-content-between align-items-center">
+    
+        
+    <h4 class="fw-semibold" style="color:#0c183b;"><i class="bi bi-wrench-adjustable"></i> Corrective</h4>
+    <div class="d-flex align-items-center gap-2">
+        <span class="programmee fs-6">Programmée</span>
+    <button class="btn btn-sm" style="background-color:rgba(178, 178, 178, 0.362);color:rgb(54, 54, 54);" data-bs-toggle="modal" data-bs-target="#modif-statut-mt"><i class="bi bi-pencil"></i></button>
+</div>
+
+</div>
+
+<hr class="mt-1">
+<ul>
+    <li><strong>Panne : </strong>  Vibration au freinage</li>
+    <li><strong>Description : </strong> Changement kit de freinage.</li>
+</ul>
+<hr class="mt-1">
+<div class="d-flex justify-content-between align-items-center">
+<span class="ms-2"><i class="bi bi-calendar2"></i> 19/04/2025</span>
+<span class="badge text-bg fs-6" style="background-color: #30447d;"> - DA</span>
+</div>
+</div>
+
+<div class="detail-vt">
+    <div class="d-flex justify-content-between align-items-center">
+    
+        
+    <h4 class="fw-semibold" style="color:#0c183b;"><i class="bi bi-wrench-adjustable"></i> Corrective</h4>
+    <div class="d-flex align-items-center gap-2">
+        <span class="annulee fs-6">Annulée</span>
+</div>
+
+</div>
+
+<hr class="mt-1">
+<ul>
+    <li><strong>Panne : </strong> Surchauffe moteur et fuite de liquide de refroidissement.</li>
+    <li><strong>Description : </strong> Diagnostic du circuit de refroidissement suite à une alerte au tableau de bord. Remplacement de la pompe à eau défectueuse et contrôle de l'étanchéité des durites. Purge et remise à niveau du liquide.</li>
+</ul>
+<hr class="mt-1">
+<div class="d-flex justify-content-between align-items-center">
+<span class="ms-2"><i class="bi bi-calendar2"></i> 19/04/2025</span>
+<span class="badge text-bg fs-6" style="background-color: #30447d;"> - DA</span>
+</div>
 </div>
 
 
-
+<div class="modal fade" tabindex="-1" id="modif-statut-mt">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modifier les informations</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <label class="form-label fw-bold">Nouveau statut</label>
+                <select id="nouveau-statut" class="form-select mb-3">
+                    <option value="prog">Programmée</option>
+                    <option value="en_cours">En cours</option>
+                    <option value="terminee">Terminée</option>
+                    <option value="annulee">Annulée</option>
+                </select>
+                <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="plaquettes" class="form-label fw-bold">Etat des plaquettes</label>
+                <input type="text" class="form-control" id="plaquettes">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="disques" class="form-label fw-bold">Etat des disques</label>
+                <input type="text" class="form-control" id="disques">
+            </div>
+            <div class="col-md-6 mb-3">
+            <label for="prix" class="form-label fw-bold">Montant</label>
+            <input type="number" class="form-control" id="prix">
+        </div>
+        </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn" style="background-color:#30447d;color:aliceblue;" data-bs-dismiss="modal">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

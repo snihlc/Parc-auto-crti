@@ -41,21 +41,8 @@
                             </div>
                         </nav>
                             <div class="p-4" id="content">
-                                <h2 class="text-center">Gestion des chauffeurs</h2>
+                                <h2 class="text-center">Gestion des demandes</h2>
                                 <br>
-        <form class="d-flex" role="search">
-        <input class="form-control" type="search" placeholder="Rechercher Chauffeur..." aria-label="Search">
-        <select class= "form-select-sm ms-2 me-3" aria-label="Statut"  id="stat-chauf" onchange="filtrerChauffeurs()">
-            <option selected hidden>Statut</option>
-            <option value="dispo">Disponible</option>
-            <option value="mission">En mission</option>
-            <option value="conge">En congé</option>
-            <option value="absent">Absent</option>
-        </select>
-        
-            <button class="btn" style="background-color: #30447d;color:aliceblue;" type="submit"><i class="bi bi-search"></i></button>
- 
- </form>           
 
                            
                                 <button type="button" class="btn btn mt-4" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-Chauff"> + Ajouter un chauffeur</button>
@@ -163,87 +150,50 @@
 </div>
 
 
+<div class="table-responsive">
+    <table class="table table-hover align-middle shadow-sm bg-white rounded">
+        <thead style="background-color: #f8f9fa; color: #0c183b;">
+            <tr>
+                <th>Réf / Date</th>
+                <th>Type</th>
+                <th>Demandeur</th>
+                <th>Priorité</th>
+                <th>Détails Spécifiques</th>
+                <th>État</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><small class="text-muted">#D-2026-001</small><br><strong>25/03/2026</strong></td>
+                <td><i class="bi bi-people-fill text-primary" title="Personnel"></i></td>
+                <td>Dr. Mansouri <br><small class="text-muted">Div. Recherche</small></td>
+                <td><span class="badge bg-info">Normale</span></td>
+                <td><small>Capacité requise : 4 Pers.</small></td>
+                <td><span class="badge rounded-pill bg-warning text-dark">En attente</span></td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-primary" title="Affecter véhicule/chauffeur">
+                        <i class="bi bi-check-circle"></i> Traiter
+                    </button>
+                </td>
+            </tr>
 
-                                <table class="table table-hover mt-4" style="border-radius:20px;">
-                                    <thead>
-                                    <tr>
-                                    <th>ID</th>
-                                    <th>Chauffeur</th>
-                                    <th>Numéro de téléphone</th>
-                                    <th>Email</th>
-                                    <th>Statut</th>
-                                    <th>Mission actuelle</th>
-                                    <th>Actions</th>
-                                </tr>
-                                    </thead>
-                          <tbody>     
-                                    <tr>
-                                    <td>1</td>
-                                    <td>Halliche Ines</td>
-                                    <td>0549216835</td>
-                                    <td>Hallicheines@gmail.com</td>
-                                    <td>
-                                    <div class="dispo">Disponible</div>
-                                    </td>
-                                    <td>-</td>                                        
-
-                                    <td><a href="2.detail-chauffeur.html" class="btn btn-primary">Consulter</a>
-                                        <a class="btn btn-warning">Modifier</a>
-                                        <a class="btn btn-danger">Supprimer</a>
-
-</td>
-                                    </tr>
-                                    <tr>
-                                    <td>2</td>
-                                    <td>Amimour Yasmine</td>
-                                    <td>0487578245</td>
-                                    <td>Amimouryasmine@gmail.com</td>
-                                    <td>
-                                    <div class="mission">En mission</div>
-                                    </td>
-                                    <td>Mission...</td>                                        
-
-                                    <td><button type="button" class="btn btn-primary">Consulter</button>
-                                        <button type="button" class="btn btn-warning">Modifier</button>
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
-
-</td>
-                                    </tr>
-                                    <tr>
-                                      <td>3</td>  
-                                      <td>Aliouane Sabrina</td>
-                                      <td>0125467985</td>
-                                      <td>AliouaneSabrina@gmail.com</td>
-                                      <td>
-                                        <div class="conge">En congé</div>
-                                      </td>
-                                      <td>-</td>
-                                      <td>
-                                        <button type="button" class="btn btn-primary">Consulter</button>
-                                        <button type="button" class="btn btn-warning">Modifier</button>
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
-                                      </td>
-                                    </tr>
-                                     </tr>
-                                    <tr>
-                                    <td>4</td>
-                                    <td>Boucherou Sarah</td>
-                                    <td>078452654</td>
-                                    <td>BoucherouSarah@gmail.com</td>
-                                    <td>
-                                    <div class="absent">Absent</div>
-                                    </td>
-                                    <td> - </td>                                        
-
-                                    <td><button type="button" class="btn btn-primary">Consulter</button>
-                                        <button type="button" class="btn btn-warning">Modifier</button>
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
-
-</td>
-                                    </tr>
-                                    </tbody>
-
-            </table>
+            <tr>
+                <td><small class="text-muted">#D-2026-002</small><br><strong>26/03/2026</strong></td>
+                <td><i class="bi bi-box-seam text-warning" title="Matériel"></i></td>
+                <td>Service Logistique</td>
+                <td><span class="badge bg-danger">Haute</span></td>
+                <td><small><strong>Poids :</strong> 250kg <br> <strong>Type :</strong> Électronique</small></td>
+                <td><span class="badge rounded-pill bg-warning text-dark">En attente</span></td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-primary">
+                        <i class="bi bi-check-circle"></i> Traiter
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
                             </div>
                                
             </div></div></div></div>
