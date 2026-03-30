@@ -19,7 +19,8 @@
                             <h4 class="text-center mt-4"><i class="bi bi-person-gear"></i> Chef du parc</h4>
                             <hr>
                             <a href="ChefDeParc.html" class="sidebar-link mb-2 text-center mt-5" onclick="showdashboard()"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                            <a href="Demandes.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-envelope-paper"></i> Demandes</a>
+                            <a href="1.Demandes.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-envelope-paper"></i> Demandes</a>
+                            <a href="4.missions.html"class="sidebar-link mb-2 text-center mt-4"><i class="bi bi-bullseye"></i> Missions</a>
                             <a href="2.Chauffeurs.html" class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-person-badge"></i> Chauffeurs</a>
                             <a href="3.Véhicules.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-car-front-fill"></i> Véhicules</a>
 
@@ -44,17 +45,18 @@
                                 
                                 <br>
         <form class="d-flex" role="search">
-        <input class="form-control" type="search" placeholder="Rechercher véhicule..." aria-label="Search">
-        <select class= "form-select-sm ms-2 me-3" aria-label="Statut" >
-            <option selected hidden>Statut</option>
-            <option>Disponible</option>
-            <option>En mission</option>
-            <option>En maintenance</option>
-            <option>Hors service</option>
+        <input class="form-control" type="search" placeholder="Rechercher véhicule..." aria-label="Search" id="search-input">
+        <select class= "form-select-sm ms-2 me-3" aria-label="Statut" id="stat-vehicule" onchange="filtrerVehicules()">
+            <option selected hidden value="">Statut</option>
+            <option value="car-dispo">Disponible</option>
+            <option value="car-mission">En mission</option>
+            <option value="car-mt">En maintenance</option>
+            <option value="car-hs">Hors service</option>
         </select>
         
             <button class="btn"style="background-color: #30447d;color:aliceblue;" type="submit" ><i class="bi bi-search"></i></button>
- 
+           <button class="btn ms-2" type="button" onclick="resetFiltre()" style="background-color: #30447d;color:aliceblue;"><i class="bi bi-arrow-repeat"></i></button>
+
  </form>           
 
     
@@ -142,8 +144,9 @@
     <label for="etat-vehicule" class="form-label fw-bold">Etat technique</label>
     <select id="etat-vehicule" class="form-select">
         <option selected hidden>Selectionnez l'état du véhicule</option>
-        <option>Très bon</option>
+        <option>Excellent</option>
         <option>Bon</option>
+        <option>Moyen</option>
         <option>Mauvais</option>
     </select>
 </div>
@@ -153,7 +156,7 @@
     <select id="carburant" class="form-select" required>
     <option selected hidden>Selectionnez le type du carburant</option>
     <option>GPL</option>
-    <option>Gasoil</option>
+    <option>Diesel</option>
     <option>Essence normal</option>
     <option>Essence super</option>
     <option>Electrique</option>
@@ -199,14 +202,17 @@
 
 
                                 <table class="table table-hover mt-4">
-                                    <th>Immatriculation</th>
-                                    <th>Marque</th>
-                                    <th>Modèle</th>
-                                    <th>Kilométrage</th>
-                                    <th>Statut</th>
-                                    <th>Affectation actuelle</th>
-                                    <th>Actions</th>
-                                    <tr>
+                                    <thead>
+                                    <th class="text-center">Immatriculation</th>
+                                    <th class="text-center">Marque</th>
+                                    <th class="text-center">Modèle</th>
+                                    <th class="text-center">Kilométrage</th>
+                                    <th class="text-center">Statut</th>
+                                    <th class="text-center">Affectation actuelle</th>
+                                    <th class="text-center">Actions</th>
+                                </thead>
+                                <tbody  class="text-center">
+                                    <tr class="text-center">
                                     <td>12345-122-16</td>
                                     <td>Renault</td>
                                     <td>Clio 4</td>
@@ -216,9 +222,9 @@
                                     </td>
                                     <td>-</td>                                        
 
-                                    <td><a href ="3.detail-vehicule.html" class="btn btn-primary">Consulter</a>
-                                        <a class="btn btn-warning">Modifier</a>
-                                        <a class="btn btn-danger">Supprimer</a>
+                                    <td><a href ="3.detail-vehicule.html" class="btn btn-primary btn-sm">Consulter</a>
+                                        <a class="btn btn-warning btn-sm">Modifier</a>
+                                        <a class="btn btn-danger btn-sm">Supprimer</a>
 
 </td>
                                     </tr>
@@ -232,9 +238,9 @@
                                     </td>
                                     <td>Affectation</td>                                        
 
-                                    <td><button type="button" class="btn btn-primary">Consulter</button>
-                                        <button type="button" class="btn btn-warning">Modifier</button>
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                    <td><button type="button" class="btn btn-primary btn-sm">Consulter</button>
+                                        <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
 
 </td>
                                     </tr>
@@ -248,9 +254,9 @@
                                       </td>
                                       <td>-</td>
                                       <td>
-                                        <button type="button" class="btn btn-primary">Consulter</button>
-                                        <button type="button" class="btn btn-warning">Modifier</button>
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                        <button type="button" class="btn btn-primary btn-sm">Consulter</button>
+                                        <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                       </td>
                                     </tr>
 
@@ -264,12 +270,12 @@
                                       </td>
                                       <td>-</td>
                                       <td>
-                                        <button type="button" class="btn btn-primary">Consulter</button>
-                                        <button type="button" class="btn btn-warning">Modifier</button>
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                        <button type="button" class="btn btn-primary btn-sm">Consulter</button>
+                                        <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                       </td>
                                     </tr>
-
+                                    </tbody>
             </table>
                             </div>
                                

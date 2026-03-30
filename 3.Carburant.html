@@ -19,7 +19,8 @@
                             <h4 class="text-center mt-4"><i class="bi bi-person-gear"></i> Chef du parc</h4>
                             <hr>
                             <a href="ChefDeParc.html" class="sidebar-link mb-2 text-center mt-5" onclick="showdashboard()"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                            <a href="Demandes.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-envelope-paper"></i> Demandes</a>
+                            <a href="1.Demandes.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-envelope-paper"></i> Demandes</a>
+                            <a href="4.missions.html"class="sidebar-link mb-2 text-center mt-4"><i class="bi bi-bullseye"></i> Missions</a>
                             <a href="2.Chauffeurs.html" class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-person-badge"></i> Chauffeurs</a>
                             <a href="3.Véhicules.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-car-front-fill"></i> Véhicules</a>
 
@@ -56,7 +57,6 @@
 
 <div class="nav-details">
     <a href="3.detail-vehicule.html" class="btn det"><i class="bi bi-info-circle"></i> Informations du véhicules</a>
-    <a href="3.AffectationsV.html" class="btn det"><i class="bi bi-check2-circle"></i> Affectations</a>
     <a href="3.DocumentAdministratif.html" class="btn det"><i class="bi bi-files"></i> Documents administratifs</a>
     <a href="3.Maintenance.html" class="det btn"><i class="bi bi-tools"></i> Maintenance</a>
     <a href="3.Carburant.html" class="btn det clique"><i class="bi bi-fuel-pump"></i> Carburant</a>
@@ -135,6 +135,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table-hover mt-3">
+    <thead class="text-center">
     <th>Date de ravitaillement</th>
     <th>Station de service</th>
     <th>Type de carburant</th>
@@ -142,7 +143,8 @@
     <th>Kilométrage</th>
     <th>Montant</th>
     <th>Actions</th>
-<tbody>
+</thead>
+<tbody class="text-center">
     <tr>
         <td>12/02/2025</td>
         <td>Naftal (Birtouta)</td>
@@ -150,9 +152,9 @@
         <td>45L</td>
         <td>1248000 Km</td>
         <td>3500 DA</td>
-        <td><a href="#" target="_blank" class="btn ms-3"style="background-color: #30447d; color:aliceblue;">Voir le reçu</a>
-          <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ajout-carb">Modifier</button>
-            <button class="btn btn-danger supprimer" onclick="supprimerLigne(this)">Supprimer</button></td>
+        <td><a href="#" target="_blank" class="btn btn-primary ms-3 btn-sm">Voir le reçu</a>
+          <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#ajout-carb">Modifier</button>
+            <button class="btn btn-danger btn-sm" onclick="supprimerLigne(this)">Supprimer</button></td>
     </tr>
 
 </tbody>

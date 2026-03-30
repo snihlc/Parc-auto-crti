@@ -93,11 +93,11 @@ let nvlLigne =  `
         <td>${quantiteCarb} L</td>
         <td>${km} Km</td>
         <td>${montantCarb} DA</td>
-        <td><a href="#" class="btn ms-3" style="background-color:#30447d;color:aliceblue;">Voir le reçu</a>
-        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ajout-carb">Modifier</button>
-        <button class="btn btn-danger supprimer" onclick="supprimerLigne(this)">Supprimer</button></td>
-    </tr></td>
+        <td><a href="#" target="_blank" class="btn btn-primary ms-3 btn-sm">Voir le reçu</a>
+          <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#ajout-carb">Modifier</button>
+            <button class="btn btn-danger btn-sm" onclick="supprimerLigne(this)">Supprimer</button></td>
     </tr>
+
 `;
 tabCarb.innerHTML += nvlLigne;
 
@@ -124,7 +124,7 @@ function filtrerChauffeurs() {
     lignes.forEach(function(ligne) {
         let statut = ligne.querySelector("td:nth-child(5)").innerText.trim();
 
-        if (stat === "Statut" || stat === "") {
+        if (stat === "") {
             ligne.style.display = "";
         } else if (stat === "dispo" && statut === "Disponible") {
             ligne.style.display = "";
@@ -138,4 +138,54 @@ function filtrerChauffeurs() {
             ligne.style.display = "none";
         }
     });
+}
+function resetFiltre() {
+    let statChauf = document.getElementById("stat-chauf");
+    if (statChauf) statChauf.value="";
+
+    let statVehicule = document.getElementById("stat-vehicule");
+    if (statVehicule) statVehicule.value = "";
+
+    let searchInput = document.getElementById("search-input");
+    if (searchInput) searchInput.value = "";
+    
+    let lignes = document.querySelectorAll("table tbody tr");
+    lignes.forEach(ligne => ligne.style.display = "");
+}
+
+function filtrerVehicules(){
+    let stat = document.getElementById("stat-vehicule").value;
+    let lignes = document.querySelectorAll("table tbody tr");
+
+    lignes.forEach(function(ligne){
+        let statut = ligne.querySelector("td:nth-child(5)").innerText.trim();
+
+        if (stat === "") {
+            ligne.style.display="";
+        } else if (stat === "car-dispo" && statut === "Disponible") {
+            ligne.style.display = "";
+        } else if (stat === "car-mission" && statut === "En mission"){
+            ligne.style.display = "";
+        } else if (stat === "car-mt" && statut === "En maintenance"){
+            ligne.style.display = "";
+        } else if (stat === "car-hs" && statut === "Hors service") {
+            ligne.style.display = "";
+        } else {
+            ligne.style.display = "none";
+        }
+    });
+
+}
+
+
+function affMission(){
+    let chauffeur = document.getElementById("chauf-dispo").value;
+    let vehicule = document.getElementById("vehicule-dispo").value;
+
+    if (chauffeur != "" && vehicule != "" && chauffeur != "reset" && vehicule != "reset"){
+        document.querySelector(".aff-mission").style.display="block";
+    }
+    else{
+        document.querySelector(".aff-mission").style.display="none";
+    }
 }

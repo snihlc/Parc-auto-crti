@@ -20,7 +20,8 @@
                             <h4 class="text-center mt-4"><i class="bi bi-person-gear"></i> Chef du parc</h4>
                             <hr>
                             <a href="ChefDeParc.html" class="sidebar-link mb-2 text-center mt-5" onclick="showdashboard()"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                            <a class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-envelope-paper"></i> Demandes</a>
+                            <a href="1.Demandes.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-envelope-paper"></i> Demandes</a>
+                            <a href="4.missions.html"class="sidebar-link mb-2 text-center mt-4"><i class="bi bi-bullseye"></i> Missions</a>
                             <a href="2.Chauffeurs.html" class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-person-badge"></i> Chauffeurs</a>
                             <a href="3.Véhicules.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-car-front-fill"></i> Véhicules</a>
 
@@ -44,9 +45,9 @@
                                 <h2 class="text-center">Gestion des chauffeurs</h2>
                                 <br>
         <form class="d-flex" role="search">
-        <input class="form-control" type="search" placeholder="Rechercher Chauffeur..." aria-label="Search">
+        <input class="form-control" type="search" placeholder="Rechercher Chauffeur..." aria-label="Search" id="search-input">
         <select class= "form-select-sm ms-2 me-3" aria-label="Statut"  id="stat-chauf" onchange="filtrerChauffeurs()">
-            <option selected hidden>Statut</option>
+            <option selected hidden value="">Statut</option>
             <option value="dispo">Disponible</option>
             <option value="mission">En mission</option>
             <option value="conge">En congé</option>
@@ -54,7 +55,7 @@
         </select>
         
             <button class="btn" style="background-color: #30447d;color:aliceblue;" type="submit"><i class="bi bi-search"></i></button>
- 
+           <button class="btn ms-2" type="button" onclick="resetFiltre()"style="background-color: #30447d;color:aliceblue;"><i class="bi bi-arrow-repeat"></i></button>
  </form>           
 
                            
@@ -167,49 +168,49 @@
                                 <table class="table table-hover mt-4" style="border-radius:20px;">
                                     <thead>
                                     <tr>
-                                    <th>ID</th>
-                                    <th>Chauffeur</th>
-                                    <th>Numéro de téléphone</th>
-                                    <th>Email</th>
-                                    <th>Statut</th>
-                                    <th>Mission actuelle</th>
-                                    <th>Actions</th>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Chauffeur</th>
+                                    <th class="text-center">Numéro de téléphone</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Statut</th>
+                                    <th class="text-center">Mission actuelle</th>
+                                    <th class="text-center">Actions</th>
                                 </tr>
                                     </thead>
                           <tbody>     
                                     <tr>
-                                    <td>1</td>
-                                    <td>Halliche Ines</td>
-                                    <td>0549216835</td>
-                                    <td>Hallicheines@gmail.com</td>
-                                    <td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">Halliche Ines</td>
+                                    <td class="text-center">0549216835</td>
+                                    <td class="text-center">Hallicheines@gmail.com</td>
+                                    <td class="text-center">
                                     <div class="dispo">Disponible</div>
                                     </td>
-                                    <td>-</td>                                        
+                                    <td class="text-center">-</td>                                        
 
-                                    <td><a href="2.detail-chauffeur.html" class="btn btn-primary">Consulter</a>
-                                        <a class="btn btn-warning">Modifier</a>
-                                        <a class="btn btn-danger">Supprimer</a>
+                                    <td class="text-center"><a href="2.detail-chauffeur.html" class="btn btn-primary btn-sm">Consulter</a>
+                                        <a class="btn btn-warning btn-sm">Modifier</a>
+                                        <a class="btn btn-danger btn-sm">Supprimer</a>
 
 </td>
                                     </tr>
                                     <tr>
-                                    <td>2</td>
-                                    <td>Amimour Yasmine</td>
-                                    <td>0487578245</td>
-                                    <td>Amimouryasmine@gmail.com</td>
-                                    <td>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">Amimour Yasmine</td>
+                                    <td class="text-center">0487578245</td>
+                                    <td class="text-center">Amimouryasmine@gmail.com</td>
+                                    <td class="text-center">
                                     <div class="mission">En mission</div>
                                     </td>
-                                    <td>Mission...</td>                                        
+                                    <td class="text-center">Mission...</td>                                        
 
-                                    <td><button type="button" class="btn btn-primary">Consulter</button>
-                                        <button type="button" class="btn btn-warning">Modifier</button>
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                    <td class="text-center"><button type="button" class="btn btn-primary btn-sm">Consulter</button>
+                                        <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
 
 </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="text-center">
                                       <td>3</td>  
                                       <td>Aliouane Sabrina</td>
                                       <td>0125467985</td>
@@ -219,25 +220,25 @@
                                       </td>
                                       <td>-</td>
                                       <td>
-                                        <button type="button" class="btn btn-primary">Consulter</button>
-                                        <button type="button" class="btn btn-warning">Modifier</button>
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                        <button type="button" class="btn btn-primary btn-sm">Consulter</button>
+                                        <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                       </td>
                                     </tr>
                                      </tr>
                                     <tr>
-                                    <td>4</td>
-                                    <td>Boucherou Sarah</td>
-                                    <td>078452654</td>
-                                    <td>BoucherouSarah@gmail.com</td>
-                                    <td>
+                                    <td class="text-center">4</td>
+                                    <td class="text-center">Boucherou Sarah</td>
+                                    <td class="text-center">078452654</td>
+                                    <td class="text-center">BoucherouSarah@gmail.com</td>
+                                    <td class="text-center">
                                     <div class="absent">Absent</div>
                                     </td>
-                                    <td> - </td>                                        
+                                    <td class="text-center"> - </td>                                        
 
-                                    <td><button type="button" class="btn btn-primary">Consulter</button>
-                                        <button type="button" class="btn btn-warning">Modifier</button>
-                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                    <td class="text-center"><button type="button" class="btn btn-primary btn-sm">Consulter</button>
+                                        <button type="button" class="btn btn-warning btn-sm">Modifier</button>
+                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
 
 </td>
                                     </tr>
