@@ -44,7 +44,7 @@
                                 <h2 class="text-center">Gestion des véhicules</h2>
                                 
                                 <br>
-        <form class="d-flex" role="search">
+        <form class="d-flex" role="search" onsubmit="event.preventDefault(); rechercheVehicule();">
         <input class="form-control" type="search" placeholder="Rechercher véhicule..." aria-label="Search" id="search-input">
         <select class= "form-select-sm ms-2 me-3" aria-label="Statut" id="stat-vehicule" onchange="filtrerVehicules()">
             <option selected hidden value="">Statut</option>
@@ -54,13 +54,13 @@
             <option value="car-hs">Hors service</option>
         </select>
         
-            <button class="btn"style="background-color: #30447d;color:aliceblue;" type="submit" ><i class="bi bi-search"></i></button>
+            <button class="btn"style="background-color: #30447d;color:aliceblue;" onclick="rechercheVehicule()" type="button" ><i class="bi bi-search"></i></button>
            <button class="btn ms-2" type="button" onclick="resetFiltre()" style="background-color: #30447d;color:aliceblue;"><i class="bi bi-arrow-repeat"></i></button>
 
  </form>           
 
     
-                        <button type="button" class="btn btn mt-4" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-Chauff"> + Ajouter un véhicule</button>
+                <button type="button" class="btn btn mt-4" style="background-color: #2c3368;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-Chauff"> + Ajouter un véhicule</button>
                         
         <div class="modal fade" tabindex="-1" id="ajout-Chauff">
   <div class="modal-dialog modal-lg">
@@ -90,23 +90,20 @@
     
 </div>
 <div class="col-md-6 mb-3">
-    <label for="NbPlaces" class="form-label fw-bold">Capacité</label>
-    <div class="input-group">
-    <input type="number" class="form-control " id="NbPlaces">
-        <select class="form-select" style="max-width:100px;">
-            <option>Places</option>
-            <option>Kg</option>
-            <option>Tonnes</option>
-            <option>m³</option>
-        </select>
-
-</div>
+    <label for="NbPlaces" class="form-label fw-bold">Nombre de places</label>
+ <input type="number" class="form-control " id="NbPlaces">
 </div>
 
 </div>
 
 
     <div class="row">
+
+    <div class="col-md-6 mb-3">
+    <label for="annee-vehicule" class="form-label fw-bold">Année</label>
+   <input type="number" class="form-control" id="annee-vehicule">
+  </div>
+
     <div class="col-md-6 mb-3">
          <label for="type-vehicule" class="form-label fw-bold">Type du véhicule</label>
         <select class="form-select">
@@ -117,12 +114,6 @@
         <option>Type D - Transport de personnes</option>
     </select>
   </div>
-
-    <div class="col-md-6 mb-3">
-    <label for="annee-vehicule" class="form-label fw-bold">Année</label>
-   <input type="number" class="form-control" id="annee-vehicule">
-  </div>
-
 </div>
 
     <div class="row">
@@ -133,14 +124,6 @@
 </div>
 
 <div class="col-md-6 mb-3">
-<label for="chassis" class="form-label fw-bold">Numéro de châssis (VIN)</label>
-<input type="text" id="chassis" class="form-control">
-</div>
-
-</div>
-
-<div class="row">
-    <div class="col-md-6 mb-3">
     <label for="etat-vehicule" class="form-label fw-bold">Etat technique</label>
     <select id="etat-vehicule" class="form-select">
         <option selected hidden>Selectionnez l'état du véhicule</option>
@@ -151,37 +134,30 @@
     </select>
 </div>
 
+</div>
+
+<div class="row">
+    
+
     <div class="col-md-6 mb-3">
         <label for="carburant" class="form-label fw-bold">Type du carburant</label>
     <select id="carburant" class="form-select" required>
     <option selected hidden>Selectionnez le type du carburant</option>
     <option>GPL</option>
     <option>Diesel</option>
-    <option>Essence normal</option>
-    <option>Essence super</option>
+    <option>Essence</option>
     <option>Electrique</option>
 </select>
 
     </div>
 
-</div>
-<div class="row">
-
-         <div class="col-md-6 mb-3">
-        <label for="assurance" class="form-label fw-bold">Type d'assurance</label>
-        <select id="assurance" class="form-select">
-            <option selected hidden>Selectionnez le type d'assurance</option>
-            <option>Tous Risques</option> 
-            <option>Responsabilité Civile</option>
-            <option>Tiers Étendu</option>
-            <option>Au Tiers</option>
-        </select>
-</div> 
-
        <div class="col-md-6 mb-3">
     <label for="date-circulation" class="form-label fw-bold">Date de mise à disposition</label>
     <input type="date" class="form-control" id="date-circulation">
     </div>
+
+</div>
+<div class="row">
 
 </div>
     <div class="col-12 mb-3">
@@ -200,7 +176,7 @@
 </div>
 
 
-
+<div class="table-responsive">
                                 <table class="table table-hover mt-4">
                                     <thead>
                                     <th class="text-center">Immatriculation</th>
@@ -266,7 +242,7 @@
                                       <td>Golf 8</td>
                                       <td>56 320 km</td>
                                       <td>
-                                        <div class="hors-service">Hors service</div>
+                                    <div class="hors-service">Hors service</div>
                                       </td>
                                       <td>-</td>
                                       <td>
@@ -276,7 +252,7 @@
                                       </td>
                                     </tr>
                                     </tbody>
-            </table>
+            </table></div>
                             </div>
                                
             </div></div></div></div>

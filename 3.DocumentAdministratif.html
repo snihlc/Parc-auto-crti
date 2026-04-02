@@ -68,7 +68,28 @@
     <h4 style="color:#0c183b;"><i class="bi bi-files"></i> Documents administratifs</h4>
                 <button type="button" class="btn btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-doc"> + Ajouter un document</button>
 </div>
-<div class="modal fade" id="ajout-doc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+ <ul class="nav nav-pills mb-3 mt-3">
+    <li class="nav-item">
+        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerDocument('tout')">Tout</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerDocument('carte grise')">Carte grise</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerDocument('assurance')">Assurance</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerDocument('vignette')">Vignette</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerDocument('contrôle technique')">Contrôle technique</button>
+    </li>
+</ul>
+
+
+<div class="modal fade" id="ajout-doc" tabindex="-1" aria-labelledby="AjouterDocument" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -119,6 +140,11 @@
       <label for="montant-assurance" class="form-label fw-bold">Montant</label>
       <input type="text" class="form-control" id="montant-assurance">
     </div>
+    <div class="col-md-6 mb-3">
+      <label for="doc-assurance" class="form-label fw-bold">Document d'assurance</label>
+      <input type="file" class="form-control" id="doc-assurance">
+    </div>
+
   </div>
 </div>
 
@@ -138,6 +164,12 @@
       <label for="date-expiration-vignette" class="form-label fw-bold">Date d'expiration</label>
       <input type="date" class="form-control" id="date-expiration-vignette">
     </div>
+    <div class="col-md-6 mb-3">
+      <label for="doc-vignette" class="form-label fw-bold">Vignette automobile</label>
+      <input type="file" class="form-control" id="doc-vignette">
+    </div>
+
+
   </div>
 </div>
 
@@ -167,13 +199,19 @@
       <label for="prochain-controle" class="form-label fw-bold">Prochain contrôle</label>
       <input type="date" class="form-control" id="prochain-controle">
     </div>
+    <div class="col-md-6 mb-3">
+      <label for="doc-controle" class="form-label fw-bold">Certificat de contrôle technique</label>
+      <input type="file" class="form-control" id="doc-controle">
+    </div>
+
+
   </div>
 </div>
   
 <div id="carte-grise" style="display:none;">
 <div class="row">
   <div class="col-md-8 mb-3">
-    <label for="pdf-cg" class="form-label fw-bold"></label>
+    <label for="pdf-cg" class="form-label fw-bold">Carte grise</label>
     <input type="file" class="form-control" id="pdf-cg">
   </div>
 </div>
@@ -188,13 +226,13 @@
     </div>
   </div>
 </div>
-<div class="detail-vt d-flex justify-content-between align-items-center">
-
-    <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Carte grise</strong></h4>
-     <a href="#" target="_blank" class="btn btn-sm ms-3"style="background-color: #30447d; color:aliceblue;">Télécharger</a>
+<div class="detail-vt" data-type="carte-grise">
+<div class="d-flex justify-content-between align-items-center">
+    <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Carte grise</strong></h5>
+     <a href="#" target="_blank" class="btn btn-sm ms-3"style="background-color: #30447d; color:aliceblue;">Télécharger</a></div>
 </div>
 
-<div class="detail-vt">
+<div class="detail-vt" data-type="assurance">
       <div class="d-flex justify-content-between align-items-center">
     <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Assurance</strong></h5>
         <span class="badge text-bg fs-6" style="background-color: #30447d;">45000 DA</span>
@@ -209,7 +247,7 @@
  <a href="#" target="_blank" class="btn btn-sm ms-3"style="background-color: #30447d; color:aliceblue;">Télécharger</a>
 </div>
     
-<div class="detail-vt">
+<div class="detail-vt" data-type="vignette">
     <div class="d-flex justify-content-between align-items-center">
     <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Vignette</strong></h5>
     <span class="badge text-bg fs-6" style="background-color: #30447d;">2000 DA</span>
@@ -222,7 +260,7 @@
  </ul>   
  <a href="#" target="_blank" class="btn btn-sm ms-3"style="background-color: #30447d; color:aliceblue;">Télécharger</a>
 </div>
-<div class="detail-vt">
+<div class="detail-vt" data-type="contrôle-technique">
   <div class="d-flex justify-content-between align-items-center">
     <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Contrôle technique</strong></h5>
 <span class="badge text-bg fs-6" style="background-color: #30447d;">1200 DA</span>

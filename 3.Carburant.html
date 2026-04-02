@@ -76,7 +76,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-<form>
+
 <div class="row">
     <div class="col-md-6 mb-3">
     <label for="date-plein" class="form-label fw-bold">Date du ravitaillement</label>
@@ -94,9 +94,8 @@
     <select id="type-carburant" class="form-select" required>
     <option selected hidden>Selectionnez le type du carburant</option>
     <option>GPL</option>
-    <option>Gasoil</option>
-    <option>Essence normal</option>
-    <option>Essence super</option>
+    <option>Diesel</option>
+    <option>Essence</option>
     <option>Electrique</option>
 </select>
     </div>
@@ -120,14 +119,10 @@
 
 
 
-
-
-
-</form>
  </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn " style="background-color: #30447d;color:aliceblue;" onclick="enregistrerRavitaillement()" >Enregistrer</button>
+        <button type="button" class="btn btn-save " style="background-color: #30447d;color:aliceblue;" onclick="enregistrerRavitaillement()" >Enregistrer</button>
       </div>
     </div>
   </div>
@@ -146,14 +141,16 @@
 </thead>
 <tbody class="text-center">
     <tr>
-        <td>12/02/2025</td>
+        <td>12-02-2025</td>
         <td>Naftal (Birtouta)</td>
         <td>Diesel</td>
-        <td>45L</td>
+        <td>45 L</td>
         <td>1248000 Km</td>
         <td>3500 DA</td>
-        <td><a href="#" target="_blank" class="btn btn-primary ms-3 btn-sm">Voir le reçu</a>
-          <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#ajout-carb">Modifier</button>
+        
+        <td><!--<a href="#" target="_blank" class="btn btn-primary ms-3 btn-sm">Voir le reçu</a>-->
+
+          <button class="btn btn-warning btn-sm" data-bs-toggle="modal" onclick="modifierRavitaillement(this)" data-bs-target="#ajout-carb">Modifier</button>
             <button class="btn btn-danger btn-sm" onclick="supprimerLigne(this)">Supprimer</button></td>
     </tr>
 

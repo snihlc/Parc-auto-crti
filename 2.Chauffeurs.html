@@ -44,7 +44,7 @@
                             <div class="p-4" id="content">
                                 <h2 class="text-center">Gestion des chauffeurs</h2>
                                 <br>
-        <form class="d-flex" role="search">
+        <form class="d-flex" role="search" onsubmit="event.preventDefault(); rechercheChauffeur();">
         <input class="form-control" type="search" placeholder="Rechercher Chauffeur..." aria-label="Search" id="search-input">
         <select class= "form-select-sm ms-2 me-3" aria-label="Statut"  id="stat-chauf" onchange="filtrerChauffeurs()">
             <option selected hidden value="">Statut</option>
@@ -54,13 +54,11 @@
             <option value="absent">Absent</option>
         </select>
         
-            <button class="btn" style="background-color: #30447d;color:aliceblue;" type="submit"><i class="bi bi-search"></i></button>
+            <button class="btn" style="background-color: #30447d;color:aliceblue;" type="button" onclick="rechercheChauffeur()"><i class="bi bi-search"></i></button>
            <button class="btn ms-2" type="button" onclick="resetFiltre()"style="background-color: #30447d;color:aliceblue;"><i class="bi bi-arrow-repeat"></i></button>
  </form>           
 
-                           
-                                <button type="button" class="btn btn mt-4" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-Chauff"> + Ajouter un chauffeur</button>
-                   
+                                           
                         
         <div class="modal fade" tabindex="-1" id="ajout-Chauff">
   <div class="modal-dialog modal-lg">
@@ -91,39 +89,33 @@
         <label for="prenom" class="form-label fw-bold">Prénom</label>
     <input type="text" class="form-control" id="prenom">
   </div>
-    
-  <div class="col-md-6 mb-3">
-        <label for="username" class="form-label fw-bold">Numéro d'identification</label>
-    <input type="number" class="form-control" id="username">
-  </div>
-</div>
-<div class="row">
   <div class="col-md-6 mb-3">
         <label for="telChauff" class="form-label fw-bold">Numéro de téléphone</label>
     <input type="tel" class="form-control" id="telChauff" required>
 </div>
 
+    <div class="row">
+
+
 <div class="col-md-6 mb-3">
     <label for="mailChauff" class="form-label fw-bold">Adresse mail</label>
     <input type="email" class="form-control" id="mailChauff">
   </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6 mb-3">
-        <label for="age" class="form-label fw-bold">Date de naissance</label>
-        <input type="date" class="form-control" id="age">
+  
+<div class="col-md-6 mb-3">
+    <label for="age" class="form-label fw-bold">Date de naissance</label>
+    <input type="date" class="form-control" id="age">
     </div>  
+</div>
+</div>
+<div class="row">
+    
       <div class="col-md-6 mb-3">
         <label for="prenom" class="form-label fw-bold">Etat de santé</label>
     <input type="text" class="form-control" id="prenom">
   </div>
-</div>
 
-    <div class="row">
-
-
-  <div class="col-md-6 mb-3">
+<div class="col-md-6 mb-3">
 <label for="permis" class="form-label fw-bold">Catégorie de permis</label>
 <select id="permis" class="form-select" required>
     <option selected hidden>Selectionnez la catégorie</option>
@@ -134,23 +126,29 @@
 </select>
 </div> 
 
-<div class="col-md-6 mb-3">
+</div>
+
+    <div class="row">
+
+        <div class="col-md-6 mb-3">
     <label for="numPermis" class="form-label fw-bold">Numéro de permis</label>
     <input type="text" class="form-control" id="numPermis" required>
+</div>
+
+<div class="col-md-6 mb-3">
+    <label for="dateExp" class="form-label fw-bold">Date d'expiration du permis</label>
+    <input type="date" class="form-control" id="dateExp">
 </div>
 
 </div>
 
     <div class="row">
 
-<div class="col-md-6 mb-3">
-    <label for="dateExp" class="form-label fw-bold">Date d'expiration du permis</label>
-    <input type="date" class="form-control" id="dateExp">
-</div>
-<div class="col-md-6 mb-3">
+<div class="col-md-12 mb-3">
     <label for="dateExp" class="form-label fw-bold">Date de mise à disposition</label>
     <input type="date" class="form-control" id="dateExp">
 </div>
+
 </div>
 </form>
 
@@ -164,7 +162,7 @@
 </div>
 
 
-
+<div class="table-responsive">
                                 <table class="table table-hover mt-4" style="border-radius:20px;">
                                     <thead>
                                     <tr>
@@ -189,7 +187,7 @@
                                     <td class="text-center">-</td>                                        
 
                                     <td class="text-center"><a href="2.detail-chauffeur.html" class="btn btn-primary btn-sm">Consulter</a>
-                                        <a class="btn btn-warning btn-sm">Modifier</a>
+                                        <a class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#ajout-Chauff">Modifier</a>
                                         <a class="btn btn-danger btn-sm">Supprimer</a>
 
 </td>
@@ -244,7 +242,7 @@
                                     </tr>
                                     </tbody>
 
-            </table>
+            </table></div>
                             </div>
                                
             </div></div></div></div>

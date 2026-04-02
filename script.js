@@ -13,36 +13,30 @@ function afficherChamps() {
     }
 else {
         document.querySelector("#assurance").style.display="none";
-
 }
     if (type == "vignette")
     {
         document.querySelector("#vignette").style.display="block";
-
     }
     else {
         document.querySelector("#vignette").style.display="none";
-
 }
     if (type == "controle-tech")
     {
         document.querySelector("#controle").style.display="block";
-
     }
     else {
         document.querySelector("#controle").style.display="none";
-
 }
     if (type == "carte-grise")
     {
         document.querySelector("#carte-grise").style.display="block";
-
-    }
+}
     else {
         document.querySelector("#carte-grise").style.display="none";
+}
+}
 
-}
-}
 function affTypeMaintenance(){
     let type = document.getElementById("type-maintenance").value;
     let typeper = document.getElementById("type-periodique").value;
@@ -105,12 +99,30 @@ document.getElementById("date-plein").value="";
 document.getElementById("station").value="";
 document.getElementById("type-carburant").value="";
 document.getElementById("qte-carb").value="";
+document.getElementById("kilometrage-carb").value="";
 document.getElementById("montant-carb").value="";
 
 let modal = bootstrap.Modal.getInstance(document.getElementById("ajout-carb"));
 modal.hide();
 
 }
+
+
+function modifierRavitaillement(btn){
+    ligne = btn.closest("tr");
+
+let date = ligne.querySelector("td:nth-child(1)").innerText;
+let parties = date.split("-");
+let dateFormatee = parties[2] + "-" + parties[1] + "-" + parties[0];
+
+    document.getElementById("date-plein").value = dateFormatee;
+    document.getElementById("station").value = ligne.querySelector("td:nth-child(2)").innerText;
+    document.getElementById("type-carburant").value = ligne.querySelector("td:nth-child(3)").innerText;
+    document.getElementById("qte-carb").value = parseInt(ligne.querySelector("td:nth-child(4)").innerText);
+    document.getElementById("kilometrage-carb").value = parseInt(ligne.querySelector("td:nth-child(5)").innerText);
+    document.getElementById("montant-carb").value = parseInt(ligne.querySelector("td:nth-child(6)").innerText);
+}
+
 function supprimerLigne(btn) {
     if (confirm("Êtes-vous sûr de vouloir supprimer ce ravitaillement ?")) {
         btn.closest("tr").remove();
@@ -121,7 +133,7 @@ function filtrerChauffeurs() {
     let stat = document.getElementById("stat-chauf").value;
     let lignes = document.querySelectorAll("table tbody tr");
 
-    lignes.forEach(function(ligne) {
+    lignes.forEach(ligne => {
         let statut = ligne.querySelector("td:nth-child(5)").innerText.trim();
 
         if (stat === "") {
@@ -138,6 +150,23 @@ function filtrerChauffeurs() {
             ligne.style.display = "none";
         }
     });
+}
+
+function rechercheChauffeur(){
+    let recherche = document.getElementById("search-input").value.toLowerCase();
+    let lignes = document.querySelectorAll("table tbody tr");
+
+    lignes.forEach(ligne => {
+        let nom = ligne.querySelector("td:nth-child(2)").innerText.toLowerCase().trim();
+
+        if (nom.includes(recherche)){
+            ligne.style.display="";
+        }
+        else {
+            ligne.style.display="none";
+        }
+    })
+
 }
 function resetFiltre() {
     let statChauf = document.getElementById("stat-chauf");
@@ -157,7 +186,7 @@ function filtrerVehicules(){
     let stat = document.getElementById("stat-vehicule").value;
     let lignes = document.querySelectorAll("table tbody tr");
 
-    lignes.forEach(function(ligne){
+    lignes.forEach(ligne => {
         let statut = ligne.querySelector("td:nth-child(5)").innerText.trim();
 
         if (stat === "") {
@@ -174,11 +203,78 @@ function filtrerVehicules(){
             ligne.style.display = "none";
         }
     });
+}
+function rechercheVehicule(){
+    let recherche = document.getElementById("search-input").value;
+    let lignes = document.querySelectorAll("table tbody tr");
+
+    lignes.forEach(ligne => {
+        let marque = ligne.querySelector("td:nth-child(2)").innerText.trim();
+        let modele = ligne.querySelector("td:nth-child(3)").innerText.trim();
+
+        let marquemodele = marque + " " + modele;
+
+        if(marquemodele.includes(recherche)){
+            ligne.style.display="";
+        } else {
+            ligne.style.display="none";
+        }
+    })
 
 }
 
 
-function affMission(){
+function filtrerTypeDemandes(){
+    let typedm = document.getElementById("type-demande").value.toLowerCase();
+
+    let lignes = document.querySelectorAll("table tbody tr");
+
+    lignes.forEach(ligne => {
+        let typeDemande = ligne.querySelector("td:nth-child(3)").innerText.trim();
+
+    if (typedm === "" && etatdm === ""){
+        ligne.style.display="";
+    } else if (typedm === "dem-personnel" && typeDemande === "Personnel"){
+        ligne.style.display="";   
+    } else if(typedm === "dem-materiel" && typeDemande === "Materiel"){
+        ligne.style.display="";
+    } else {
+        ligne.style.display="none";
+    }
+    })
+}
+
+function filtrerEtatDemandes(){
+    let etatdm=document.getElementById("etat-demande").value.toLowerCase();
+    
+    let lignes = document.querySelectorAll("table tbody tr");
+
+lignes.forEach(ligne => {
+    let statDemmande = ligne.querySelector("td:nth-child(7)").innerText.trim();
+
+    if (etatdm === "")
+        { ligne.style.display="";
+    }
+    else if (etatdm === "dem-encours" && statDemmande === "En attente")
+        { ligne.style.display=""; 
+
+    }else if(etatdm === "dem-acceptee" && statDemmande === "Acceptée")
+        { ligne.style.display=""; 
+
+    }else if(etatdm === "dem-refusee" && statDemmande === "Rejetée")
+        { ligne.style.display=""; 
+
+    }else if(etatdm === "dem-annulee" && statDemmande === "Annulée")
+        { 
+        ligne.style.display=""; 
+    }else {
+         ligne.style.display="none"; 
+    }
+})
+
+}
+
+function affChampsMission(){
     let chauffeur = document.getElementById("chauf-dispo").value;
     let vehicule = document.getElementById("vehicule-dispo").value;
 
@@ -188,4 +284,54 @@ function affMission(){
     else{
         document.querySelector(".aff-mission").style.display="none";
     }
+}
+
+function filtrerMaintenance(type){
+        document.querySelectorAll(".nav-link").forEach(btn => {
+            btn.style.background="#30447d";
+            btn.style.opacity="0.6";
+        })
+        event.target.style.background="#30447d";
+        event.target.style.opacity="1";
+
+        let listmaintenances=document.querySelectorAll(".detail-vt");
+
+        listmaintenances.forEach(mnt => {
+
+            let typemt=mnt.querySelector("h4").innerText.toLowerCase();
+
+            if(type === "toutes"){
+                mnt.style.display="";
+
+            }else if(typemt.includes(type)){
+                mnt.style.display="";
+
+            } else {
+                mnt.style.display="none";
+
+            }
+        })
+}
+
+function filtrerDocument(dct){
+    document.querySelectorAll(".nav-link").forEach(btn => {
+        btn.style.background="#30447d";
+        btn.style.opacity="0.6";
+    })
+        event.target.style.background="#30447d";
+        event.target.style.opacity="1";
+
+        let listdocuments=document.querySelectorAll(".detail-vt");
+
+        listdocuments.forEach(doc => {
+            let typeDoc = doc.querySelector("h5").innerText.toLowerCase();
+
+            if(dct === "tout") {
+                doc.style.display="";
+            }else if (typeDoc.includes(dct)) {
+                doc.style.display="";
+            }else {
+                doc.style.display="none";
+            }
+        })
 }

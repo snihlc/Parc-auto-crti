@@ -45,21 +45,16 @@
                                 <h2 class="text-center">Gestion des demandes</h2>
                                 <br>
         <form class="d-flex" role="search">
-        <select class= "form-select ms-2 me-2" aria-label="Statut"  id="prio-demande">
-            <option selected hidden>Priorité</option>
-            <option value="faible">Faible</option>
-            <option value="normale">Normale</option>
-            <option value="urgente">Urgente</option>
-            <option value="critique">Critique</option>
-        </select>
-            <select class= "form-select me-3" aria-label="Statut"  id="etat-demande">
+        <input class="form-control" type="search" placeholder="Rechercher ..." aria-label="Search" id="search-input">
+
+            <select class= "form-select-sm me-2 ms-1" aria-label="Statut" onchange="filtrerEtatDemandes()" id="etat-demande">
             <option selected hidden>Etat</option>
             <option value="dem-encours">En attente</option>
             <option value="dem-acceptee">Acceptée</option>
             <option value="dem-refusee">Rejetée</option>
             <option value="dem-annulee">Annulée</option>
         </select>
-         <select class= "form-select me-3" aria-label="Statut"  id="type-demande">
+         <select class= "form-select-sm me-2" aria-label="Statut" onchange="filtrerTypeDemandes()" id="type-demande">
             <option selected hidden>Type demande</option>
             <option value="dem-personnel">Personnel</option>
             <option value="dem-materiel">Materiel</option>
@@ -69,38 +64,45 @@
             <button class="btn ms-2" type="button" onclick="resetFiltre()" style="background-color: #30447d;color:aliceblue;"><i class="bi bi-arrow-repeat"></i></button>
 
  </form>           
-                   
-
-
+        
 
                 <div class="table-responsive">
                                 <table class="table table-hover mt-4" style="border-radius:20px;">
-                                    <thead>
+                                    <thead class="text-center">
                                     <tr>
                                     <th class="text-center">ID</th>
                                     <th class="text-center">Employé</th>
                                     <th class="text-center">Type</th>
                                     <th class="text-center">Date et heure</th>
                                     <th class="text-center">Destination</th>
-                                    <th class="text-center">Priorité</th>
                                     <th class="text-center">Motif</th>
                                     <th class="text-center">Etat</th>
                                     <th>Actions</th>
                                 </tr>
                                     </thead>
 
-                          <tbody>     
+                          <tbody class="text-center">     
                                  
                             <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">Halliche ines</td>
-                                <td class="text-center">Personnel</td>
-                                <td class="text-center">12/05/2026 <br><small>09:30</small></td>
-                                <td class="text-center">Oran</td>
-                                <td class="text-center"><div class="dispo">Normale</div></td>
-                                <td class="text-center">Participation à un séminaire technique</td>
-                                <td class="text-center"><div class="conge">En attente</div></td>
-                                <td class="text-center"><button type="button" class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#traiter-demande">Traiter</button></td>
+                                <td>1</td>
+                                <td>Halliche ines</td>
+                                <td>Personnel</td>
+                                <td>12/05/2026 <br><small>09:30</small></td>
+                                <td>Oran</td>
+                                <td>Participation à un séminaire technique</td>
+                                <td><div class="dispo">Acceptée</div></td>
+                                <td><button type="button" class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#traiter-demande">Traiter</button></td>
+
+                            </tr>
+                                                        <tr>
+                                <td>1</td>
+                                <td>Halliche ines</td>
+                                <td>Materiel</td>
+                                <td>12/05/2026 <br><small>09:30</small></td>
+                                <td>Oran</td>
+                                <td>Participation à un séminaire technique</td>
+                                <td><div class="conge">En attente</div></td>
+                                <td><button type="button" class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#traiter-demande">Traiter</button></td>
 
                             </tr>
      
@@ -112,27 +114,26 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Traiter la demande</h1>
+        <h1 class="modal-title fs-5 fw-bold">Traiter la demande</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
        <form>
 <div class="row">
   <div class="col-md-6 mb-3">
-    <label for="chauf-dispo" class="form-label fw-bold">Chauffeurs disponibles</label>
-    <select class="form-select"  id="chauf-dispo" onchange="affMission()">
+    <label for="chauf-dispo" class="form-label fw-semibold">Chauffeurs disponibles</label>
+    <select class="form-select"  id="chauf-dispo" onchange="affChampsMission()">
         <option value="" hidden selected>Selectionner un chauffeur disponible</option>
         <option>Test test</option>
         <option value="reset">Aucun</option>
-
 
     </select>
 
 </div>
     
   <div class="col-md-6 mb-3">
-        <label for="vehicule-dispo" class="form-label fw-bold">Véhicules disponibles</label>
-        <select class="form-select"  id="vehicule-dispo" onchange="affMission()">
+        <label for="vehicule-dispo" class="form-label fw-semibold">Véhicules disponibles</label>
+        <select class="form-select"  id="vehicule-dispo" onchange="affChampsMission()">
             <option value="" hidden selected>Selectionner un véhicule disponible</option>
             <option>Renault Clio 4</option>
             <option value="reset">Aucun</option>
@@ -143,7 +144,7 @@
 <div class="aff-mission" style="display:none;">
 <div class="row">
     <div class="col-md-6 mb-3">
-        <label for="date-depart" class="form-label fw-bold">Date de départ</label>
+        <label for="date-depart" class="form-label fw-semibold">Date de départ</label>
         <input type="date" id="date-depart" class="form-control">
     </div>
     <div class="col-md-6 mb-3">
@@ -198,7 +199,18 @@
     </div>
 
 </div>
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <label for="priorite" class="form-label fw-semibold">Priorité</label>
+        <select id="priorite" class="form-select">
+            <option>Faible</option>
+            <option>Normale</option>
+            <option>Urgente</option>
+            <option>Critique</option>
 
+        </select>
+    </div>
+</div>
 </div>
 
 
@@ -210,7 +222,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#raison-refus">Rejeter</button>
-        <button type="button" class="btn btn-primary">Valider</button>
+        <button type="button" class="btn" style="background-color: #30447d;color:aliceblue;" >Valider</button>
 
       </div>
     </div>
