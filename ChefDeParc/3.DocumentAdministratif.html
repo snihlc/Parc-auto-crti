@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-                <link rel="stylesheet" href="style.css">
+                <link rel="stylesheet" href="../style.css">
 
         <Title>Détail du véhicule</Title>
         
@@ -23,17 +23,18 @@
                             <a href="4.missions.html"class="sidebar-link mb-2 text-center mt-4"><i class="bi bi-bullseye"></i> Missions</a>
                             <a href="2.Chauffeurs.html" class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-person-badge"></i> Chauffeurs</a>
                             <a href="3.Véhicules.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-car-front-fill"></i> Véhicules</a>
+                            <a href="5.Anomalies.html" class="sidebar-link mb-2 text-center mt-4"><i class="bi bi-exclamation-triangle"></i> Anomalies</a>
 
 
                                                     
-                            <button id="logout-btn" class="btn btn-danger" onclick="logout()">Deconnecter</button>
+                            <button id="logout-btn" class="btn btn-danger" onclick="logout()"><i class="bi bi-box-arrow-left"></i> Deconnecter</button>
                         </div>
                     </div>
                     <div class="col-md-9 col-lg-10 p-0">
                         <nav class="navbar navbar-light bg-light shadow-sm px-3 w-100" id="top-navbar">
                             <button class="btn btn-dark d-md-none mb-2" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
                             <span class="navbar-brand mx-auto mx-md-0">
-                                <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60">
+                                <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60" style="margin-left: 250px;">
                             </span>
                             <div class="ms-auto d-flex align-items-end gap-4">
                                 <i class="bi bi-envelope fs-5"></i>
@@ -66,7 +67,7 @@
 <div class="d-flex justify-content-between align-items-center">
 
     <h4 style="color:#0c183b;"><i class="bi bi-files"></i> Documents administratifs</h4>
-                <button type="button" class="btn btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-doc"> + Ajouter un document</button>
+                <button type="button" class="btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-doc"> + Ajouter un document</button>
 </div>
 
 
@@ -99,7 +100,7 @@
       <div class="modal-body">
 <form>
     <div class="col-md-12 mb-3 type-document">
-      <label for="type-doc" class="form-label fw-bold">Type de document</label>
+      <label for="type-doc" class="form-label fw-semibold">Type de document</label>
     <select class="form-select" id="type-doc" onchange="afficherChamps()">
         <option selected hidden>Selectionnez le type de document</option>
         <option value="carte-grise">Carte grise</option>
@@ -112,7 +113,7 @@
 <div id="assurance" style="display:none;">
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="assurance-type" class="form-label fw-bold">Type d'assurance</label>
+      <label for="assurance-type" class="form-label fw-semibold">Type d'assurance</label>
       <select id="assurance-type" class="form-select">
         <option>Tous Risques</option>
         <option>Responsabilité Civile</option>
@@ -121,27 +122,27 @@
       </select>
     </div>
     <div class="col-md-6 mb-3">
-      <label for="compagnie-assurance" class="form-label fw-bold">Compagnie d'assurance</label>
+      <label for="compagnie-assurance" class="form-label fw-semibold">Compagnie d'assurance</label>
       <input type="text" class="form-control" id="compagnie-assurance">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="date-debut-assurance" class="form-label fw-bold">Date de début</label>
+      <label for="date-debut-assurance" class="form-label fw-semibold">Date de début</label>
       <input type="date" class="form-control" id="date-debut-assurance">
     </div>
     <div class="col-md-6 mb-3">
-      <label for="date-expiration-assurance" class="form-label fw-bold">Date d'expiration</label>
+      <label for="date-expiration-assurance" class="form-label fw-semibold">Date d'expiration</label>
       <input type="date" class="form-control" id="date-expiration-assurance">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="montant-assurance" class="form-label fw-bold">Montant</label>
+      <label for="montant-assurance" class="form-label fw-semibold">Montant</label>
       <input type="text" class="form-control" id="montant-assurance">
     </div>
     <div class="col-md-6 mb-3">
-      <label for="doc-assurance" class="form-label fw-bold">Document d'assurance</label>
+      <label for="doc-assurance" class="form-label fw-semibold">Document d'assurance</label>
       <input type="file" class="form-control" id="doc-assurance">
     </div>
 
@@ -151,21 +152,21 @@
 <div id="vignette" style="display:none;">
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="date-achat-vignette" class="form-label fw-bold">Date d'achat</label>
+      <label for="date-achat-vignette" class="form-label fw-semibold">Date d'achat</label>
       <input type="date" class="form-control" id="date-achat-vignette">
     </div>
     <div class="col-md-6 mb-3">
-      <label for="montant-vignette" class="form-label fw-bold">Montant</label>
+      <label for="montant-vignette" class="form-label fw-semibold">Montant</label>
       <input type="text" class="form-control" id="montant-vignette">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="date-expiration-vignette" class="form-label fw-bold">Date d'expiration</label>
+      <label for="date-expiration-vignette" class="form-label fw-semibold">Date d'expiration</label>
       <input type="date" class="form-control" id="date-expiration-vignette">
     </div>
     <div class="col-md-6 mb-3">
-      <label for="doc-vignette" class="form-label fw-bold">Vignette automobile</label>
+      <label for="doc-vignette" class="form-label fw-semibold">Vignette automobile</label>
       <input type="file" class="form-control" id="doc-vignette">
     </div>
 
@@ -176,31 +177,31 @@
 <div id="controle" style="display:none;">
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="date-controle" class="form-label fw-bold">Date de contrôle</label>
+      <label for="date-controle" class="form-label fw-semibold">Date de contrôle</label>
       <input type="date" class="form-control" id="date-controle">
     </div>
     <div class="col-md-6 mb-3">
-      <label for="centre-controle" class="form-label fw-bold">Centre de contrôle</label>
+      <label for="centre-controle" class="form-label fw-semibold">Centre de contrôle</label>
       <input type="text" class="form-control" id="centre-controle">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="resultat-controle" class="form-label fw-bold">Résultat</label>
+      <label for="resultat-controle" class="form-label fw-semibold">Résultat</label>
       <input type="text" class="form-control" id="resultat-controle">
     </div>
   <div class="col-md-6 mb-3">
-      <label for="montant-controle" class="form-label fw-bold">Montant</label>
+      <label for="montant-controle" class="form-label fw-semibold">Montant</label>
       <input type="text" class="form-control" id="montant-controle">
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label for="prochain-controle" class="form-label fw-bold">Prochain contrôle</label>
+      <label for="prochain-controle" class="form-label fw-semibold">Prochain contrôle</label>
       <input type="date" class="form-control" id="prochain-controle">
     </div>
     <div class="col-md-6 mb-3">
-      <label for="doc-controle" class="form-label fw-bold">Certificat de contrôle technique</label>
+      <label for="doc-controle" class="form-label fw-semibold">Certificat de contrôle technique</label>
       <input type="file" class="form-control" id="doc-controle">
     </div>
 
@@ -211,7 +212,7 @@
 <div id="carte-grise" style="display:none;">
 <div class="row">
   <div class="col-md-8 mb-3">
-    <label for="pdf-cg" class="form-label fw-bold">Carte grise</label>
+    <label for="pdf-cg" class="form-label fw-semibold">Carte grise</label>
     <input type="file" class="form-control" id="pdf-cg">
   </div>
 </div>

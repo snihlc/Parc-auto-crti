@@ -245,7 +245,7 @@ function filtrerTypeDemandes(){
 }
 
 function filtrerEtatDemandes(){
-    let etatdm=document.getElementById("etat-demande").value.toLowerCase();
+    let etatdm=document.getElementById("etat-demande").value.trim();
     
     let lignes = document.querySelectorAll("table tbody tr");
 
@@ -267,11 +267,76 @@ lignes.forEach(ligne => {
     }else if(etatdm === "dem-annulee" && statDemmande === "Annulée")
         { 
         ligne.style.display=""; 
+    }else if (etatdm ==="dem-cloturee" && statDemmande === "Clôturée") {
+        ligne.style.display="";
     }else {
          ligne.style.display="none"; 
     }
 })
+}
 
+function filtrerEtatMissions(){
+    let etatMission = document.getElementById("stat-mission").value.trim();
+    
+    let lignes = document.querySelectorAll("table tbody tr");
+
+    lignes.forEach(ligne =>{
+
+        let statut = ligne.querySelector("td:nth-child(6)").innerText.trim();
+
+   if (etatMission === "")
+        { ligne.style.display="";
+    }
+    else if (etatMission=== "mis-encours" && statut === "En cours")
+        { ligne.style.display=""; 
+
+    }else if(etatMission === "mis-validee" && statut === "Validée")
+        { ligne.style.display=""; 
+
+    }else if(etatMission === "mis-annulee" && statut === "Annulée")
+        { 
+        ligne.style.display=""; 
+    }else if (etatMission ==="mis-terminee" && statut === "Terminée") {
+        ligne.style.display="";
+    }else {
+         ligne.style.display="none"; 
+    }       
+
+    })
+}
+
+function rechercherMissions(){
+    let recherche=document.getElementById("search-input").value.toLowerCase().trim();
+    let lignes = document.querySelectorAll("table tbody tr");
+
+    lignes.forEach(ligne => {
+        let demandeur=ligne.querySelector("td:nth-child(2)").innerText.trim().toLowerCase();
+        let chauffeur=ligne.querySelector("td:nth-child(3)").innerText.trim().toLowerCase();
+        let vehicule=ligne.querySelector("td:nth-child(4)").innerText.trim().toLowerCase();
+
+        let search = demandeur +" "+ chauffeur +" "+ vehicule;
+
+        if(search.includes(recherche)){
+            ligne.style.display="";
+        }else {
+            ligne.style.display="none";
+        }
+    })
+
+}
+function rechercheDemandes(){
+    let recherche=document.getElementById("search-input").value.toLowerCase().trim();
+    let lignes = document.querySelectorAll("table tbody tr");
+
+    lignes.forEach(ligne => {
+        let emp = ligne.querySelector("td:nth-child(2)").innerText.trim().toLowerCase();
+
+        if(emp.includes(recherche)){
+            ligne.style.display="";
+        } else {
+            ligne.style.display="none";
+        }
+    })
 }
 
 function affChampsMission(){
@@ -335,3 +400,18 @@ function filtrerDocument(dct){
             }
         })
 }
+
+  function setAction(el) {
+    const btn = el.closest('.btn-group').querySelector('.btn:first-child');
+    btn.textContent = el.textContent;
+    btn.dataset.action = el.textContent.trim();
+  }
+
+function handleAction(btn) {
+    const action = btn.dataset.action;
+    if (action === 'Planifier maintenance') {
+      new bootstrap.Modal(document.getElementById('maintenanceModal')).show();
+    } else if (action === 'Signaler chauffeur') {
+      // ouvre un autre modal ici
+    }
+  }

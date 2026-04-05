@@ -4,20 +4,33 @@
             }
             .navbar{
                 height:70px;
+                width:100%;
+                z-index:999;
+                position:fixed;
+                top:0;
+                left:0;
             }
-
+            #content{
+                margin-top: 70px;
+            }
             .card{
                 border:none;
                 border-radius:15px;
                
             }
-            
+
             #sidebar{
                 min-height:100vh;
                 width:250px;
                 background:linear-gradient(135deg, #122352, #2c3368, #516a9e);
                 color:white;
                 transition:0.3s;
+                z-index:1000;
+                position:fixed;
+
+            }
+            .col-md-9.col-lg-10 {
+                margin-left: 255px;
             }
 
             .sidebar-link{
@@ -45,7 +58,7 @@
                 transform:translateY(-5px);
             }
 
-            .dispo,.tres-bon,.terminee{
+            .dispo,.tres-bon,.terminee,.reparee{
                 background-color:rgb(170, 236, 193);
                 color:#166534;
                 display:inline-block;
@@ -54,7 +67,7 @@
                 padding:2px 8px 2px 8px;
             
             }
-            .mission,.bon,.programmee{
+            .mission,.bon,.programmee,.validee{
                 background-color: rgb(184, 214, 255);
                 color: #222854;
                 font-weight: 500;
@@ -63,7 +76,7 @@
                 padding:2px 8px 2px 8px;
             }
 
-            .hors-service,.mauvais,.absent,.annulee{
+            .hors-service,.mauvais,.absent,.annulee,.signalee{
                 background-color: rgb(255, 208, 208);
                 color:rgb(162, 0, 0);
                 font-weight: 500;
@@ -72,7 +85,7 @@
                 padding:2px 8px 2px 8px;
             }
          
-            .conge,.maintenance,.en-cours{
+            .conge,.maintenance,.en-cours,.en-cours-rep{
                 background-color: rgb(255, 224, 166);
                 color:rgb(190, 124, 0);
                 font-weight: 500;
