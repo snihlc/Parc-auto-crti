@@ -9,9 +9,18 @@
 
         <Title>Gestion des Anomalies</Title>
         
-    </head>
+</head>
         <body>
-
+<nav class="navbar navbar-light bg-light shadow-sm px-3 w-100" id="top-navbar">
+                            <button class="btn btn-dark d-md-none mb-2" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
+                            <span class="navbar-brand mx-auto mx-md-0">
+                                <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60" style="margin-left: 250px;">
+                            </span>
+                            <div class="ms-auto d-flex align-items-end gap-4">
+                                <i class="bi bi-envelope fs-5"></i>
+                                <i class="bi bi-bell fs-5"></i>
+                            </div>
+                        </nav>
             <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
             <div class="container-fluid ">
                 <div class="row">
@@ -31,36 +40,27 @@
                         </div>
                     </div>
                     <div class="col-md-9 col-lg-10 p-0">
-                        <nav class="navbar navbar-light bg-light shadow-sm px-3 w-100" id="top-navbar">
-                            <button class="btn btn-dark d-md-none mb-2" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
-                            <span class="navbar-brand mx-auto mx-md-0">
-                                <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60" style="margin-left: 250px;">
-                            </span>
-                            <div class="ms-auto d-flex align-items-end gap-4">
-                                <i class="bi bi-envelope fs-5"></i>
-                                <i class="bi bi-bell fs-5"></i>
-                            </div>
-                        </nav>
+                        
                             <div class="p-4" id="content">
                                 <h2 class="text-center">Gestion des anomalies</h2>
                                 <br>
 
-                  <form class="d-flex" role="search" onsubmit="event.preventDefault();">
-                <input class="form-control" type="search" placeholder="Rechercher ..." aria-label="Search" id="search-input">
-        <select class= "form-select-sm ms-2" aria-label="GravitePanne"  id="gravite-panne">
-            <option selected hidden>Gravité</option>
+                  <form class="d-flex" role="search" onsubmit="event.preventDefault(); rechercheAnomalie();">
+                <input class="form-control" type="search" placeholder="Rechercher anomalie..." aria-label="Search" id="search-input">
+        <select class= "form-select-sm ms-2" aria-label="GravitePanne" id="gravite-panne" onchange="filtrerAnomalies()">
+            <option selected hidden value="">Urgence</option>
             <option value="faible">Faible</option>
             <option value="moyenne">Moyenne</option>
             <option value="grave">Grave</option>
         </select>
-        <select class= "form-select-sm ms-2 me-2" aria-label="StatutPanne"  id="stat-panne">
-            <option selected hidden>Statut</option>
+        <select class= "form-select-sm ms-2 me-2" aria-label="StatutPanne" onchange="filtrerAnomalies()"  id="stat-panne">
+            <option selected hidden value="">Statut</option>
             <option value="signalee">Signalée</option>
             <option value="en-cours-rep">En cours</option>
             <option value="reparee">Réparée</option>
         </select>
 
-            <button class="btn" style="background-color: #30447d;color:aliceblue;" type="button" onsubmit="rechercherMissions()"><i class="bi bi-search"></i></button>
+            <button class="btn" style="background-color: #2c3368;color:aliceblue;" type="button" onclick="rechercheAnomalie()"><i class="bi bi-search"></i></button>
             <button class="btn ms-2" type="button" onclick="resetFiltre()" style="background-color: #2c3368;color:aliceblue;"><i class="bi bi-arrow-repeat"></i></button>
 
  </form>          
@@ -70,21 +70,22 @@
 <div class="table-responsive">
                                 <table class="table table-hover mt-4" style="border-radius:20px;">
                                     <thead class="text-center">
-                                            <th>ID</th>
                                             <th>Date</th>
                                             <th>Véhicule</th>
                                             <th>Signalé par</th>
+                                            <th>Urgence</th>
                                             <th>Type</th>
                                             <th>Statut</th>
+                                            
                                             <th>Actions</th>
 
   </thead>
   <tbody class="text-center">
     <tr>
-        <td>1</td>
         <td>12-05-2025</td>
         <td>Renault Clio 4</td>
         <td>Aliouane Sabrina<br><small class="text-muted">Chauffeur</small></td>
+        <td><div class="faible">Faible</div></td>
         <td>Problème de freins</td>
         <td><div class="signalee">Signalée</div></td>
         <td>
@@ -104,15 +105,16 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5">Détails de la mission</h1>
+        <h1 class="modal-title fs-5 fw-bold">Détails de l'anomalie</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 <ul style="list-style-type: circle;">
-    <li><strong>Gravité : </strong>Faible</li>
+    
     <li><strong>Description : </strong>Le véhicule présente un dysfonctionnement au niveau du système de freinage (bruit anormal, pédale dure ou faible efficacité).
  Une vérification technique est recommandée pour garantir la sécurité du véhicule.</li>
-    
+        <li><strong>Pièce jointe : </strong></li>
+
 
 </ul>
 
@@ -123,10 +125,11 @@
 </div>
     </tr>
         <tr>
-        <td>1</td>
         <td>12-05-2025</td>
         <td>Volkswagen	Golf 8</td>
         <td>Halliche Ines <br><small class="text-muted">Agent du parking</small></td>
+        <td><div class="moyenne">Moyenne</div></td>
+
         <td>Rayure carrosserie</td>
         <td><div class="reparee">Réparée</div></td>
         <td>
@@ -147,10 +150,11 @@
 
     </tr>    
     <tr>
-        <td>1</td>
         <td>12-05-2025</td>
         <td>Toyota	Hilux</td>
         <td>Boucherou Sarah<br><small class="text-muted">Chauffeur</small></td>
+      <td><div class="grave">Grave</div></td>
+  
         <td>Problème moteur</td>
         <td><div class="en-cours-rep">En cours de réparation</div></td>
         <td>
@@ -169,10 +173,11 @@
 
     </tr>
         <tr>
-        <td>1</td>
         <td>12-05-2025</td>
         <td>Peugeot	Partner</td>
         <td>Amimour yasmine<br><small class="text-muted">Agent du parking</small></td>
+                <td><div class="moyenne">Moyenne</div></td>
+
         <td>Chauffeur différent retour</td>
         <td><div class="signalee">Signalée</div></td>
         <td>
@@ -192,14 +197,15 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5">Détails de la mission</h1>
+        <h1 class="modal-title fs-5 fw-bold">Détails de l'anomalie</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 <ul style="list-style-type: circle;">
-    <li><strong>Gravité : </strong>Normale</li>
+    <li><strong>Chauffeur : </strong>Halliche Ines</li>
     <li><strong>Description : </strong>Le chauffeur ayant ramené le véhicule n’est pas le même que celui enregistré lors du départ.
          Une vérification de l’affectation de la mission est nécessaire.</li>
+    <li><strong>Pièce jointe : </strong></li>
     
 
 </ul>
@@ -210,27 +216,89 @@
   </div>
 </div>
     </tr>
-
-
-                                    </tbody>
+<tr id="no-result" style="display:none;">
+  <td colspan="7" class="text-muted">Aucune anomalie trouvée</td>
+</tr>
+</tbody>
 
             </table></div>
 
     <div class="modal fade" id="maintenanceModal" tabindex="-1">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Planifier une maintenance</h5>
+        <h5 class="modal-title fw-bold">Planifier une maintenance</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
 <form>
+ <div class="row">
+       <div class="mt-corrective col-md-6 mb-3">
+            <label for="mt-panne" class="form-label fw-semibold">Panne</label>
+            <select id="mt-panne" class="form-select">
+                <option hidden selected >Selectionner la panne</option>
+                <option>exp</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="date-maintenance" class="form-label fw-semibold">Date de la maintenance</label>
+            <input type="date" id="date-maintenance" class="form-control">
+        </div>
+
+    </div>
+
+    <div class="row"> 
+             <div class="col-md-6 mb-3">
+            <label for="desc" class="form-label fw-semibold">Description</label>
+            <textarea id="desc" class="form-control" rows="2"></textarea>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="statut-maintenance" class="form-label fw-semibold">Statut</label>
+            <select id="statut-maintenance" class="form-select">
+                <option value="prog">Programmée</option>
+                <option value="en_cours">En cours</option>
+                <option value="terminee">Terminée</option>
+                <option value="annulee">Annulée</option>
+            </select>
+        </div>
+
+    </div>
+
 
 </form>
     </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-primary">Confirmer</button>
+        <button type="button" class="btn" style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ConvocationModal" tabindex="-1" aria-labelledby="ConvocationChauffeur" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 fw-bold">Convocation chauffeur</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-md-12 mb-3">
+          <label for="chaufcnc" class="form-label fw-semibold">Chauffeur concerné</label>
+          <select id="chaufcnc" class="form-select">
+            <option></option>
+            <option></option>
+          </select>
+        </div>
+   
+      <div class="col-md-12 mb-3">
+      <label for="motifconv" class="form-label fw-semibold">Motif de la convocation</label>
+      <textarea id="motifconvo" class="form-control"></textarea>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn m-0" style="background-color: #2c3368;color:aliceblue;">Envoyer</button>
       </div>
     </div>
   </div>
@@ -239,7 +307,7 @@
                                
             </div></div></div></div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="script.js"></script>
+            <script src="../script.js"></script>
 
         </body>
 </html>

@@ -7,10 +7,21 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
                 <link rel="stylesheet" href="../style.css">
 
-        <Title>Détail du véhicule</Title>
+        <Title>Documents administratifs</Title>
         
     </head>
         <body>
+          
+  <nav class="navbar navbar-light bg-light shadow-sm px-3 w-100" id="top-navbar">
+                            <button class="btn btn-dark d-md-none mb-2" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
+                            <span class="navbar-brand mx-auto mx-md-0">
+                                <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60" style="margin-left: 250px;">
+                            </span>
+                            <div class="ms-auto d-flex align-items-end gap-4">
+                                <i class="bi bi-envelope fs-5"></i>
+                                <i class="bi bi-bell fs-5"></i>
+                            </div>
+                        </nav>
             <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
             <div class="container-fluid">
                 <div class="row">
@@ -31,20 +42,11 @@
                         </div>
                     </div>
                     <div class="col-md-9 col-lg-10 p-0">
-                        <nav class="navbar navbar-light bg-light shadow-sm px-3 w-100" id="top-navbar">
-                            <button class="btn btn-dark d-md-none mb-2" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
-                            <span class="navbar-brand mx-auto mx-md-0">
-                                <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60" style="margin-left: 250px;">
-                            </span>
-                            <div class="ms-auto d-flex align-items-end gap-4">
-                                <i class="bi bi-envelope fs-5"></i>
-                                <i class="bi bi-bell fs-5"></i>
-                            </div>
-                        </nav>
+                        
                             <div class="p-4" id="content">
                                 <div class="row align-items-center mb-3">
     <div class="d-flex justify-content-between align-items-center">
-        <a href="3.Véhicules.html" class="btn" style="background-color: #30447d; color:aliceblue;">
+        <a href="3.Véhicules.html" class="btn" style="background-color: #2c3368; color:aliceblue;">
             <i class="bi bi-arrow-left"></i> Retour
         </a>
 
@@ -67,34 +69,41 @@
 <div class="d-flex justify-content-between align-items-center">
 
     <h4 style="color:#0c183b;"><i class="bi bi-files"></i> Documents administratifs</h4>
-                <button type="button" class="btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-doc"> + Ajouter un document</button>
+                <button type="button" class="btn" style="background-color: #2c3368;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-doc"> + Ajouter un document</button>
 </div>
 
-
+<div class="d-flex align-items-center justify-content-between">
  <ul class="nav nav-pills mb-3 mt-3">
     <li class="nav-item">
-        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerDocument('tout')">Tout</button>
+        <button class="nav-link me-2 fw-semibold" style="background-color: #2c3368;color:aliceblue;" onclick="filtrerDocument('tout')">Tout</button>
     </li>
     <li class="nav-item">
-        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerDocument('carte grise')">Carte grise</button>
+        <button class="nav-link me-2 fw-semibold" style="background-color: #2c3368;color:aliceblue;" onclick="filtrerDocument('carte grise')">Carte grise</button>
     </li>
     <li class="nav-item">
-        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerDocument('assurance')">Assurance</button>
+        <button class="nav-link me-2 fw-semibold" style="background-color: #2c3368;color:aliceblue;" onclick="filtrerDocument('assurance')">Assurance</button>
     </li>
     <li class="nav-item">
-        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerDocument('vignette')">Vignette</button>
+        <button class="nav-link me-2 fw-semibold" style="background-color: #2c3368;color:aliceblue;" onclick="filtrerDocument('vignette')">Vignette</button>
     </li>
     <li class="nav-item">
-        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerDocument('contrôle technique')">Contrôle technique</button>
+        <button class="nav-link me-2 fw-semibold" style="background-color: #2c3368;color:aliceblue;" onclick="filtrerDocument('contrôle technique')">Contrôle technique</button>
     </li>
 </ul>
+    <select id="filtre-annee" class="form-select w-auto fw-semibold" onchange="filtrerDocumentDate()">
+    <option value="">Toutes les années</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+    <option value="2027">2027</option>
 
+</select></div>
 
 <div class="modal fade" id="ajout-doc" tabindex="-1" aria-labelledby="AjouterDocument" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="ajout-doc">Nouveau document</h1>
+        <h1 class="modal-title fs-5 fw-bold" id="ajout-doc">Nouveau document</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -204,8 +213,6 @@
       <label for="doc-controle" class="form-label fw-semibold">Certificat de contrôle technique</label>
       <input type="file" class="form-control" id="doc-controle">
     </div>
-
-
   </div>
 </div>
   
@@ -222,7 +229,7 @@
     </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn" style="background-color: #30447d;color:aliceblue;">Enregistrer</button>
+        <button type="button" class="btn" style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
       </div>
     </div>
   </div>
@@ -230,52 +237,52 @@
 <div class="detail-vt" data-type="carte-grise">
 <div class="d-flex justify-content-between align-items-center">
     <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Carte grise</strong></h5>
-     <a href="#" target="_blank" class="btn btn-sm ms-3"style="background-color: #30447d; color:aliceblue;">Télécharger</a></div>
+     <a href="#" target="_blank" class="btn btn-sm ms-3"style="background-color: #2c3368; color:aliceblue;">Télécharger</a></div>
 </div>
 
 <div class="detail-vt" data-type="assurance">
       <div class="d-flex justify-content-between align-items-center">
     <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Assurance</strong></h5>
-        <span class="badge text-bg fs-6" style="background-color: #30447d;">45000 DA</span>
+        <span class="badge text-bg fs-6" style="background-color: #2c3368;">45000 DA</span>
 </div>
 <hr class="mt-1">
         <ul>
         <li><strong>Compagnie d'assurance :</strong> SAA assurance</li>
         <li><strong>Type d'assurance :</strong> Tous Risques</li>
-       <li><strong>Date de début :</strong> 24/01/2026</li>
-        <li><strong>Date d'expiration :</strong> 23/01/2027</li>
+       <li><strong>Date de début :</strong> 24-01-2026</li>
+        <li><strong>Date d'expiration :</strong> 23-01-2027</li>
  </ul>   
- <a href="#" target="_blank" class="btn btn-sm ms-3"style="background-color: #30447d; color:aliceblue;">Télécharger</a>
+ <a href="#" target="_blank" class="btn btn-sm ms-3"style="background-color: #2c3368; color:aliceblue;">Télécharger</a>
 </div>
     
 <div class="detail-vt" data-type="vignette">
     <div class="d-flex justify-content-between align-items-center">
     <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Vignette</strong></h5>
-    <span class="badge text-bg fs-6" style="background-color: #30447d;">2000 DA</span>
+    <span class="badge text-bg fs-6" style="background-color: #2c3368;">2000 DA</span>
 </div>
     <hr class="mt-1">
         <ul>
-        <li><strong>Date d'achat :</strong> 01/01/2026</li>
-        <li><strong>Date d'expiration :</strong> 01/01/2027</li>
+        <li><strong>Date d'achat :</strong> 01-01-2026</li>
+        <li><strong>Date d'expiration :</strong> 01-01-2027</li>
 
  </ul>   
- <a href="#" target="_blank" class="btn btn-sm ms-3"style="background-color: #30447d; color:aliceblue;">Télécharger</a>
+ <a href="#" target="_blank" class="btn btn-sm ms-3"style="background-color: #2c3368; color:aliceblue;">Télécharger</a>
 </div>
 <div class="detail-vt" data-type="contrôle-technique">
   <div class="d-flex justify-content-between align-items-center">
     <h5 style="color:#0c183b;"><strong><i class="bi bi-file-earmark-pdf"></i> Contrôle technique</strong></h5>
-<span class="badge text-bg fs-6" style="background-color: #30447d;">1200 DA</span>
+<span class="badge text-bg fs-6" style="background-color: #2c3368;">1200 DA</span>
 </div><hr class="mt-1">
         <ul>
         <li><strong>Centre :</strong> Centre de Contrôle Technique "En-Nadjah" (El Harrach)</li>
-        <li><strong>Date de contrôle :</strong> 15/03/2026</li>
+        <li><strong>Date de contrôle :</strong> 15-03-2026</li>
         <li><strong>Résultat :</strong> Favorable</li>
-        <li><strong>Prochain contrôle :</strong> 15/03/2027</li>
+        <li><strong>Prochain contrôle :</strong> 15-03-2027</li>
 
  </ul>   
 
 
- <a href="#" target="_blank" class="btn btn-sm ms-3 "style="background-color: #30447d; color:aliceblue;">Télécharger</a>
+ <a href="#" target="_blank" class="btn btn-sm ms-3 "style="background-color: #2c3368; color:aliceblue;">Télécharger</a>
 
 </div>
 
@@ -291,6 +298,6 @@
                                
             </div></div></div></div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="script.js"></script>
+            <script src="../script.js"></script>
         </body>
 </html>

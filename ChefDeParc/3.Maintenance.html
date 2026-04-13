@@ -7,10 +7,20 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
                 <link rel="stylesheet" href="../style.css">
 
-        <Title>Détail du véhicule</Title>
+        <Title>Maintenances</Title>
        
     </head>
         <body>
+   <nav class="navbar navbar-light bg-light shadow-sm px-3 w-100" id="top-navbar">
+                            <button class="btn btn-dark d-md-none mb-2" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
+                            <span class="navbar-brand mx-auto mx-md-0">
+                                <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60" style="margin-left: 250px;">
+                            </span>
+                            <div class="ms-auto d-flex align-items-end gap-4">
+                                <i class="bi bi-envelope fs-5"></i>
+                                <i class="bi bi-bell fs-5"></i>
+                            </div>
+                        </nav>         
             <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
             <div class="container-fluid ">
                 <div class="row">
@@ -31,20 +41,11 @@
                         </div>
                     </div>
                     <div class="col-md-9 col-lg-10 p-0">
-                        <nav class="navbar navbar-light bg-light shadow-sm px-3 w-100" id="top-navbar">
-                            <button class="btn btn-dark d-md-none mb-2" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
-                            <span class="navbar-brand mx-auto mx-md-0">
-                                <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60" style="margin-left: 250px;">
-                            </span>
-                            <div class="ms-auto d-flex align-items-end gap-4">
-                                <i class="bi bi-envelope fs-5"></i>
-                                <i class="bi bi-bell fs-5"></i>
-                            </div>
-                        </nav>
+                        
                             <div class="p-4" id="content">
                                 <div class="row align-items-center mb-3">
     <div class="d-flex justify-content-between align-items-center">
-        <a href="3.Véhicules.html" class="btn" style="background-color: #30447d; color:aliceblue;">
+        <a href="3.Véhicules.html" class="btn" style="background-color: #2c3368; color:aliceblue;">
             <i class="bi bi-arrow-left"></i> Retour
         </a>
 
@@ -64,44 +65,33 @@
 <div class="details">
     <div class="d-flex justify-content-between align-items-center">
         <h4 style="color:#0c183b;" ><i class="bi bi-tools"></i> Historique des maintenances</h4>
-                <button type="button" class="btn btn" style="background-color: #30447d;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-maintenance"> + Ajouter une maintenance</button>
+                <button type="button" class="btn btn" style="background-color: #2c3368;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-maintenance"> + Maintenance périodique</button>
     </div>
  <div class="modal fade" tabindex="-1" id="ajout-maintenance">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title fw-bold">Nouvelle maintenance</h5>
+        <h5 class="modal-title fw-bold">Nouvelle maintenance périodique</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
     <form>
     <div class="row">
-        <div class="col-md-6 mb-3">
-            <label for="type-maintenance" class="form-label fw-semibold">Type de maintenance</label>
-            <select id="type-maintenance" class="form-select" onchange="affTypeMaintenance()">
-                <option selected hidden>Selectionner le type de maintenance</option>
-                <option value="periodique">Périodique</option>
-                <option value="corrective">Corrective</option>
-            </select>
-        </div>
 
-        <div class="mt-periodique col-md-6 mb-3" style="display:none;">
-            <label for="type-periodique" class="form-label fw-semibold">Sous-type</label>
+        <div class="mt-periodique col-md-12 mb-3">
+            <label for="type-periodique" class="form-label fw-semibold">Type maintenance périodique</label>
             <select id="type-periodique" class="form-select" onchange="affTypeMaintenance()">
-                <option selected hidden>Selectionner le sous-type</option>
+                <option selected hidden>Selectionner le type</option>
                 <option value="vidange">Vidange</option>
                 <option value="controle-frein">Contrôle de freins</option>
                 <option value="autre">Autre</option>
             </select>
         </div>
-
-        <div class="mt-corrective col-md-6 mb-3" style="display:none;">
-            <label for="mt-panne" class="form-label fw-semibold">Panne</label>
-            <select id="mt-panne" class="form-select">
-                <option hidden selected>Selectionner la panne</option>
-                <option>exp</option>
-            </select>
-        </div>
+    <div class="autre col-md-6 mb-3" style="display:none;">
+        <label for="autres" class="form-label fw-semibold">Type</label> 
+        <input type="text" class="form-control" id="autres">
+    </div>
+       
     </div>
 
     <div class="vidange" style="display:none;">
@@ -161,33 +151,40 @@
             <input type="number" class="form-control" id="prix">
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 mb-3">
-            <label for="reçu-mt" class="form-label fw-semibold">Reçu</label> 
-            <input type="file" class="form-control" id="reçu-mt">
-        </div>
-</div>
+
 </form>
 
 </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn " style="background-color: #30447d;color:aliceblue;">Enregistrer</button>
+        <button type="button" class="btn btn " style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
       </div>
     </div>
   </div>
-</div>
+</div>        
+
+<div class="d-flex align-items-center justify-content-between">
     <ul class="nav nav-pills mb-3 mt-3">
     <li class="nav-item">
-        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerMaintenance('toutes')">Toutes</button>
+        <button class="nav-link me-2 fw-semibold" style="background-color: #2c3368;color:aliceblue;" onclick="filtrerMaintenance('toutes')">Toutes</button>
     </li>
     <li class="nav-item">
-        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerMaintenance('périodique')">Périodique</button>
+        <button class="nav-link me-2 fw-semibold" style="background-color: #2c3368;color:aliceblue;" onclick="filtrerMaintenance('périodique')">Périodique</button>
     </li>
     <li class="nav-item">
-        <button class="nav-link me-2 fw-semibold" style="background-color: #30447d;color:aliceblue;" onclick="filtrerMaintenance('corrective')">Corrective</button>
+      <button class="nav-link me-2 fw-semibold" style="background-color: #2c3368;color:aliceblue;" onclick="filtrerMaintenance('corrective')">Corrective</button>
+
     </li>
 </ul>
+    <select id="filtre-annee" class="form-select w-auto fw-semibold" onchange="filtrerMaintenanceDate()">
+    <option value="">Toutes les années</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+    <option value="2027">2027</option>
+
+</select>        </div>
+
 <div class="detail-vt per">
 
     <div class="d-flex justify-content-between align-items-center">
@@ -200,13 +197,13 @@
     <li><strong>Type d'huile : </strong> Diesel </li>
     <li><strong>Description : </strong> Vidange effectuée avec filtre remplacé.</li>
     </ul>
-<a href="#" target="_blank" class="btn btn-sm ms-3 mb-1"style="background-color: #30447d; color:aliceblue;">Télécharger reçu</a>
+<a href="#" target="_blank" class="btn btn-sm ms-3 mb-1"style="background-color: #2c3368; color:aliceblue;">Télécharger reçu</a>
 
 <hr class="mt-1">
 
 <div class="d-flex justify-content-between align-items-center">
-<span class="ms-2"><i class="bi bi-calendar2"></i> 12/05/2025</span>
-<span class="badge text-bg fs-6" style="background-color: #30447d;">5000 DA</span>
+<span class="ms-2"><i class="bi bi-calendar2"></i> 12-05-2025</span>
+<span class="badge text-bg fs-6" style="background-color: #2c3368;">5000 DA</span>
 
 </div>
 </div>
@@ -218,7 +215,7 @@
     <h4 class="fw-semibold" style="color:#0c183b;"><i class="bi bi-clock-history"></i> Périodique - <span class="h5">Contrôle de freins</span></h4>
     <div class="d-flex align-items-center gap-2">
         <span class="en-cours fs-6">En cours</span>
-    <button class="btn btn-sm" style="background-color:rgba(178, 178, 178, 0.362);color:rgb(54, 54, 54);" data-bs-toggle="modal" data-bs-target="#modif-statut-mt"><i class="bi bi-pencil"></i></button>
+    <button class="btn btn-sm" style="background-color:rgba(178, 178, 178, 0.362);color:rgb(54, 54, 54);" data-bs-toggle="modal" onclick="ouvrirModif('periodique')" data-bs-target="#modif-statut-mt"><i class="bi bi-pencil"></i></button>
 </div>
 
 </div>
@@ -231,8 +228,8 @@
 </ul>
 <hr class="mt-1">
 <div class="d-flex justify-content-between align-items-center">
-<span class="ms-2"><i class="bi bi-calendar2"></i> 10/04/2025</span>
-<span class="badge text-bg fs-6" style="background-color: #30447d;"> - DA</span>
+<span class="ms-2"><i class="bi bi-calendar2"></i> 10-04-2024</span>
+<span class="badge text-bg fs-6" style="background-color: #2c3368;"> - DA</span>
 </div>
 </div>
 
@@ -243,7 +240,7 @@
     <h4 class="fw-semibold" style="color:#0c183b;"><i class="bi bi-wrench-adjustable"></i> Corrective</h4>
     <div class="d-flex align-items-center gap-2">
         <span class="programmee fs-6">Programmée</span>
-    <button class="btn btn-sm" style="background-color:rgba(178, 178, 178, 0.362);color:rgb(54, 54, 54);" data-bs-toggle="modal" data-bs-target="#modif-statut-mt"><i class="bi bi-pencil"></i></button>
+    <button class="btn btn-sm" style="background-color:rgba(178, 178, 178, 0.362);color:rgb(54, 54, 54);" onclick="ouvrirModif('corrective')" data-bs-toggle="modal" data-bs-target="#modif-statut-mt"><i class="bi bi-pencil"></i></button>
 </div>
 
 </div>
@@ -255,8 +252,8 @@
 </ul>
 <hr class="mt-1">
 <div class="d-flex justify-content-between align-items-center">
-<span class="ms-2"><i class="bi bi-calendar2"></i> 19/04/2025</span>
-<span class="badge text-bg fs-6" style="background-color: #30447d;"> - DA</span>
+<span class="ms-2"><i class="bi bi-calendar2"></i> 19-04-2024</span>
+<span class="badge text-bg fs-6" style="background-color: #2c3368;"> - DA</span>
 </div>
 </div>
 
@@ -278,8 +275,8 @@
 </ul>
 <hr class="mt-1">
 <div class="d-flex justify-content-between align-items-center">
-<span class="ms-2"><i class="bi bi-calendar2"></i> 19/04/2025</span>
-<span class="badge text-bg fs-6" style="background-color: #30447d;"> - DA</span>
+<span class="ms-2"><i class="bi bi-calendar2"></i> 19-04-2026</span>
+<span class="badge text-bg fs-6" style="background-color: #2c3368;"> - DA</span>
 </div>
 </div>
 
@@ -288,7 +285,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modifier les informations</h5>
+                <h5 class="modal-title fw-bold">Modificaton</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -300,6 +297,7 @@
                     <option value="terminee">Terminée</option>
                     <option value="annulee">Annulée</option>
                 </select>
+                <div  id="champs-periodique" style="display:none;" >
                 <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="plaquettes" class="form-label fw-bold">Etat des plaquettes</label>
@@ -309,37 +307,33 @@
                 <label for="disques" class="form-label fw-bold">Etat des disques</label>
                 <input type="text" class="form-control" id="disques">
             </div>
+            </div></div>
+            <div class="row">
             <div class="col-md-6 mb-3">
             <label for="prix" class="form-label fw-bold">Montant</label>
-            <input type="number" class="form-control" id="prix">
+            <input type="number" class="form-control" id="prix">        
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label for="reçu-mt" class="form-label fw-semibold">Reçu</label> 
+            <input type="file" class="form-control" id="reçu-mt">
         </div>
         </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn" style="background-color:#30447d;color:aliceblue;" data-bs-dismiss="modal">Enregistrer</button>
+                <button type="button" class="btn" style="background-color:#2c3368;color:aliceblue;" data-bs-dismiss="modal">Enregistrer</button>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
 </div>
-
-
-
                             </div>
                                
             </div></div></div></div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="script.js"></script>
+            <script src="../script.js"></script>
 
         </body>
 </html>

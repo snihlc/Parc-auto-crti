@@ -11,7 +11,16 @@
         
     </head>
         <body>
-
+<nav class="navbar navbar-light bg-light shadow-sm px-3 w-100" id="top-navbar">
+                            <button class="btn btn-dark d-md-none mb-2" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
+                            <span class="navbar-brand mx-auto mx-md-0">
+                                <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60" style="margin-left: 250px;">
+                            </span>
+                            <div class="ms-auto d-flex align-items-end gap-4">
+                                <i class="bi bi-envelope fs-5"></i>
+                                <i class="bi bi-bell fs-5"></i>
+                            </div>
+                        </nav>
             <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
             <div class="container-fluid ">
                 <div class="row">
@@ -32,40 +41,29 @@
                         </div>
                     </div>
                     <div class="col-md-9 col-lg-10 p-0">
-                        <nav class="navbar navbar-light bg-light shadow-sm px-3 w-100" id="top-navbar">
-                            <button class="btn btn-dark d-md-none mb-2" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
-                            <span class="navbar-brand mx-auto mx-md-0">
-                                <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60" style="margin-left: 250px;">
-                            </span>
-                            <div class="ms-auto d-flex align-items-end gap-4">
-                                <i class="bi bi-envelope fs-5"></i>
-                                <i class="bi bi-bell fs-5"></i>
-                            </div>
-                        </nav>
+                        
                             <div class="p-4" id="content">
                                 <h2 class="text-center">Gestion des chauffeurs</h2>
                                 <br>
         <form class="d-flex" role="search" onsubmit="event.preventDefault(); rechercheChauffeur();">
-        <input class="form-control" type="search" placeholder="Rechercher Chauffeur..." aria-label="Search" id="search-input">
+        <input class="form-control" type="search" placeholder="Rechercher chauffeur..." aria-label="Search" id="search-input">
         <select class= "form-select-sm ms-2 me-3" aria-label="Statut"  id="stat-chauf" onchange="filtrerChauffeurs()">
             <option selected hidden value="">Statut</option>
             <option value="dispo">Disponible</option>
             <option value="mission">En mission</option>
             <option value="conge">En congé</option>
-            <option value="absent">Absent</option>
         </select>
         
-            <button class="btn" style="background-color: #30447d;color:aliceblue;" type="button" onclick="rechercheChauffeur()"><i class="bi bi-search"></i></button>
-           <button class="btn ms-2" type="button" onclick="resetFiltre()"style="background-color: #30447d;color:aliceblue;"><i class="bi bi-arrow-repeat"></i></button>
+            <button class="btn" style="background-color: #2c3368;color:aliceblue;" type="button" onclick="rechercheChauffeur()"><i class="bi bi-search"></i></button>
+           <button class="btn ms-2" type="button" onclick="resetFiltre()"style="background-color:#2c3368;color:aliceblue;"><i class="bi bi-arrow-repeat"></i></button>
  </form>           
-
-                                           
+                             
                         
         <div class="modal fade" tabindex="-1" id="ajout-Chauff">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Nouveau Chauffeur</h5>
+        <h5 class="modal-title fw-bold">Nouveau Chauffeur</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -155,7 +153,7 @@
     </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn " style="background-color: #30447d;color:aliceblue;">Enregistrer</button>
+        <button type="button" class="btn btn " style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
       </div>
     </div>
   </div>
@@ -166,7 +164,6 @@
                                 <table class="table table-hover mt-4" style="border-radius:20px;">
                                     <thead>
                                     <tr>
-                                    <th class="text-center">ID</th>
                                     <th class="text-center">Chauffeur</th>
                                     <th class="text-center">Numéro de téléphone</th>
                                     <th class="text-center">Email</th>
@@ -177,7 +174,6 @@
                                     </thead>
                           <tbody>     
                                     <tr>
-                                    <td class="text-center">1</td>
                                     <td class="text-center">Halliche Ines</td>
                                     <td class="text-center">0549216835</td>
                                     <td class="text-center">Hallicheines@gmail.com</td>
@@ -193,7 +189,6 @@
 </td>
                                     </tr>
                                     <tr>
-                                    <td class="text-center">2</td>
                                     <td class="text-center">Amimour Yasmine</td>
                                     <td class="text-center">0487578245</td>
                                     <td class="text-center">Amimouryasmine@gmail.com</td>
@@ -209,7 +204,6 @@
 </td>
                                     </tr>
                                     <tr class="text-center">
-                                      <td>3</td>  
                                       <td>Aliouane Sabrina</td>
                                       <td>0125467985</td>
                                       <td>AliouaneSabrina@gmail.com</td>
@@ -223,23 +217,11 @@
                                         <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
                                       </td>
                                     </tr>
-                                     </tr>
-                                    <tr>
-                                    <td class="text-center">4</td>
-                                    <td class="text-center">Boucherou Sarah</td>
-                                    <td class="text-center">078452654</td>
-                                    <td class="text-center">BoucherouSarah@gmail.com</td>
-                                    <td class="text-center">
-                                    <div class="absent">Absent</div>
-                                    </td>
-                                    <td class="text-center"> - </td>                                        
-
-                                    <td class="text-center"><button type="button" class="btn btn-primary btn-sm">Consulter</button>
-                                        <button type="button" class="btn btn-warning btn-sm">Modifier</button>
-                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
-
-</td>
-                                    </tr>
+                                <tr id="no-result" style="display:none;">
+    <td colspan="6" class="text-center text-muted">
+        Aucun chauffeur trouvé.
+    </td>
+</tr>
                                     </tbody>
 
             </table></div>
@@ -247,7 +229,7 @@
                                
             </div></div></div></div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="script.js"></script>
+            <script src="../script.js"></script>
 
         </body>
 </html>
