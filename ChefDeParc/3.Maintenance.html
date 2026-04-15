@@ -65,7 +65,7 @@
 <div class="details">
     <div class="d-flex justify-content-between align-items-center">
         <h4 style="color:#0c183b;" ><i class="bi bi-tools"></i> Historique des maintenances</h4>
-                <button type="button" class="btn btn" style="background-color: #2c3368;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-maintenance"> + Maintenance périodique</button>
+                <button type="button" class="btn" style="background-color: #2c3368;color:aliceblue;  white-space: nowrap;" data-bs-toggle="modal" data-bs-target="#ajout-maintenance"> + Maintenance périodique</button>
     </div>
  <div class="modal fade" tabindex="-1" id="ajout-maintenance">
   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -163,8 +163,8 @@
   </div>
 </div>        
 
-<div class="d-flex align-items-center justify-content-between">
-    <ul class="nav nav-pills mb-3 mt-3">
+<div class="d-flex flex-wrap gap-2 mb-3 mt-3 align-items-center justify-content-between">
+    <ul class="nav nav-pills">
     <li class="nav-item">
         <button class="nav-link me-2 fw-semibold" style="background-color: #2c3368;color:aliceblue;" onclick="filtrerMaintenance('toutes')">Toutes</button>
     </li>
@@ -219,7 +219,7 @@
 </div>
 
 </div>
-
+ 
 <hr class="mt-1">
 <ul>
     <li><strong>Etat des plaquettes : </strong>  </li>

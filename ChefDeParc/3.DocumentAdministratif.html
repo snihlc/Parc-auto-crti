@@ -69,11 +69,11 @@
 <div class="d-flex justify-content-between align-items-center">
 
     <h4 style="color:#0c183b;"><i class="bi bi-files"></i> Documents administratifs</h4>
-                <button type="button" class="btn" style="background-color: #2c3368;color:aliceblue;" data-bs-toggle="modal" data-bs-target="#ajout-doc"> + Ajouter un document</button>
+                <button type="button" class="btn" style="background-color: #2c3368;color:aliceblue; white-space: nowrap;" data-bs-toggle="modal" data-bs-target="#ajout-doc"> + Ajouter un document</button>
 </div>
 
-<div class="d-flex align-items-center justify-content-between">
- <ul class="nav nav-pills mb-3 mt-3">
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3 mt-3">
+ <ul class="nav nav-pills gap-2 mb-0">
     <li class="nav-item">
         <button class="nav-link me-2 fw-semibold" style="background-color: #2c3368;color:aliceblue;" onclick="filtrerDocument('tout')">Tout</button>
     </li>
@@ -90,7 +90,8 @@
         <button class="nav-link me-2 fw-semibold" style="background-color: #2c3368;color:aliceblue;" onclick="filtrerDocument('contrôle technique')">Contrôle technique</button>
     </li>
 </ul>
-    <select id="filtre-annee" class="form-select w-auto fw-semibold" onchange="filtrerDocumentDate()">
+
+    <select id="filtre-annee" class="form-select fw-semibold" style="width: auto; min-width: 150px;" onchange="filtrerDocumentDate()">
     <option value="">Toutes les années</option>
     <option value="2024">2024</option>
     <option value="2025">2025</option>

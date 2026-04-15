@@ -49,7 +49,16 @@
                                 <br>
         <form class="d-flex" role="search" onsubmit="event.preventDefault(); rechercheVehicule();">
         <input class="form-control" type="search" placeholder="Rechercher véhicule..." aria-label="Search" id="search-input">
-        <select class= "form-select-sm ms-2 me-3" aria-label="Statut" id="stat-vehicule" onchange="filtrerVehicules()">
+        <select class="form-select-sm ms-2" aria-label="TypeVehicule" id="type-vehicule" onchange="filtrerVehicules()">
+            <option selected hidden value="">Type</option>
+            <option value="voiture">Voiture</option>
+            <option value="camion">Camion</option>
+            <option value="bus">Bus</option>
+            <option value="utilitaire">Utilitaire</option>
+            <option value="moto">Moto</option>
+ 
+        </select> 
+        <select class= "form-select-sm ms-2 me-2" aria-label="Statut" id="stat-vehicule" onchange="filtrerVehicules()">
             <option selected hidden value="">Statut</option>
             <option value="car-dispo">Disponible</option>
             <option value="car-mission">En mission</option>
@@ -111,10 +120,11 @@
          <label for="type-vehicule" class="form-label fw-semibold">Type du véhicule</label>
         <select class="form-select">
         <option selected hidden>Selectionnez le type du véhicule</option>
-        <option>Type A - Deux-roues</option>
-        <option>Type B - Véhicule léger</option>
-        <option>Type C - Poids lourd</option>
-        <option>Type D - Transport de personnes</option>
+            <option>Voiture</option>
+            <option>Camion</option>
+            <option>Bus</option>
+            <option>Utilitaire</option>
+            <option>Moto</option>
     </select>
   </div>
 </div>
@@ -181,18 +191,20 @@
 
 <div class="table-responsive">
                                 <table class="table table-hover mt-4">
-                                    <thead>
-                                    <th class="text-center">Immatriculation</th>
-                                    <th class="text-center">Marque</th>
-                                    <th class="text-center">Modèle</th>
-                                    <th class="text-center">Kilométrage</th>
-                                    <th class="text-center">Statut</th>
-                                    <th class="text-center">Affectation actuelle</th>
-                                    <th class="text-center">Actions</th>
+                                    <thead class="text-center">
+                                    <th>Immatriculation</th>
+                                    <th>Type véhicule</th>
+                                    <th>Marque</th>
+                                    <th>Modèle</th>
+                                    <th>Kilométrage</th>
+                                    <th>Statut</th>
+                                    <th>Affectation actuelle</th>
+                                    <th>Actions</th>
                                 </thead>
-                                <tbody  class="text-center">
-                                    <tr class="text-center">
+                                <tbody class="text-center">
+                                    <tr>
                                     <td>12345-122-16</td>
+                                    <td>Voiture</td>
                                     <td>Renault</td>
                                     <td>Clio 4</td>
                                     <td>124580 km</td>
@@ -209,6 +221,7 @@
                                     </tr>
                                     <tr>
                                     <td>00876-119-31</td>
+                                    <td>Utilitaire</td>
                                     <td>Peugeot</td>
                                     <td>Partner</td>
                                     <td>82 450 km</td>
@@ -224,38 +237,36 @@
 </td>
                                     </tr>
                                     <tr>
-                                      <td>15943-123-06</td>  
-                                      <td>Toyota</td>
-                                      <td>Hilux</td>
-                                      <td>12 100 km</td>
-                                      <td>
-                                        <div class="maintenance">En maintenance</div>
-                                      </td>
-                                      <td>-</td>
-                                      <td>
-                                        <button type="button" class="btn btn-primary btn-sm">Consulter</button>
-                                        <button type="button" class="btn btn-warning btn-sm">Modifier</button>
-                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
-                                      </td>
-                                    </tr>
+            <td>07834-120-09</td>
+            <td>Camion</td>
+            <td>Mercedes</td>
+            <td>Actros</td>
+            <td>203 400 km</td>
+            <td><div class="maintenance">En maintenance</div></td>
+            <td>-</td>
+            <td>
+                <button class="btn btn-primary btn-sm">Consulter</button>
+                <button class="btn btn-warning btn-sm">Modifier</button>
+                <button class="btn btn-danger btn-sm">Supprimer</button>
+     </td>
+    </tr>
 
-                                       <tr>
-                                      <td>05621-118-16</td>  
-                                      <td>Volkswagen</td>
-                                      <td>Golf 8</td>
-                                      <td>56 320 km</td>
-                                      <td>
-                                    <div class="hors-service">Hors service</div>
-                                      </td>
-                                      <td>-</td>
-                                      <td>
-                                        <button type="button" class="btn btn-primary btn-sm">Consulter</button>
-                                        <button type="button" class="btn btn-warning btn-sm">Modifier</button>
-                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
-                                      </td>
-                                    </tr>
+                                     <tr>
+  <td>03217-121-31</td>
+  <td>Bus</td>
+  <td>Iveco</td>
+  <td>Crossway</td>
+  <td>98 760 km</td>
+  <td><div class="hors-service">Hors service</div></td>
+  <td>-</td>
+  <td>
+    <button class="btn btn-primary btn-sm">Consulter</button>
+    <button class="btn btn-warning btn-sm">Modifier</button>
+    <button class="btn btn-danger btn-sm">Supprimer</button>
+  </td>
+</tr>
                                     <tr id="no-result" style="display:none;">
-    <td colspan="7" class="text-center text-muted">
+    <td colspan="8" class="text-center text-muted">
         Aucun véhicule trouvé.
     </td>
 </tr>                                

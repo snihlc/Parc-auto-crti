@@ -148,6 +148,11 @@ function resetFiltre() {
     let statVehicule = document.getElementById("stat-vehicule");
     if (statVehicule) statVehicule.value = "";
 
+    let typevehicule = document.getElementById("type-vehicule");
+    if (typevehicule) typevehicule.value="";
+
+
+
     let searchInput = document.getElementById("search-input");
     if (searchInput) searchInput.value = "";
     
@@ -166,6 +171,7 @@ function resetFiltre() {
     let urgenceAnomalie = document.getElementById("gravite-panne");
     if (urgenceAnomalie) urgenceAnomalie.value="";
 
+
     let lignes = document.querySelectorAll("table tbody tr");
     lignes.forEach(ligne => ligne.style.display = "");
         
@@ -175,24 +181,27 @@ function resetFiltre() {
 
 function filtrerVehicules(){
     let stat = document.getElementById("stat-vehicule").value;
+    let typevehicule = document.getElementById("type-vehicule").value
     let lignes = document.querySelectorAll("table tbody tr:not(#no-result)");
     let noResult = document.querySelector("#no-result");
 
     let trouve = false;
 
     lignes.forEach(ligne => {
-        let statut = ligne.querySelector("td:nth-child(5)").innerText.trim();
+        let statut = ligne.querySelector("td:nth-child(6)").innerText.trim();
+        let type = ligne.querySelector("td:nth-child(2)").innerText.trim();
 
-        if (stat === "") {
-            ligne.style.display="";
-        } else if (stat === "car-dispo" && statut === "Disponible") {
-            ligne.style.display = ""; trouve = true;
-        } else if (stat === "car-mission" && statut === "En mission"){
-            ligne.style.display = ""; trouve = true;
-        } else if (stat === "car-mt" && statut === "En maintenance"){
-            ligne.style.display = ""; trouve = true;
-        } else if (stat === "car-hs" && statut === "Hors service") {
-            ligne.style.display = ""; trouve = true;
+        let typeV = (typevehicule ==="" )|| (typevehicule === "voiture" && type === "Voiture") ||
+        (typevehicule ==="camion" && type === "Camion") || (typevehicule ==="bus" && type === "Bus") ||
+        (typevehicule ==="utilitaire" && type === "Utilitaire") || (typevehicule ==="moto" && type === "Moto");
+
+        let statutV = (stat ==="") || (stat === "car-dispo" && statut === "Disponible") ||
+        (stat === "car-mission" && statut === "En mission") || (stat === "car-mt" && statut === "En maintenance")
+        || (stat === "car-hs" && statut === "Hors service");
+
+        if (typeV && statutV) {
+            ligne.style.display = "";
+            trouve = true;
         } else {
             ligne.style.display = "none";
         }
