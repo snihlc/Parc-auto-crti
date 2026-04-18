@@ -79,54 +79,57 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
+<form onsubmit="validerFormulaireCarburant(event)">
 <div class="row">
     <div class="col-md-6 mb-3">
-    <label for="date-plein" class="form-label fw-semibold">Date du ravitaillement</label>
+    <label for="date-plein" class="form-label fw-semibold">Date du ravitaillement <span class="text-danger">*</span></label>
     <input type="date" class="form-control" id="date-plein">
+    <div class="text-danger" id="errplein"></div>
     </div>
         <div class="col-md-6 mb-3">
-    <label for="station" class="form-label fw-semibold">Station de service</label>
+    <label for="station" class="form-label fw-semibold">Station de service <span class="text-danger">*</span></label>
     <input type="text" class="form-control" id="station">
+    <div class="text-danger" id="errstation"></div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-6 mb-3">
-    <label for="type-carburant" class="form-label fw-semibold">Type du carburant</label>
-    <select id="type-carburant" class="form-select" required>
-    <option selected hidden>Selectionnez le type du carburant</option>
+    <label for="type-carburant" class="form-label fw-semibold">Type du carburant <span class="text-danger">*</span></label>
+    <select id="type-carburant" class="form-select">
+    <option selected hidden value="">Selectionnez le type du carburant</option>
     <option>GPL</option>
     <option>Diesel</option>
     <option>Essence</option>
     <option>Electrique</option>
 </select>
+<div class="text-danger" id="errtypecarb"></div>
     </div>
         <div class="col-md-6 mb-3">
-    <label for="qte-carb" class="form-label fw-semibold">Quantité </label>
-    <input type="number" class="form-control" id="qte-carb">
+    <label for="qte-carb" class="form-label fw-semibold">Quantité <span class="text-danger">*</span> </label>
+    <input type="text" class="form-control" id="qte-carb">
+    <div class="text-danger" id="errqtecarb"></div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-6 mb-3">
-    <label for="kilometrage-carb" class="form-label fw-semibold">Kilométrage</label>
-    <input type="number" class="form-control" id="kilometrage-carb">
+    <label for="kilometrage-carb" class="form-label fw-semibold">Kilométrage <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="kilometrage-carb">
+    <div class="text-danger" id="errkmcarb"></div>
     </div>
         <div class="col-md-6 mb-3">
-    <label for="montant-carb" class="form-label fw-semibold">Montant</label>
-    <input type="number" class="form-control" id="montant-carb">
+    <label for="montant-carb" class="form-label fw-semibold">Montant <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="montant-carb">
+    <div class="text-danger" id="errmtcarb"></div>
     </div>
 </div>
-
-
-
-
  </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-save " style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
+        <button type="submit" class="btn btn-save " style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
       </div>
+    </form>
     </div>
   </div>
 </div>
@@ -173,6 +176,91 @@
             </div></div></div></div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
             <script src="../script.js"></script>
+            <script>
+document.getElementById("date-plein").addEventListener("input",function(){
+    if (this.value !== ""){
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+        document.getElementById("errplein").innerHTML="";
+    } else {
+        this.classList.remove("is-valid");
+        this.classList.add("is-invalid");
+        document.getElementById("errplein").innerHTML="Obligatoire.";
+    }
+});
+
+document.getElementById("station").addEventListener("input",function(){
+    if (this.value !== ""){
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+        document.getElementById("errstation").innerHTML="";
+    } else {
+        this.classList.remove("is-valid");
+        this.classList.add("is-invalid");
+        document.getElementById("errstation").innerHTML="Obligatoire.";
+    }
+});
+
+document.getElementById("type-carburant").addEventListener("change",function(){
+    if (this.value !== ""){
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+        document.getElementById("errtypecarb").innerHTML="";
+    } else {
+        this.classList.remove("is-valid");
+        this.classList.add("is-invalid");
+        document.getElementById("errtypecarb").innerHTML="Obligatoire.";
+    }
+});
+
+document.getElementById("qte-carb").addEventListener("input", function() {
+    if (this.value === "") {
+        this.classList.add("is-invalid");
+        this.classList.remove("is-valid");
+        document.getElementById("errqtecarb").innerHTML="Obligatoire.";
+    } else if (isNaN(this.value)) {
+        this.classList.add("is-invalid");
+        this.classList.remove("is-valid");
+        document.getElementById("errqtecarb").innerHTML = "La quantité doit contenir une valeur numérique.";
+    } else {
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+        document.getElementById("errqtecarb").innerHTML = "";
+    }
+});
+
+document.getElementById("kilometrage-carb").addEventListener("input", function() {
+    if (this.value === "") {
+        this.classList.add("is-invalid");
+        this.classList.remove("is-valid");
+        document.getElementById("errkmcarb").innerHTML = "Obligatoire.";
+    } else if (isNaN(this.value)) {
+        this.classList.add("is-invalid");
+        this.classList.remove("is-valid");
+        document.getElementById("errkmcarb").innerHTML = "Le kilométrage doit contenir une valeur numérique.";
+    } else {
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+        document.getElementById("errkmcarb").innerHTML = "";
+    }
+});
+
+document.getElementById("montant-carb").addEventListener("input", function() {
+    if (this.value === "") {
+        this.classList.add("is-invalid");
+        this.classList.remove("is-valid");
+        document.getElementById("errmtcarb").innerHTML = "Obligatoire.";
+    } else if (isNaN(this.value)) {
+        this.classList.add("is-invalid");
+        this.classList.remove("is-valid");
+        document.getElementById("errmtcarb").innerHTML = "Le montant doit contenir une valeur numérique.";
+    } else {
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+        document.getElementById("errmtcarb").innerHTML = "";
+    }
+});
+</script>
 
         </body>
 </html>

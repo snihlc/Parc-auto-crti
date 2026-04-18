@@ -1,41 +1,7 @@
-function toggleSidebar(){
+  function toggleSidebar(){
                     document.getElementById("sidebar").classList.toggle("active");
                     document.getElementById("sidebar-overlay").classList.toggle("active");
                 }
-
-function afficherChamps() {
-
-    let type = document.getElementById("type-doc").value;
-
-    if (type == "assurance")
-    {
-        document.querySelector("#assurance").style.display="block";
-    }
-else {
-        document.querySelector("#assurance").style.display="none";
-}
-    if (type == "vignette")
-    {
-        document.querySelector("#vignette").style.display="block";
-    }
-    else {
-        document.querySelector("#vignette").style.display="none";
-}
-    if (type == "controle-tech")
-    {
-        document.querySelector("#controle").style.display="block";
-    }
-    else {
-        document.querySelector("#controle").style.display="none";
-}
-    if (type == "carte-grise")
-    {
-        document.querySelector("#carte-grise").style.display="block";
-}
-    else {
-        document.querySelector("#carte-grise").style.display="none";
-}
-}
 
 function affTypeMaintenance(){
 
@@ -220,8 +186,8 @@ function rechercheVehicule(){
     let trouve = false;
 
     lignes.forEach(ligne => {
-        let marque = ligne.querySelector("td:nth-child(2)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-        let modele = ligne.querySelector("td:nth-child(3)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        let marque = ligne.querySelector("td:nth-child(3)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        let modele = ligne.querySelector("td:nth-child(4)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
         let marquemodele = marque + " " + modele;
 
@@ -557,5 +523,324 @@ function rechercheAnomalie(){
     }else{
         noResult.style.display="";
     }
+}
 
+function validerFormulaireVehicule(event){
+  event.preventDefault();
+
+let matricule=document.getElementById("immatric-vehicule").value;
+let marque=document.getElementById("marque-vehicule").value;
+let modele=document.getElementById("modele-vehicule").value;
+let typeV=document.getElementById("type-vehicul").value;
+let annee = document.getElementById("annee-vehicule").value;
+let kilometrage = document.getElementById("kilometrage").value;
+let nombre = document.getElementById("NbPlaces").value;
+let etat = document.getElementById("etat-vehicule").value;
+let carburant = document.getElementById("carburant").value;
+let dateDispo = document.getElementById("date-circulation").value;
+let carteGr = document.getElementById("carte-grisev").files;
+
+let erreur=false;
+
+document.getElementById("errmat").innerHTML = "";
+document.getElementById("errmarque").innerHTML = "";
+document.getElementById("errmodele").innerHTML = "";
+document.getElementById("errtypeV").innerHTML = "";
+document.getElementById("errannee").innerHTML="";
+document.getElementById("errkm").innerHTML="";
+document.getElementById("errnombre").innerHTML="";
+
+
+if (etat !== ""){
+document.getElementById("etat-vehicule").classList.add("is-valid");
+}
+if(carburant !=="" ){
+document.getElementById("carburant").classList.add("is-valid");
+
+}
+if(dateDispo !== ""){
+document.getElementById("date-circulation").classList.add("is-valid");
+
+}
+if(carteGr.length !== 0){
+document.getElementById("carte-grisev").classList.add("is-valid");
+}
+
+if(matricule==""){document.getElementById("errmat").innerHTML="L'immatriculation est obligatoire.";
+    document.getElementById("immatric-vehicule").classList.add("is-invalid");
+erreur=true;}
+else{
+document.getElementById("immatric-vehicule").classList.remove("is-invalid");
+document.getElementById("immatric-vehicule").classList.add("is-valid");
+
+}
+
+if(marque==""){document.getElementById("errmarque").innerHTML="La marque du véhicule est obligatoire.";
+    document.getElementById("marque-vehicule").classList.add("is-invalid");
+erreur=true;}
+else{
+document.getElementById("marque-vehicule").classList.remove("is-invalid");
+document.getElementById("marque-vehicule").classList.add("is-valid");
+}
+
+if(modele==""){document.getElementById("errmodele").innerHTML="Le modèle du véhicule est obligatoire.";
+document.getElementById("modele-vehicule").classList.add("is-invalid");
+    erreur=true;}
+else{
+document.getElementById("modele-vehicule").classList.remove("is-invalid");
+document.getElementById("modele-vehicule").classList.add("is-valid");
+
+}
+
+if (typeV ==="" || typeV === "Selectionnez le type du véhicule") {
+    document.getElementById("errtypeV").innerHTML = "Le type du véhicule est obligatoire.";
+    document.getElementById("type-vehicul").classList.add("is-invalid");
+     erreur = true;}
+else{
+document.getElementById("type-vehicul").classList.remove("is-invalid");
+document.getElementById("type-vehicul").classList.add("is-valid");
+
+}
+
+if(annee === ""){
+
+document.getElementById("annee-vehicule")
+.classList.remove("is-valid");
+
+document.getElementById("annee-vehicule")
+.classList.remove("is-invalid");
+
+}
+else if(isNaN(annee)){document.getElementById("errannee").innerHTML = "L'année doit contenir une valeur numérique."; 
+document.getElementById("annee-vehicule").classList.add("is-invalid");
+    erreur=true;}
+else{
+document.getElementById("annee-vehicule").classList.remove("is-invalid");
+document.getElementById("annee-vehicule").classList.add("is-valid");
+
+}
+if(kilometrage ==="") {document.getElementById("errkm").innerHTML="Le kilométrage est obligatoire.";
+    document.getElementById("kilometrage").classList.add("is-invalid");
+    erreur=true;
+}
+
+else if (isNaN(kilometrage)){document.getElementById("errkm").innerHTML = "Le kilométrage doit contenir une valeur numérique."; 
+document.getElementById("kilometrage").classList.add("is-invalid");
+    erreur=true;}
+else{
+document.getElementById("kilometrage").classList.remove("is-invalid");
+document.getElementById("kilometrage").classList.add("is-valid");
+
+}
+if(nombre === ""){
+
+document.getElementById("NbPlaces").classList.remove("is-valid");
+document.getElementById("NbPlaces").classList.remove("is-invalid");
+
+}
+else if(isNaN(nombre)){document.getElementById("errnombre").innerHTML = "Le nombre de places doit contenir une valeur numérique."; 
+document.getElementById("NbPlaces").classList.add("is-invalid");
+    erreur=true;}
+else{
+document.getElementById("NbPlaces").classList.remove("is-invalid");
+document.getElementById("NbPlaces").classList.add("is-valid");
+
+}
+
+ if (erreur) {
+    return;
+  }
+  event.target.submit();
+}
+// Live validation 
+document.getElementById("immatric-vehicule").addEventListener("input", function() {
+  if (this.value.trim() === "") {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errmat").innerHTML = "L'immatriculation est obligatoire.";
+  } else {
+    this.classList.remove("is-invalid"); this.classList.add("is-valid");
+    document.getElementById("errmat").innerHTML = "";
+  }
+});
+
+document.getElementById("marque-vehicule").addEventListener("input", function() {
+  if (this.value.trim() === "") {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errmarque").innerHTML = "La marque du véhicule est obligatoire";
+  } else {
+    this.classList.remove("is-invalid"); this.classList.add("is-valid");
+    document.getElementById("errmarque").innerHTML = "";
+  }
+});
+
+document.getElementById("modele-vehicule").addEventListener("input", function() {
+  if (this.value.trim() === "") {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errmodele").innerHTML = "Le modèle du véhicule est obligatoire.";
+  } else {
+    this.classList.remove("is-invalid"); this.classList.add("is-valid");
+    document.getElementById("errmodele").innerHTML = "";
+  }
+});
+
+document.getElementById("kilometrage").addEventListener("input", function() {
+  if (this.value.trim() === "") {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errkm").innerHTML = "Le kilométrage est obligatoire.";
+  } else if (isNaN(this.value)) {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errkm").innerHTML = "Le kilométrage doit contenir une valeur numérique.";
+  } else {
+    this.classList.remove("is-invalid"); this.classList.add("is-valid");
+    document.getElementById("errkm").innerHTML = "";
+  }
+});
+
+document.getElementById("annee-vehicule").addEventListener("input", function() {
+  if (this.value !== "" && isNaN(this.value)) {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errannee").innerHTML = "L'année doit contenir une valeur numérique.";
+  } else {
+    this.classList.remove("is-invalid");
+    if (this.value !== "") this.classList.add("is-valid");
+    document.getElementById("errannee").innerHTML = "";
+  }
+});
+
+document.getElementById("NbPlaces").addEventListener("input", function() {
+  if (this.value !== "" && isNaN(this.value)) {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errnombre").innerHTML = "Le nombre de places doit contenir une valeur numérique.";
+  } else {
+    this.classList.remove("is-invalid");
+    if (this.value !== "") this.classList.add("is-valid");
+    document.getElementById("errnombre").innerHTML = "";
+  }
+});
+
+document.getElementById("type-vehicul").addEventListener("change", function() {
+  if (this.value === "" || this.value === "Selectionnez le type du véhicule") {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errtypeV").innerHTML = "Le type du véhicule est obligatoire.";
+  } else {
+    this.classList.remove("is-invalid"); this.classList.add("is-valid");
+    document.getElementById("errtypeV").innerHTML = "";
+  }
+});
+document.getElementById("etat-vehicule").addEventListener("change",function(){
+    if (this.value !== ""){
+        this.classList.add("is-valid");
+    }else {
+        this.classList.remove("is-valid");
+    }
+});
+
+document.getElementById("carburant").addEventListener("change",function(){
+    if (this.value !== ""){
+        this.classList.add("is-valid");
+    }else {
+        this.classList.remove("is-valid");
+    }
+});
+document.getElementById("date-circulation").addEventListener("change",function(){
+    if (this.value !== ""){
+        this.classList.add("is-valid");
+    }else {
+        this.classList.remove("is-valid");
+    }
+});
+document.getElementById("carte-grisev").addEventListener("change",function(){
+    if (this.files.length !== 0){
+        this.classList.add("is-valid");
+    }else {
+        this.classList.remove("is-valid");
+    }
+});
+function validerFormulaireCarburant(event){
+    event.preventDefault();
+
+    let datePlein = document.getElementById("date-plein").value;
+    let Station = document.getElementById("station").value;
+    let TypeCarb = document.getElementById("type-carburant").value;
+    let QteCarb = document.getElementById("qte-carb").value;
+    let kmCarb = document.getElementById("kilometrage-carb").value;
+    let montantCarb = document.getElementById("montant-carb").value;
+
+    let erreur = false;
+
+    document.getElementById("errplein").innerHTML="";
+    document.getElementById("errstation").innerHTML="";
+    document.getElementById("errtypecarb").innerHTML="";
+    document.getElementById("errqtecarb").innerHTML="";
+    document.getElementById("errkmcarb").innerHTML="";
+    document.getElementById("errmtcarb").innerHTML="";
+
+    if (datePlein === ""){
+        document.getElementById("errplein").innerHTML="Obligatoire.";
+        document.getElementById("date-plein").classList.add("is-invalid");
+        erreur=true;
+    } else {
+        document.getElementById("date-plein").classList.remove("is-invalid");
+        document.getElementById("date-plein").classList.add("is-valid");
+    }
+
+    if (Station === ""){
+        document.getElementById("errstation").innerHTML="Obligatoire.";
+        document.getElementById("station").classList.add("is-invalid");
+        erreur=true;
+    } else {
+        document.getElementById("station").classList.remove("is-invalid");
+        document.getElementById("station").classList.add("is-valid");
+    }
+
+    if (TypeCarb === ""){
+        document.getElementById("errtypecarb").innerHTML="Obligatoire.";
+        document.getElementById("type-carburant").classList.add("is-invalid");
+        erreur=true;
+    } else {
+        document.getElementById("type-carburant").classList.remove("is-invalid");
+        document.getElementById("type-carburant").classList.add("is-valid");
+    }
+
+    if (QteCarb === ""){
+        document.getElementById("errqtecarb").innerHTML="Obligatoire.";
+        document.getElementById("qte-carb").classList.add("is-invalid");
+        erreur=true;
+    } else if(isNaN(QteCarb)){
+        document.getElementById("errqtecarb").innerHTML="La quantité doit contenir une valeur numérique.";
+        document.getElementById("qte-carb").classList.add("is-invalid");
+        erreur = true;
+    } else {
+        document.getElementById("qte-carb").classList.remove("is-invalid");
+        document.getElementById("qte-carb").classList.add("is-valid");
+    }
+
+    if (kmCarb === ""){
+        document.getElementById("errkmcarb").innerHTML="Obligatoire.";
+        document.getElementById("kilometrage-carb").classList.add("is-invalid");
+        erreur=true;
+    } else if(isNaN(kmCarb)){
+        document.getElementById("errkmcarb").innerHTML="Le kilometrage doit contenir une valeur numérique.";
+        document.getElementById("kilometrage-carb").classList.add("is-invalid");
+        erreur = true;
+    } else {
+        document.getElementById("kilometrage-carb").classList.remove("is-invalid");
+        document.getElementById("kilometrage-carb").classList.add("is-valid");
+    }
+
+    if (montantCarb === ""){
+        document.getElementById("errmtcarb").innerHTML="Obligatoire.";
+        document.getElementById("montant-carb").classList.add("is-invalid");
+        erreur=true;
+    } else if(isNaN(montantCarb)){
+        document.getElementById("errmtcarb").innerHTML="Le montant doit contenir une valeur numérique.";
+        document.getElementById("montant-carb").classList.add("is-invalid");
+        erreur = true;
+    } else {
+        document.getElementById("montant-carb").classList.remove("is-invalid");
+        document.getElementById("montant-carb").classList.add("is-valid");
+    }
+
+    if (erreur){ return; }
+    event.target.submit();
 }

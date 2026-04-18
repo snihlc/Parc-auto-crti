@@ -82,64 +82,73 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-<form>
+<form onsubmit="validerFormulaireVehicule(event)">
     <div class="row">
   <div class="col-md-6 mb-3">
-    <label for="immatric-vehicule" class="form-label fw-semibold">Immatriculation</label>
+    <label for="immatric-vehicule" class="form-label fw-semibold">Immatriculation <span class="text-danger">*</span></label>
     <input type="text" class="form-control" id="immatric-vehicule">
+<div class="text-danger" id="errmat"></div>
   </div>
     
   <div class="col-md-6 mb-3">
-        <label for="marque-vehicule" class="form-label fw-semibold">Marque</label>
+        <label for="marque-vehicule" class="form-label fw-semibold">Marque <span class="text-danger">*</span></label>
+    
     <input type="text" class="form-control" id="marque-vehicule">
+    <div class="text-danger" id="errmarque"></div>
   </div>
 </div>
 <div class="row">
   <div class="col-md-6 mb-3">
-        <label for="modele-vehicule" class="form-label fw-semibold">Modèle</label>
-    <input type="text" class="form-control" id="modele-vehicule" required>
-
+        <label for="modele-vehicule" class="form-label fw-semibold">Modèle <span class="text-danger">*</span></label>
+        
+<input type="text" class="form-control" id="modele-vehicule">
+<div class="text-danger" id="errmodele"></div>
     
 </div>
 <div class="col-md-6 mb-3">
-    <label for="NbPlaces" class="form-label fw-semibold">Nombre de places</label>
- <input type="number" class="form-control " id="NbPlaces">
+    <label for="NbPlaces" class="form-label fw-semibold"> Nombre de places</label>            
+    
+ <input type="text" class="form-control " id="NbPlaces">
+ <div class="text-danger" id="errnombre"></div>
 </div>
 
 </div>
-
-
     <div class="row">
 
     <div class="col-md-6 mb-3">
     <label for="annee-vehicule" class="form-label fw-semibold">Année</label>
-   <input type="number" class="form-control" id="annee-vehicule">
+       <input type="text" class="form-control" id="annee-vehicule">
+   <div class="text-danger" id="errannee"></div>
   </div>
 
     <div class="col-md-6 mb-3">
-         <label for="type-vehicule" class="form-label fw-semibold">Type du véhicule</label>
-        <select class="form-select">
-        <option selected hidden>Selectionnez le type du véhicule</option>
+         <label for="type-vehicul" class="form-label fw-semibold">Type du véhicule <span class="text-danger">*</span></label>
+            
+    <select class="form-select" id="type-vehicul">
+        <option selected hidden value="">Selectionnez le type du véhicule</option>
             <option>Voiture</option>
             <option>Camion</option>
             <option>Bus</option>
             <option>Utilitaire</option>
             <option>Moto</option>
     </select>
+    <div class="text-danger" id="errtypeV"></div>
   </div>
 </div>
 
     <div class="row">
 
   <div class="col-md-6 mb-3">
-        <label for="kilometrage" class="form-label fw-semibold">Kilométrage</label>
+        <label for="kilometrage" class="form-label fw-semibold">Kilométrage <span class="text-danger">*</span></label>
+        
     <input type="text" class="form-control" id="kilometrage">
+    <div class="text-danger" id="errkm"></div>
 </div>
 
 <div class="col-md-6 mb-3">
     <label for="etat-vehicule" class="form-label fw-semibold">Etat technique</label>
     <select id="etat-vehicule" class="form-select">
-        <option selected hidden>Selectionnez l'état du véhicule</option>
+        <option selected hidden value="">Selectionnez l'état du véhicule</option>
         <option>Excellent</option>
         <option>Bon</option>
         <option>Moyen</option>
@@ -154,8 +163,8 @@
 
     <div class="col-md-6 mb-3">
         <label for="carburant" class="form-label fw-semibold">Type du carburant</label>
-    <select id="carburant" class="form-select" required>
-    <option selected hidden>Selectionnez le type du carburant</option>
+    <select id="carburant" class="form-select">
+    <option selected hidden value="">Selectionnez le type du carburant</option>
     <option>GPL</option>
     <option>Diesel</option>
     <option>Essence</option>
@@ -174,16 +183,18 @@
 
 </div>
     <div class="col-12 mb-3">
-        <label for="carte-grise" class="form-label fw-semibold">Carte Grise</label>
-        <input type="file" class="form-control" id="carte-grise">
+        <label for="carte-grisev" class="form-label fw-semibold">Carte Grise</label>
+        <input type="file" class="form-control" id="carte-grisev">
     </div>
-</form>
 
     </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn  " style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
-      </div>
+        <button type="submit" class="btn" style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
+      </div>    
+</form>
+
+
     </div>
   </div>
 </div>
