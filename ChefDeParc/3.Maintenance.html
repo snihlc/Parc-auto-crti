@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
                 <link rel="stylesheet" href="../style.css">
 
-        <Title>Maintenances</Title>
+        <title>Maintenances</title>
        
     </head>
         <body>
@@ -75,39 +75,45 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-    <form>
+    <form onsubmit="validerFormulaireMaintenancePer(event)">
     <div class="row">
 
         <div class="mt-periodique col-md-12 mb-3">
-            <label for="type-periodique" class="form-label fw-semibold">Type maintenance périodique</label>
+            <label for="type-periodique" class="form-label fw-semibold">Type maintenance périodique <span class="text-danger">*</span></label>
             <select id="type-periodique" class="form-select" onchange="affTypeMaintenance()">
-                <option selected hidden>Selectionner le type</option>
+                <option selected hidden value="">Selectionner le type</option>
                 <option value="vidange">Vidange</option>
                 <option value="controle-frein">Contrôle de freins</option>
                 <option value="autre">Autre</option>
             </select>
+        <div class="text-danger" id="errtypeMT"></div>
         </div>
     <div class="autre col-md-6 mb-3" style="display:none;">
-        <label for="autres" class="form-label fw-semibold">Type</label> 
+        <label for="autres" class="form-label fw-semibold">Type <span class="text-danger">*</span></label> 
         <input type="text" class="form-control" id="autres">
+        <div class="text-danger" id="errtypeAutre"></div>
+
     </div>
        
     </div>
-
     <div class="vidange" style="display:none;">
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="freq" class="form-label fw-semibold">Kilométrage</label>
-                <input type="number" class="form-control" id="freq">
+                <label for="freq" class="form-label fw-semibold">Kilométrage <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="freq">
+                <div class="text-danger" id="errtypefreq"></div>
+
             </div>
 
         <div class="col-md-6 mb-3">
-            <label for="huile" class="form-label fw-semibold">Type d'huile</label>
+            <label for="huile" class="form-label fw-semibold">Type d'huile <span class="text-danger">*</span></label>
             <select id="huile" class="form-select">
-                <option selected hidden>Selectionner le type d'huile</option>
+                <option selected hidden value="">Selectionner le type d'huile</option>
                 <option value="diesel">Diesel</option>
                 <option value="essence">Essence</option>
             </select>
+            <div class="text-danger" id="errtypehuile"></div>
+
         </div> 
         </div>
     </div>
@@ -127,12 +133,14 @@
 
     <div class="row">
         <div class="col-md-6 mb-3">
-            <label for="date-maintenance" class="form-label fw-semibold">Date de la maintenance</label>
+            <label for="date-maintenance" class="form-label fw-semibold">Date de la maintenance <span class="text-danger">*</span></label>
             <input type="date" id="date-maintenance" class="form-control">
+            <div class="text-danger" id="errdateMT"></div>
         </div>
         <div class="col-md-6 mb-3">
             <label for="desc" class="form-label fw-semibold">Description</label>
             <textarea id="desc" class="form-control" rows="2"></textarea>
+
         </div>
     </div>
 
@@ -140,25 +148,29 @@
         <div class="col-md-6 mb-3">
             <label for="statut-maintenance" class="form-label fw-semibold">Statut</label>
             <select id="statut-maintenance" class="form-select">
+                <option selected hidden value="">Statut maintenance</option>
                 <option value="prog">Programmée</option>
                 <option value="en_cours">En cours</option>
                 <option value="terminee">Terminée</option>
                 <option value="annulee">Annulée</option>
             </select>
+            <div class="text-danger" id="errstatMT"></div>
         </div>
         <div class="col-md-6 mb-3">
             <label for="prix" class="form-label fw-semibold">Montant</label>
-            <input type="number" class="form-control" id="prix">
+            <input type="text" class="form-control" id="prix">
+            <div class="text-danger" id="errmtper"></div>
+
         </div>
     </div>
-
-</form>
-
 </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn " style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
+        <button type="submit" class="btn" style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
       </div>
+</form>
+
+
     </div>
   </div>
 </div>        
@@ -183,7 +195,7 @@
     <option value="2026">2026</option>
     <option value="2027">2027</option>
 
-</select>        </div>
+</select></div>
 
 <div class="detail-vt per">
 
@@ -282,49 +294,57 @@
 
 
 <div class="modal fade" tabindex="-1" id="modif-statut-mt">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title fw-bold">Modificaton</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form onsubmit="validerFormulaireModifMTPER(event)">
+
                 <label class="form-label fw-bold">Nouveau statut</label>
-                <select id="nouveau-statut" class="form-select mb-3">
+                <select id="nouveau-statut" class="form-select mb-2">
+                    <option selected hidden value="">Nouveau statut</option>
                     <option value="prog">Programmée</option>
                     <option value="en_cours">En cours</option>
                     <option value="terminee">Terminée</option>
                     <option value="annulee">Annulée</option>
                 </select>
+            <div class="text-danger" id="errnewStat"></div>        
                 <div  id="champs-periodique" style="display:none;" >
                 <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="plaquettes" class="form-label fw-bold">Etat des plaquettes</label>
-                <input type="text" class="form-control" id="plaquettes">
+                <label for="plaquettesmodif" class="form-label fw-semibold">Etat des plaquettes</label>
+                <input type="text" class="form-control" id="plaquettesmodif">
+            <div class="text-danger" id="errplaqModif"></div>        
             </div>
             <div class="col-md-6 mb-3">
-                <label for="disques" class="form-label fw-bold">Etat des disques</label>
-                <input type="text" class="form-control" id="disques">
+                <label for="disquesmodif" class="form-label fw-semibold">Etat des disques</label>
+                <input type="text" class="form-control" id="disquesmodif">
+                <div class="text-danger" id="errdisqModif"></div>        
             </div>
             </div></div>
             <div class="row">
             <div class="col-md-6 mb-3">
-            <label for="prix" class="form-label fw-bold">Montant</label>
-            <input type="number" class="form-control" id="prix">        
+            <label for="prixmodif" class="form-label fw-semibold">Montant</label>
+            <input type="text" class="form-control" id="prixmodif">
+            <div class="text-danger" id="errprixmodif"></div>        
         </div>
 
         <div class="col-md-6 mb-3">
             <label for="reçu-mt" class="form-label fw-semibold">Reçu</label> 
             <input type="file" class="form-control" id="reçu-mt">
+            <div class="text-danger" id="errreçumt"></div>        
         </div>
         </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn" style="background-color:#2c3368;color:aliceblue;" data-bs-dismiss="modal">Enregistrer</button>
+                <button type="submit" class="btn" style="background-color:#2c3368;color:aliceblue;">Enregistrer</button>
             </div>
+                </form>
+
         </div>
     </div>
 </div>
@@ -334,6 +354,192 @@
             </div></div></div></div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
             <script src="../script.js"></script>
+            <script>
+    
+document.getElementById("type-periodique").addEventListener("change", function() {
+  if (this.value === "") {
+    this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errtypeMT").innerHTML = "Veuillez choisir un type de maintenance périodique.";
+  } else {
+    this.classList.remove("is-invalid"); 
+    this.classList.add("is-valid");
+    document.getElementById("errtypeMT").innerHTML = "";
+  }
+});
+document.getElementById("autres").addEventListener("input", function() {
+  if (this.value === "") {
+    this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errtypeAutre").innerHTML = "Veuillez saisir un type.";
+  } else {
+    this.classList.remove("is-invalid"); 
+    this.classList.add("is-valid");
+    document.getElementById("errtypeAutre").innerHTML = "";
+  }
+});
+document.getElementById("freq").addEventListener("input", function() {
+  if (this.value === "") {
+    this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errtypefreq").innerHTML = "Veuillez insérer le kilométrage.";
+  }else if(isNaN(this.value)){
+    this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errtypefreq").innerHTML = "Le kilométrage doit contenir une valeur numérique.";
+  }
+  else {
+    this.classList.remove("is-invalid"); 
+    this.classList.add("is-valid");
+    document.getElementById("errtypefreq").innerHTML = "";
+  }
+});
+document.getElementById("huile").addEventListener("change", function() {
+  if (this.value === "") {
+    this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errtypehuile").innerHTML = "Veuillez choisir un type d'huile.";
+  } else {
+    this.classList.remove("is-invalid"); 
+    this.classList.add("is-valid");
+    document.getElementById("errtypehuile").innerHTML = "";
+  }
+});
+document.getElementById("date-maintenance").addEventListener("input", function() {
+  if (this.value === "") {
+    this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errdateMT").innerHTML = "Veuillez entrer une date.";
+  } else {
+    this.classList.remove("is-invalid"); 
+    this.classList.add("is-valid");
+    document.getElementById("errdateMT").innerHTML = "";
+  }
+});
+document.getElementById("prix").addEventListener("input", function() {
+    if (isNaN(this.value)) {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errmtper").innerHTML = "Le montant doit contenir une valeur numérique.";
+  }else if (this.value === ""){
+        this.classList.remove("is-valid");
+        this.classList.remove("is-invalid"); 
+    document.getElementById("errmtper").innerHTML = "";
+  }
+  else {
+    this.classList.add("is-valid");
+    document.getElementById("errmtper").innerHTML = "";
+  }
+});
+document.getElementById("plaquettes").addEventListener("input", function() {
+  if (this.value !== "") {
+     this.classList.add("is-valid");
+  } else {
+    this.classList.remove("is-valid"); 
+  }
+});
+document.getElementById("disques").addEventListener("input", function() {
+  if (this.value !== "") {
+     this.classList.add("is-valid");
+  } else {
+    this.classList.remove("is-valid"); 
+  }
+});
+document.getElementById("desc").addEventListener("input", function() {
+  if (this.value !== "") {
+     this.classList.add("is-valid");
+  } else {
+    this.classList.remove("is-valid"); 
+  }
+});
+document.getElementById("statut-maintenance").addEventListener("input", function() {
+  if (this.value === "") {
+    this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errstatMT").innerHTML = "Veuillez mettre à jour le statut.";
+  } else {
+    this.classList.remove("is-invalid"); 
+    this.classList.add("is-valid");
+    document.getElementById("errstatMT").innerHTML = "";
+  }
+});
 
+document.getElementById("reçu-mt").addEventListener("change", function() {
+  if (this.files.length !== 0) {
+     this.classList.add("is-valid");
+  } else {
+    this.classList.remove("is-valid"); 
+  }
+});
+document.getElementById("plaquettesmodif").addEventListener("input", function() {
+  if (this.value === "") {
+     this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errplaqModif").innerHTML  = "Veuillez mettre à jour l'état des plaquettes.";
+  } else {
+    this.classList.add("is-valid"); 
+    this.classList.remove("is-invalid");
+    document.getElementById("errplaqModif").innerHTML  = "";
+  }
+});
+document.getElementById("disquesmodif").addEventListener("input", function() {
+  if (this.value === "") {
+    this.classList.remove("is-valid");
+    this.classList.add("is-invalid");
+    document.getElementById("errdisqModif").innerHTML  = "Veuillez mettre à jour l'état des disques.";
+  } else {
+    this.classList.add("is-valid"); 
+    this.classList.remove("is-invalid");
+    document.getElementById("errdisqModif").innerHTML  = "";
+  }
+});
+
+document.getElementById("prixmodif").addEventListener("input", function() {
+    if (isNaN(this.value)) {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errprixmodif").innerHTML = "Le montant doit contenir une valeur numérique.";
+  }else if (this.value === ""){
+        this.classList.remove("is-valid");
+        this.classList.remove("is-invalid"); 
+    document.getElementById("errprixmodif").innerHTML = "";
+  }
+  else {
+    this.classList.add("is-valid");
+    document.getElementById("errprixmodif").innerHTML = "";
+  }
+});
+document.getElementById("nouveau-statut").addEventListener("change", function() {
+    let plaq       = document.getElementById("plaquettesmodif");
+    let disq       = document.getElementById("disquesmodif");
+    let montantMod = document.getElementById("prixmodif");
+    let reçuMTMod  = document.getElementById("reçu-mt");
+    let champsPeriodique = document.getElementById('champs-periodique');
+
+    if (this.value !== "") {
+        this.classList.add("is-valid");
+        this.classList.remove("is-invalid");
+        document.getElementById("errnewStat").innerHTML = "";
+    } else {
+        this.classList.remove("is-valid");
+    }
+
+    if (this.value === "terminee") {
+        montantMod.disabled = false;
+        reçuMTMod.disabled  = false;
+        if (champsPeriodique.style.display === 'block') {
+            plaq.disabled = false;
+            disq.disabled = false;
+        }
+    } else {
+        plaq.disabled       = true;
+        disq.disabled       = true;
+        montantMod.disabled = true;
+        reçuMTMod.disabled  = true;
+        plaq.classList.remove("is-valid", "is-invalid");
+        disq.classList.remove("is-valid", "is-invalid");
+        montantMod.classList.remove("is-valid", "is-invalid");
+        reçuMTMod.classList.remove("is-valid", "is-invalid");
+    }
+});
+            </script>
         </body>
 </html>

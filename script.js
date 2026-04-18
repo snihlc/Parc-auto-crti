@@ -40,17 +40,31 @@ function affTypeMaintenance(){
 
 function ouvrirModif(type) {
     let champsPeriodique = document.getElementById('champs-periodique');
-    let champsCorrective = document.getElementById('champs-corrective');
+    let plaq = document.getElementById("plaquettesmodif");
+    let disq = document.getElementById("disquesmodif");
+    let montantMod = document.getElementById("prixmodif");
+    let reçuMTMod = document.getElementById("reçu-mt");
 
     if (type === 'periodique') {
         champsPeriodique.style.display = 'block';
-        champsCorrective.style.display = 'none';
+        // Désactivés par défaut, le select nouveau-statut les activera
+        plaq.disabled = true;
+        disq.disabled = true;
+        reçuMTMod.disabled=true;
+        montantMod.disabled=true;
+
     } else {
         champsPeriodique.style.display = 'none';
-        champsCorrective.style.display = 'block';
+        plaq.disabled = true;
+        disq.disabled = true;
+        reçuMTMod.disabled=true;
+        montantMod.disabled=true;
     }
-}
 
+    // Reset le select statut
+    document.getElementById("nouveau-statut").value = "";
+    document.getElementById("nouveau-statut").classList.remove("is-valid", "is-invalid");
+}
 
 
 function filtrerChauffeurs() {
@@ -644,7 +658,6 @@ document.getElementById("NbPlaces").classList.add("is-invalid");
 else{
 document.getElementById("NbPlaces").classList.remove("is-invalid");
 document.getElementById("NbPlaces").classList.add("is-valid");
-
 }
 
  if (erreur) {
@@ -844,3 +857,211 @@ function validerFormulaireCarburant(event){
     if (erreur){ return; }
     event.target.submit();
 }
+
+
+function validerFormulaireMaintenancePer(event){
+    event.preventDefault();
+    let typeMT = document.getElementById("type-periodique").value;
+    let typeAutre = document.getElementById("autres").value;
+    let typefreq = document.getElementById("freq").value;
+    let typehuile = document.getElementById("huile").value;
+    let dateMT = document.getElementById("date-maintenance").value;
+    let montantper = document.getElementById("prix").value;
+    let statMT = document.getElementById("statut-maintenance").value;
+
+    let erreur = false;
+
+    document.getElementById("errtypeMT").innerHTML="";
+    document.getElementById("errtypeAutre").innerHTML="";
+    document.getElementById("errtypefreq").innerHTML="";
+    document.getElementById("errtypehuile").innerHTML="";
+    document.getElementById("errdateMT").innerHTML="";
+    document.getElementById("errmtper").innerHTML="";
+    document.getElementById("errstatMT").innerHTML="";
+
+    if (typeMT === ""){
+         document.getElementById("errtypeMT").innerHTML="Veuillez choisir un type de maintenance périodique.";
+        document.getElementById("type-periodique").classList.add("is-invalid");
+        erreur=true;
+    }   else {
+        document.getElementById("type-periodique").classList.remove("is-invalid");
+        document.getElementById("type-periodique").classList.add("is-valid");
+    }
+    
+    if (typeMT === "autre"){
+        if (typeAutre === "") {
+             document.getElementById("errtypeAutre").innerHTML="Veuillez saisir un type.";
+        document.getElementById("autres").classList.add("is-invalid");
+        erreur=true;
+        } else {
+        document.getElementById("autres").classList.remove("is-invalid");
+        document.getElementById("autres").classList.add("is-valid");
+        }
+    }
+    if (typeMT ==="vidange"){
+        if (typefreq === ""){
+        document.getElementById("errtypefreq").innerHTML="Veuillez insérer le kilométrage.";
+        document.getElementById("freq").classList.add("is-invalid");
+        erreur=true;          
+        }else if (isNaN(typefreq)){
+    document.getElementById("errtypefreq").innerHTML="Le kilométrage doit contenir une valeur numérique.";
+    document.getElementById("freq").classList.add("is-invalid");
+    erreur=true;                 
+        }
+         else {
+        document.getElementById("freq").classList.remove("is-invalid");
+        document.getElementById("freq").classList.add("is-valid");           
+        }
+        if (typehuile === "") {
+        document.getElementById("errtypehuile").innerHTML="Veuillez choisir un type d'huile.";
+        document.getElementById("huile").classList.add("is-invalid");
+        erreur=true;            
+        } else {
+        document.getElementById("huile").classList.remove("is-invalid");
+        document.getElementById("huile").classList.add("is-valid");           
+        }
+    }
+    if (dateMT === ""){
+        document.getElementById("errdateMT").innerHTML="Veuillez entrer une date.";
+        document.getElementById("date-maintenance").classList.add("is-invalid");
+        erreur=true;      
+        }else {
+        document.getElementById("date-maintenance").classList.remove("is-invalid");
+        document.getElementById("date-maintenance").classList.add("is-valid");  
+    }
+    if (isNaN(montantper)) {
+        document.getElementById("errmtper").innerHTML="Veuillez choisir un type de maintenance périodique.";
+        document.getElementById("prix").classList.add("is-invalid");
+        erreur=true; 
+        } else if(montantper === "") {
+        document.getElementById("prix").classList.remove("is-valid");
+        }
+        else{
+        document.getElementById("prix").classList.remove("is-invalid");
+        document.getElementById("prix").classList.add("is-valid");  
+        }
+    if (statMT === ""){
+        document.getElementById("errstatMT").innerHTML="Veuillez mettre à jour le statut.";
+        document.getElementById("statut-maintenance").classList.add("is-invalid");
+        erreur=true;        
+    }else {
+        document.getElementById("statut-maintenance").classList.remove("is-invalid");
+        document.getElementById("statut-maintenance").classList.add("is-valid"); 
+    }
+
+
+if (erreur) {
+    return;
+}
+    event.target.submit();
+    }
+
+function validerFormulaireModifMTPER(event) {
+    event.preventDefault();
+
+    let newStat    = document.getElementById("nouveau-statut").value;
+    let plaq       = document.getElementById("plaquettesmodif");
+    let disq       = document.getElementById("disquesmodif");
+    let montantMod = document.getElementById("prixmodif");
+    let reçuMTMod  = document.getElementById("reçu-mt");
+    let champsPeriodique = document.getElementById('champs-periodique');
+
+    let erreur = false;
+
+    document.getElementById("errprixmodif").innerHTML  = "";
+    document.getElementById("errreçumt").innerHTML     = "";
+    document.getElementById("errnewStat").innerHTML    = "";
+    document.getElementById("errplaqModif").innerHTML  = "";
+    document.getElementById("errdisqModif").innerHTML  = "";
+
+    // Activer/désactiver selon statut
+    if (newStat === "terminee") {
+        montantMod.disabled = false;
+        reçuMTMod.disabled  = false;
+        if (champsPeriodique.style.display === 'block') {
+            plaq.disabled = false;
+            disq.disabled = false;
+        }
+    } else {
+        plaq.disabled       = true;
+        disq.disabled       = true;
+        montantMod.disabled = true;
+        reçuMTMod.disabled  = true;
+        plaq.classList.remove("is-valid", "is-invalid");
+        disq.classList.remove("is-valid", "is-invalid");
+        montantMod.classList.remove("is-valid", "is-invalid");
+        reçuMTMod.classList.remove("is-valid", "is-invalid");
+    }
+
+    // Lire les valeurs après activation
+    let PlaqModif    = plaq.value;
+    let DisqModif    = disq.value;
+    let montantModif = montantMod.value;
+    let reçuMT       = reçuMTMod.files;
+
+    // Validation statut
+    if (newStat === "") {
+        document.getElementById("errnewStat").innerHTML = "Veuillez mettre à jour le statut.";
+        document.getElementById("nouveau-statut").classList.add("is-invalid");
+        erreur = true;
+    } else {
+        document.getElementById("nouveau-statut").classList.remove("is-invalid");
+        document.getElementById("nouveau-statut").classList.add("is-valid");
+    }
+
+    // Validation si terminée
+    if (newStat === "terminee") {
+
+        // Montant
+        if (montantModif === "") {
+            document.getElementById("errprixmodif").innerHTML = "Veuillez insérer le montant.";
+            document.getElementById("prixmodif").classList.add("is-invalid");
+            erreur = true;
+        } else if (isNaN(montantModif)) {
+            document.getElementById("errprixmodif").innerHTML = "Valeur numérique requise.";
+            document.getElementById("prixmodif").classList.add("is-invalid");
+            erreur = true;
+        } else {
+            document.getElementById("prixmodif").classList.remove("is-invalid");
+            document.getElementById("prixmodif").classList.add("is-valid");
+        }
+
+        // Reçu
+        if (reçuMT.length === 0) {
+            document.getElementById("errreçumt").innerHTML = "Veuillez insérer le reçu.";
+            document.getElementById("reçu-mt").classList.add("is-invalid");
+            erreur = true;
+        } else {
+            document.getElementById("reçu-mt").classList.remove("is-invalid");
+            document.getElementById("reçu-mt").classList.add("is-valid");
+        }
+
+        // Plaquettes et disques seulement si périodique
+        if (champsPeriodique.style.display === 'block') {
+            if (PlaqModif === "") {
+                document.getElementById("errplaqModif").innerHTML = "Veuillez mettre à jour l'état des plaquettes.";
+                document.getElementById("plaquettesmodif").classList.add("is-invalid");
+                erreur = true;
+            } else {
+                document.getElementById("plaquettesmodif").classList.remove("is-invalid");
+                document.getElementById("plaquettesmodif").classList.add("is-valid");
+            }
+
+            if (DisqModif === "") {
+                document.getElementById("errdisqModif").innerHTML = "Veuillez mettre à jour l'état des disques.";
+                document.getElementById("disquesmodif").classList.add("is-invalid");
+                erreur = true;
+            } else {
+                document.getElementById("disquesmodif").classList.remove("is-invalid");
+                document.getElementById("disquesmodif").classList.add("is-valid");
+            }
+        }
+    }
+
+    if (erreur) return;
+    if (erreur)
+        return; 
+    
+    event.target.submit();
+}
+
