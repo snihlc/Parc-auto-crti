@@ -1046,7 +1046,6 @@ function validerFormulaireModifMTPER(event) {
                 document.getElementById("plaquettesmodif").classList.remove("is-invalid");
                 document.getElementById("plaquettesmodif").classList.add("is-valid");
             }
-
             if (DisqModif === "") {
                 document.getElementById("errdisqModif").innerHTML = "Veuillez mettre à jour l'état des disques.";
                 document.getElementById("disquesmodif").classList.add("is-invalid");
@@ -1057,11 +1056,60 @@ function validerFormulaireModifMTPER(event) {
             }
         }
     }
-
     if (erreur) return;
-    if (erreur)
-        return; 
-    
     event.target.submit();
 }
 
+function validerFormulaireMaintenanceCor(event){
+    event.preventDefault();
+
+    let datePanneMt = document.getElementById("date-maintenance-cor").value;
+    let StatutMtCor = document.getElementById("statut-maintenance-cor").value;
+
+    let erreur = false;
+
+    document.getElementById("errdatemtCor").innerHTML  = "";
+    document.getElementById("errstatutmtCor").innerHTML  = "";
+
+    if(datePanneMt === ""){
+        document.getElementById("errdatemtCor").innerHTML = "Veuillez saisir la date de la maintenance.";
+        document.getElementById("date-maintenance-cor").classList.add("is-invalid");
+    erreur = true;      
+    }else{
+        document.getElementById("date-maintenance-cor").classList.remove("is-invalid");
+        document.getElementById("date-maintenance-cor").classList.add("is-valid");        
+    }
+    if(StatutMtCor === ""){
+        document.getElementById("errstatutmtCor").innerHTML = "Veuillez choisir un statut.";
+        document.getElementById("statut-maintenance-cor").classList.add("is-invalid");
+    erreur = true;      
+    }else{
+        document.getElementById("statut-maintenance-cor").classList.remove("is-invalid");
+        document.getElementById("statut-maintenance-cor").classList.add("is-valid");        
+    }
+
+    if (erreur) return;
+
+    event.target.submit();
+}
+
+function validerFormulaireConvocation(event){
+    event.preventDefault();
+    let motifConvo=document.getElementById("motifconvo").value;
+
+    let erreur = false;
+    
+    document.getElementById("errMotifConvo").innerHTML="";
+
+    if (motifConvo === ""){
+        document.getElementById("errMotifConvo").innerHTML = "Veuillez saisir le motif.";
+        document.getElementById("motifconvo").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("motifconvo").classList.remove("is-invalid");
+        document.getElementById("motifconvo").classList.add("is-valid");        
+    }
+
+       if (erreur) return;
+    event.target.submit();
+}
