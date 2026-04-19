@@ -1180,10 +1180,65 @@ function validerFormulaireChauffeurModif(event){
         document.getElementById("dateDispoChauff").classList.add("is-valid");        
     }
 
+    if (erreur) return;
 
+    event.target.submit();
+}
+
+function validerTraitementDemande(event){
+        event.preventDefault();
+
+
+    let ChauffeurDispo=document.getElementById("chauf-dispo").value;
+    let VehiculeDispo=document.getElementById("vehicule-dispo").value;
+
+    let erreur = false;
+    
+    document.getElementById("errChaufDispo").innerHTML="";
+    document.getElementById("errVehiculeDispo").innerHTML="";
+
+
+    if (ChauffeurDispo === ""){
+        document.getElementById("errChaufDispo").innerHTML = "Veuillez choisir un chauffeur.";
+        document.getElementById("chauf-dispo").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("chauf-dispo").classList.remove("is-invalid");
+        document.getElementById("chauf-dispo").classList.add("is-valid");        
+    }
+    if (VehiculeDispo === ""){
+        document.getElementById("errVehiculeDispo").innerHTML = "Veuillez choisir un véhicule.";
+        document.getElementById("vehicule-dispo").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("vehicule-dispo").classList.remove("is-invalid");
+        document.getElementById("vehicule-dispo").classList.add("is-valid");        
+    }
 
     if (erreur) return;
 
+    event.target.submit();
+
+}
+
+function validerMotifRefus(event){
+    event.preventDefault();
+
+    let MotifRefus=document.getElementById("motifRefus").value;
+
+    let erreur = false;
+    
+    document.getElementById("errmotifRefus").innerHTML="";
+
+    if (MotifRefus === ""){
+        document.getElementById("errmotifRefus").innerHTML = "Veuillez saisir un motif.";
+        document.getElementById("motifRefus").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("motifRefus").classList.remove("is-invalid");
+        document.getElementById("motifRefus").classList.add("is-valid");        
+    }
+      if (erreur) return;
 
     event.target.submit();
 }
