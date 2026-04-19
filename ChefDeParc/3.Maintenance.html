@@ -357,7 +357,7 @@
             <script>
     
 document.getElementById("type-periodique").addEventListener("change", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errtypeMT").innerHTML = "Veuillez choisir un type de maintenance périodique.";
@@ -368,7 +368,7 @@ document.getElementById("type-periodique").addEventListener("change", function()
   }
 });
 document.getElementById("autres").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errtypeAutre").innerHTML = "Veuillez saisir un type.";
@@ -379,11 +379,11 @@ document.getElementById("autres").addEventListener("input", function() {
   }
 });
 document.getElementById("freq").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errtypefreq").innerHTML = "Veuillez insérer le kilométrage.";
-  }else if(isNaN(this.value)){
+  }else if(isNaN(this.value.trim())){
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errtypefreq").innerHTML = "Le kilométrage doit contenir une valeur numérique.";
@@ -395,7 +395,7 @@ document.getElementById("freq").addEventListener("input", function() {
   }
 });
 document.getElementById("huile").addEventListener("change", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errtypehuile").innerHTML = "Veuillez choisir un type d'huile.";
@@ -406,7 +406,7 @@ document.getElementById("huile").addEventListener("change", function() {
   }
 });
 document.getElementById("date-maintenance").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errdateMT").innerHTML = "Veuillez entrer une date.";
@@ -417,10 +417,10 @@ document.getElementById("date-maintenance").addEventListener("input", function()
   }
 });
 document.getElementById("prix").addEventListener("input", function() {
-    if (isNaN(this.value)) {
+    if (isNaN(this.value.trim())) {
     this.classList.add("is-invalid"); this.classList.remove("is-valid");
     document.getElementById("errmtper").innerHTML = "Le montant doit contenir une valeur numérique.";
-  }else if (this.value === ""){
+  }else if (this.value.trim() === ""){
         this.classList.remove("is-valid");
         this.classList.remove("is-invalid"); 
     document.getElementById("errmtper").innerHTML = "";
@@ -431,28 +431,28 @@ document.getElementById("prix").addEventListener("input", function() {
   }
 });
 document.getElementById("plaquettes").addEventListener("input", function() {
-  if (this.value !== "") {
+  if (this.value.trim() !== "") {
      this.classList.add("is-valid");
   } else {
     this.classList.remove("is-valid"); 
   }
 });
 document.getElementById("disques").addEventListener("input", function() {
-  if (this.value !== "") {
+  if (this.value.trim() !== "") {
      this.classList.add("is-valid");
   } else {
     this.classList.remove("is-valid"); 
   }
 });
 document.getElementById("desc").addEventListener("input", function() {
-  if (this.value !== "") {
+  if (this.value.trim() !== "") {
      this.classList.add("is-valid");
   } else {
     this.classList.remove("is-valid"); 
   }
 });
-document.getElementById("statut-maintenance").addEventListener("input", function() {
-  if (this.value === "") {
+document.getElementById("statut-maintenance").addEventListener("change", function() {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errstatMT").innerHTML = "Veuillez mettre à jour le statut.";
@@ -471,7 +471,7 @@ document.getElementById("reçu-mt").addEventListener("change", function() {
   }
 });
 document.getElementById("plaquettesmodif").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
      this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errplaqModif").innerHTML  = "Veuillez mettre à jour l'état des plaquettes.";
@@ -482,7 +482,7 @@ document.getElementById("plaquettesmodif").addEventListener("input", function() 
   }
 });
 document.getElementById("disquesmodif").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.remove("is-valid");
     this.classList.add("is-invalid");
     document.getElementById("errdisqModif").innerHTML  = "Veuillez mettre à jour l'état des disques.";
@@ -497,7 +497,7 @@ document.getElementById("prixmodif").addEventListener("input", function() {
     if (isNaN(this.value)) {
     this.classList.add("is-invalid"); this.classList.remove("is-valid");
     document.getElementById("errprixmodif").innerHTML = "Le montant doit contenir une valeur numérique.";
-  }else if (this.value === ""){
+  }else if (this.value.trim() === ""){
         this.classList.remove("is-valid");
         this.classList.remove("is-invalid"); 
     document.getElementById("errprixmodif").innerHTML = "";
@@ -514,7 +514,7 @@ document.getElementById("nouveau-statut").addEventListener("change", function() 
     let reçuMTMod  = document.getElementById("reçu-mt");
     let champsPeriodique = document.getElementById('champs-periodique');
 
-    if (this.value !== "") {
+    if (this.value.trim() !== "") {
         this.classList.add("is-valid");
         this.classList.remove("is-invalid");
         document.getElementById("errnewStat").innerHTML = "";
@@ -522,7 +522,7 @@ document.getElementById("nouveau-statut").addEventListener("change", function() 
         this.classList.remove("is-valid");
     }
 
-    if (this.value === "terminee") {
+    if (this.value.trim() === "terminee") {
         montantMod.disabled = false;
         reçuMTMod.disabled  = false;
         if (champsPeriodique.style.display === 'block') {

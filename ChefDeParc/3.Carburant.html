@@ -178,26 +178,26 @@
             <script src="../script.js"></script>
             <script>
 document.getElementById("date-plein").addEventListener("input",function(){
-    if (this.value !== ""){
+    if (this.value.trim() !== ""){
         this.classList.remove("is-invalid");
         this.classList.add("is-valid");
         document.getElementById("errplein").innerHTML="";
     } else {
         this.classList.remove("is-valid");
         this.classList.add("is-invalid");
-        document.getElementById("errplein").innerHTML="Obligatoire.";
+        document.getElementById("errplein").innerHTML="Veuillez saisir la date de plein.";
     }
 });
 
 document.getElementById("station").addEventListener("input",function(){
-    if (this.value !== ""){
+    if (this.value.trim() !== ""){
         this.classList.remove("is-invalid");
         this.classList.add("is-valid");
         document.getElementById("errstation").innerHTML="";
     } else {
         this.classList.remove("is-valid");
         this.classList.add("is-invalid");
-        document.getElementById("errstation").innerHTML="Obligatoire.";
+        document.getElementById("errstation").innerHTML="Veuillez saisir la station.";
     }
 });
 
@@ -209,16 +209,16 @@ document.getElementById("type-carburant").addEventListener("change",function(){
     } else {
         this.classList.remove("is-valid");
         this.classList.add("is-invalid");
-        document.getElementById("errtypecarb").innerHTML="Obligatoire.";
+        document.getElementById("errtypecarb").innerHTML="Veuillez choisir un type de carburant.";
     }
 });
 
 document.getElementById("qte-carb").addEventListener("input", function() {
-    if (this.value === "") {
+    if (this.value.trim() === "") {
         this.classList.add("is-invalid");
         this.classList.remove("is-valid");
-        document.getElementById("errqtecarb").innerHTML="Obligatoire.";
-    } else if (isNaN(this.value)) {
+        document.getElementById("errqtecarb").innerHTML="Veuillez saisir la quantité de carburant.";
+    } else if (isNaN(this.value.trim())) {
         this.classList.add("is-invalid");
         this.classList.remove("is-valid");
         document.getElementById("errqtecarb").innerHTML = "La quantité doit contenir une valeur numérique.";
@@ -230,11 +230,11 @@ document.getElementById("qte-carb").addEventListener("input", function() {
 });
 
 document.getElementById("kilometrage-carb").addEventListener("input", function() {
-    if (this.value === "") {
+    if (this.value.trim() === "") {
         this.classList.add("is-invalid");
         this.classList.remove("is-valid");
-        document.getElementById("errkmcarb").innerHTML = "Obligatoire.";
-    } else if (isNaN(this.value)) {
+        document.getElementById("errkmcarb").innerHTML="Veuillez saisir le kilométrage.";
+    } else if (isNaN(this.value.trim())) {
         this.classList.add("is-invalid");
         this.classList.remove("is-valid");
         document.getElementById("errkmcarb").innerHTML = "Le kilométrage doit contenir une valeur numérique.";
@@ -246,11 +246,11 @@ document.getElementById("kilometrage-carb").addEventListener("input", function()
 });
 
 document.getElementById("montant-carb").addEventListener("input", function() {
-    if (this.value === "") {
+    if (this.value.trim() === "") {
         this.classList.add("is-invalid");
         this.classList.remove("is-valid");
-        document.getElementById("errmtcarb").innerHTML = "Obligatoire.";
-    } else if (isNaN(this.value)) {
+        document.getElementById("errmtcarb").innerHTML="Veuillez saisir le montant.";
+    } else if (isNaN(this.value.trim())) {
         this.classList.add("is-invalid");
         this.classList.remove("is-valid");
         document.getElementById("errmtcarb").innerHTML = "Le montant doit contenir une valeur numérique.";

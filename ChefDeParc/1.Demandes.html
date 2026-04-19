@@ -215,7 +215,7 @@
 <div class="row">
     <div class="col-md-6 mb-3">
         <label for="desc-miss" class="form-label fw-semibold">Description</label>
-        <textarea  id="desc-miss" class="form-control" rows="2"></textarea>
+        <textarea  id="desc-miss" class="form-control" rows="2" disabled></textarea>
     </div>
     <div class="col-md-6 mb-3">
         <label for="etat-mission" class="form-label fw-semibold">Etat mission</label>
@@ -276,7 +276,6 @@
     </div>
   </div>
 </div>
-
                             </div>
                                
             </div></div></div></div>
@@ -318,10 +317,10 @@ document.getElementById("traiter-demande").addEventListener("shown.bs.modal", fu
   let etatMission = document.getElementById("etat-mission");
   let prioriteMiss = document.getElementById("priorite-miss");
 
-  if (etatMission.value === "mis-validee") {
+  if (etatMission.value.trim() === "mis-validee") {
     etatMission.classList.add("is-valid");
   }
-  if (prioriteMiss.value === "mis-faible") {
+  if (prioriteMiss.value.trim() === "mis-faible") {
     prioriteMiss.classList.add("is-valid");
   }
 });

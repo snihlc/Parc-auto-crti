@@ -288,6 +288,110 @@
             </div></div></div></div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
             <script src="../script.js"></script>
+            <script>
+document.getElementById("immatric-vehicule").addEventListener("input", function() {
+  if (this.value.trim() === "") {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errmat").innerHTML = "L'immatriculation est obligatoire.";
+  } else {
+    this.classList.remove("is-invalid"); this.classList.add("is-valid");
+    document.getElementById("errmat").innerHTML = "";
+  }
+});
 
+document.getElementById("marque-vehicule").addEventListener("input", function() {
+  if (this.value.trim() === "") {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errmarque").innerHTML = "La marque du véhicule est obligatoire";
+  } else {
+    this.classList.remove("is-invalid"); this.classList.add("is-valid");
+    document.getElementById("errmarque").innerHTML = "";
+  }
+});
+
+document.getElementById("modele-vehicule").addEventListener("input", function() {
+  if (this.value.trim() === "") {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errmodele").innerHTML = "Le modèle du véhicule est obligatoire.";
+  } else {
+    this.classList.remove("is-invalid"); this.classList.add("is-valid");
+    document.getElementById("errmodele").innerHTML = "";
+  }
+});
+
+document.getElementById("kilometrage").addEventListener("input", function() {
+  if (this.value.trim() === "") {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errkm").innerHTML = "Le kilométrage est obligatoire.";
+  } else if (isNaN(this.value)) {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errkm").innerHTML = "Le kilométrage doit contenir une valeur numérique.";
+  } else {
+    this.classList.remove("is-invalid"); this.classList.add("is-valid");
+    document.getElementById("errkm").innerHTML = "";
+  }
+});
+
+document.getElementById("annee-vehicule").addEventListener("input", function() {
+  if (this.value.trim() !== "" && isNaN(this.value)) {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errannee").innerHTML = "L'année doit contenir une valeur numérique.";
+  } else {
+    this.classList.remove("is-invalid");
+    if (this.value.trim() !== "") this.classList.add("is-valid");
+    document.getElementById("errannee").innerHTML = "";
+  }
+});
+
+document.getElementById("NbPlaces").addEventListener("input", function() {
+  if (this.value.trim() !== "" && isNaN(this.value)) {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errnombre").innerHTML = "Le nombre de places doit contenir une valeur numérique.";
+  } else {
+    this.classList.remove("is-invalid");
+    if (this.value.trim() !== "") this.classList.add("is-valid");
+    document.getElementById("errnombre").innerHTML = "";
+  }
+});
+
+document.getElementById("type-vehicul").addEventListener("change", function() {
+  if (this.value === "" || this.value === "Selectionnez le type du véhicule") {
+    this.classList.add("is-invalid"); this.classList.remove("is-valid");
+    document.getElementById("errtypeV").innerHTML = "Le type du véhicule est obligatoire.";
+  } else {
+    this.classList.remove("is-invalid"); this.classList.add("is-valid");
+    document.getElementById("errtypeV").innerHTML = "";
+  }
+});
+document.getElementById("etat-vehicule").addEventListener("change",function(){
+    if (this.value !== ""){
+        this.classList.add("is-valid");
+    }else {
+        this.classList.remove("is-valid");
+    }
+});
+
+document.getElementById("carburant").addEventListener("change",function(){
+    if (this.value !== ""){
+        this.classList.add("is-valid");
+    }else {
+        this.classList.remove("is-valid");
+    }
+});
+document.getElementById("date-circulation").addEventListener("change",function(){
+    if (this.value !== ""){
+        this.classList.add("is-valid");
+    }else {
+        this.classList.remove("is-valid");
+    }
+});
+document.getElementById("carte-grisev").addEventListener("change",function(){
+    if (this.files.length !== 0){
+        this.classList.add("is-valid");
+    }else {
+        this.classList.remove("is-valid");
+    }
+});
+            </script>
         </body>
 </html>

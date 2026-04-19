@@ -237,7 +237,7 @@
             <script src="../script.js"></script>
             <script>
 document.getElementById("etat-sante").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
      this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("erretatsante").innerHTML  = "Veuillez saisir l'état de santé.";
@@ -248,7 +248,7 @@ document.getElementById("etat-sante").addEventListener("input", function() {
   }
 });
 document.getElementById("permis").addEventListener("change", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
      this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errpermis").innerHTML  = "Veuillez choisir une catégorie.";
@@ -259,7 +259,7 @@ document.getElementById("permis").addEventListener("change", function() {
   }
 });
 document.getElementById("numPermis").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
      this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errnumPermis").innerHTML  = "Veuillez saisir le numéro de permis.";
@@ -270,7 +270,7 @@ document.getElementById("numPermis").addEventListener("input", function() {
   }
 });
 document.getElementById("dateExpPermis").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
      this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errdateExpPermis").innerHTML  = "Veuillez saisir la date d'expiration du permis.";
@@ -281,7 +281,7 @@ document.getElementById("dateExpPermis").addEventListener("input", function() {
   }
 });
 document.getElementById("dateDispoChauff").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
      this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errdateDispoChauff").innerHTML  = "Veuillez saisir la date de mise à disposition.";

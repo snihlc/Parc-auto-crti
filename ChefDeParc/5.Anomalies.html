@@ -309,7 +309,7 @@
             <script src="../script.js"></script>
             <script>
 document.getElementById("date-maintenance-cor").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errdatemtCor").innerHTML = "Veuillez saisir la date de la maintenance.";
@@ -320,14 +320,14 @@ document.getElementById("date-maintenance-cor").addEventListener("input", functi
   }
 });
 document.getElementById("desc-cor").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
      this.classList.remove("is-valid");
   } else {
     this.classList.add("is-valid");
   }
 });
 document.getElementById("statut-maintenance-cor").addEventListener("change", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.remove("is-valid");
     this.classList.add("is-invalid");
     document.getElementById("errstatutmtCor").innerHTML = "Veuillez choisir un statut.";
@@ -338,21 +338,21 @@ document.getElementById("statut-maintenance-cor").addEventListener("change", fun
   }
 });
 document.getElementById("mt-panne").addEventListener("change", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
      this.classList.remove("is-valid");
   } else {
     this.classList.add("is-valid");
   }
 });
 document.getElementById("chaufcnc").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
      this.classList.remove("is-valid");
   } else {
     this.classList.add("is-valid");
   }
 });
 document.getElementById("motifconvo").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.remove("is-valid");
     this.classList.add("is-invalid");
     document.getElementById("errMotifConvo").innerHTML = "Veuillez saisir le motif.";

@@ -315,64 +315,33 @@
                             </div>
                                
             </div></div></div></div>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-            <script>function afficherChamps() {
-
-    let type = document.getElementById("type-doc").value;
-
-    if (type == "assurance")
-    {
-        document.querySelector("#assurance").style.display="block";
-    }
-else {
-        document.querySelector("#assurance").style.display="none";
-}
-    if (type == "vignette")
-    {
-        document.querySelector("#vignette").style.display="block";
-    }
-    else {
-        document.querySelector("#vignette").style.display="none";
-}
-    if (type == "controle-tech")
-    {
-        document.querySelector("#controle").style.display="block";
-    }
-    else {
-        document.querySelector("#controle").style.display="none";
-}
-    if (type == "carte-grise")
-    {
-        document.querySelector("#cartegrise").style.display="block";
-}
-    else {
-        document.querySelector("#cartegrise").style.display="none";
-}
-}
+            <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="../script.js"></script>
+            <script>
 
 function validerFormulaireDocument(event){
       event.preventDefault();
-    let type = document.getElementById("type-doc").value;
+    let type = document.getElementById("type-doc").value.trim();
 
     let carteGrise = document.getElementById("pdf-cg").files;
 
-    let typeassurance = document.getElementById("assurance-type").value;
-    let compagnie = document.getElementById("compagnie-assurance").value;
-    let datedebasr = document.getElementById("date-debut-assurance").value;
-    let dateexpasr = document.getElementById("date-expiration-assurance").value;
-    let montantasr = document.getElementById("montant-assurance").value;
+    let typeassurance = document.getElementById("assurance-type").value.trim();
+    let compagnie = document.getElementById("compagnie-assurance").value.trim();
+    let datedebasr = document.getElementById("date-debut-assurance").value.trim();
+    let dateexpasr = document.getElementById("date-expiration-assurance").value.trim();
+    let montantasr = document.getElementById("montant-assurance").value.trim();
     let pdfassurance = document.getElementById("doc-assurance").files;
 
-    let datedebvig = document.getElementById("date-achat-vignette").value;
-    let montantvig = document.getElementById("montant-vignette").value;
-    let dateexpvig = document.getElementById("date-expiration-vignette").value;
+    let datedebvig = document.getElementById("date-achat-vignette").value.trim();
+    let montantvig = document.getElementById("montant-vignette").value.trim();
+    let dateexpvig = document.getElementById("date-expiration-vignette").value.trim();
     let pdfvignette = document.getElementById("doc-vignette").files;
 
-    let datecntrl = document.getElementById("date-controle").value;
-    let centrecntrl = document.getElementById("centre-controle").value;
-    let rescntrl =document.getElementById("resultat-controle").value;
-    let montantcntrl = document.getElementById("montant-controle").value;
-    let prochaincntrl = document.getElementById("prochain-controle").value;
+    let datecntrl = document.getElementById("date-controle").value.trim();
+    let centrecntrl = document.getElementById("centre-controle").value.trim();
+    let rescntrl =document.getElementById("resultat-controle").value.trim();
+    let montantcntrl = document.getElementById("montant-controle").value.trim();
+    let prochaincntrl = document.getElementById("prochain-controle").value.trim();
     let pdfcntrl = document.getElementById("doc-controle").files;
 
     let erreur = false;
@@ -411,7 +380,7 @@ if (type === ""){
 else if (type === "carte-grise"){
 
     if (carteGrise.length === 0 ){
-        document.getElementById("errCG").innerHTML="Obligatoire";
+        document.getElementById("errCG").innerHTML="Veuillez importer un fichier.";
         document.getElementById("pdf-cg").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -423,7 +392,7 @@ else if (type === "carte-grise"){
 
 else if (type === "assurance"){
     if (typeassurance === "" ){
-        document.getElementById("errtypeasr").innerHTML="Obligatoire";
+        document.getElementById("errtypeasr").innerHTML="Veuillez choisir un type d'assurance.";
         document.getElementById("assurance-type").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -431,7 +400,7 @@ else if (type === "assurance"){
         document.getElementById("assurance-type").classList.add("is-valid");
     }
     if (compagnie === "" ){
-        document.getElementById("errcomp").innerHTML="Obligatoire";
+        document.getElementById("errcomp").innerHTML="Veuillez saisir la compagnie d'assurance.";
         document.getElementById("compagnie-assurance").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -439,7 +408,7 @@ else if (type === "assurance"){
         document.getElementById("compagnie-assurance").classList.add("is-valid");
     }    
     if (datedebasr === "" ){
-        document.getElementById("errdebasr").innerHTML="Obligatoire";
+        document.getElementById("errdebasr").innerHTML="Veuillez saisir la date de début.";
         document.getElementById("date-debut-assurance").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -447,7 +416,7 @@ else if (type === "assurance"){
         document.getElementById("date-debut-assurance").classList.add("is-valid");
     }    
     if (dateexpasr === "" ){
-        document.getElementById("errexpasr").innerHTML="Obligatoire";
+        document.getElementById("errexpasr").innerHTML="Veuillez saisir la date d'expiration.";
         document.getElementById("date-expiration-assurance").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -455,7 +424,7 @@ else if (type === "assurance"){
         document.getElementById("date-expiration-assurance").classList.add("is-valid");
     }    
     if (montantasr === "" ){
-        document.getElementById("errmtasr").innerHTML="Obligatoire";
+        document.getElementById("errmtasr").innerHTML="Veuillez saisir le montant.";
         document.getElementById("montant-assurance").classList.add("is-invalid");
         erreur = true;
     } else if(isNaN(montantasr)){
@@ -467,7 +436,7 @@ else if (type === "assurance"){
         document.getElementById("montant-assurance").classList.remove("is-invalid");
         document.getElementById("montant-assurance").classList.add("is-valid");
     }    if (pdfassurance.length === 0 ){
-        document.getElementById("errpdfasr").innerHTML="Obligatoire";
+        document.getElementById("errpdfasr").innerHTML="Veuillez importer un fichier.";
         document.getElementById("doc-assurance").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -477,7 +446,7 @@ else if (type === "assurance"){
 }
 else if (type === "vignette"){
       if (datedebvig === "" ){
-        document.getElementById("errdebvig").innerHTML="Obligatoire";
+        document.getElementById("errdebvig").innerHTML="Veuillez saisir la date d'achat.";
         document.getElementById("date-achat-vignette").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -485,7 +454,7 @@ else if (type === "vignette"){
         document.getElementById("date-achat-vignette").classList.add("is-valid");
     }
           if (montantvig === "" ){
-        document.getElementById("errmtvig").innerHTML="Obligatoire";
+        document.getElementById("errmtvig").innerHTML="Veuillez saisir le montant.";
         document.getElementById("montant-vignette").classList.add("is-invalid");
         erreur = true;
     }else if(isNaN(montantvig)){
@@ -498,7 +467,7 @@ else if (type === "vignette"){
         document.getElementById("montant-vignette").classList.add("is-valid");
     }
           if (dateexpvig === "" ){
-        document.getElementById("errexpvig").innerHTML="Obligatoire";
+        document.getElementById("errexpvig").innerHTML="Veuillez saisir la date d'expiration.";
         document.getElementById("date-expiration-vignette").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -506,7 +475,7 @@ else if (type === "vignette"){
         document.getElementById("date-expiration-vignette").classList.add("is-valid");
     }
           if (pdfvignette.length === 0 ){
-        document.getElementById("errpdfvig").innerHTML="Obligatoire";
+        document.getElementById("errpdfvig").innerHTML="Veuillez importer un fichier.";
         document.getElementById("doc-vignette").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -515,7 +484,7 @@ else if (type === "vignette"){
     }
 } else if (type === "controle-tech"){
     if (datecntrl === "" ){
-        document.getElementById("errdatcntrl").innerHTML="Obligatoire";
+        document.getElementById("errdatcntrl").innerHTML="Veuillez saisir la date du contrôle.";
         document.getElementById("date-controle").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -523,7 +492,7 @@ else if (type === "vignette"){
         document.getElementById("date-controle").classList.add("is-valid");
     }
       if (centrecntrl === "" ){
-        document.getElementById("errcentre").innerHTML="Obligatoire";
+        document.getElementById("errcentre").innerHTML="Veuillez saisir le centre de contrôle.";
         document.getElementById("centre-controle").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -531,7 +500,7 @@ else if (type === "vignette"){
         document.getElementById("centre-controle").classList.add("is-valid");
     }
       if (rescntrl === "" ){
-        document.getElementById("errrescntrl").innerHTML="Obligatoire";
+        document.getElementById("errrescntrl").innerHTML="Veuillez saisir le résultat du contrôle.";
         document.getElementById("resultat-controle").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -539,7 +508,7 @@ else if (type === "vignette"){
         document.getElementById("resultat-controle").classList.add("is-valid");
     }
       if (montantcntrl === "" ){
-        document.getElementById("errmtcntrl").innerHTML="Obligatoire";
+        document.getElementById("errmtcntrl").innerHTML="Veuillez saisir le montant.";
         document.getElementById("montant-controle").classList.add("is-invalid");
         erreur = true;
     }else if(isNaN(montantcntrl)){
@@ -552,7 +521,7 @@ else if (type === "vignette"){
         document.getElementById("montant-controle").classList.add("is-valid");
     }
       if (prochaincntrl === "" ){
-        document.getElementById("errprccntrl").innerHTML="Obligatoire";
+        document.getElementById("errprccntrl").innerHTML="Veuillez saisir la date du prochain contrôle.";
         document.getElementById("prochain-controle").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -560,7 +529,7 @@ else if (type === "vignette"){
         document.getElementById("prochain-controle").classList.add("is-valid");
     }
     if (pdfcntrl.length === 0 ){
-        document.getElementById("errpdfcntrl").innerHTML="Obligatoire";
+        document.getElementById("errpdfcntrl").innerHTML="Veuillez importer un fichier.";
         document.getElementById("doc-controle").classList.add("is-invalid");
         erreur = true;
     }else{
@@ -578,7 +547,7 @@ else {
   event.target.submit();
 }
 document.getElementById("type-doc").addEventListener("change", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
     document.getElementById("errtype").innerHTML = "Veuillez choisir un type de document.";
@@ -592,7 +561,7 @@ document.getElementById("pdf-cg").addEventListener("change", function() {
   if (this.files.length === 0) {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errCG").innerHTML = "Obligatoire";
+    document.getElementById("errCG").innerHTML = "Veuillez importer un fichier.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -600,10 +569,10 @@ document.getElementById("pdf-cg").addEventListener("change", function() {
   }
 });
 document.getElementById("assurance-type").addEventListener("change", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errtypeasr").innerHTML = "Obligatoire";
+    document.getElementById("errtypeasr").innerHTML = "Veuillez choisir un type d'assurance.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -611,10 +580,10 @@ document.getElementById("assurance-type").addEventListener("change", function() 
   }
 });
 document.getElementById("compagnie-assurance").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errcomp").innerHTML = "Obligatoire";
+    document.getElementById("errcomp").innerHTML = "Veuillez saisir la compagnie d'assurance.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -622,10 +591,10 @@ document.getElementById("compagnie-assurance").addEventListener("input", functio
   }
 });
 document.getElementById("date-debut-assurance").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errdebasr").innerHTML = "Obligatoire";
+    document.getElementById("errdebasr").innerHTML = "Veuillez saisir la date de début.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -633,10 +602,10 @@ document.getElementById("date-debut-assurance").addEventListener("input", functi
   }
 });
 document.getElementById("date-expiration-assurance").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errexpasr").innerHTML = "Obligatoire";
+    document.getElementById("errexpasr").innerHTML = "Veuillez saisir la date d'expiration.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -644,11 +613,11 @@ document.getElementById("date-expiration-assurance").addEventListener("input", f
   }
 });
 document.getElementById("montant-assurance").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errmtasr").innerHTML = "Obligatoire";
-  } else if (isNaN(this.value)) {
+    document.getElementById("errmtasr").innerHTML = "Veuillez saisir le montant.";
+  } else if (isNaN(this.value.trim())) {
     this.classList.add("is-invalid"); this.classList.remove("is-valid");
     document.getElementById("errmtasr").innerHTML = "Le montant doit contenir une valeur numérique.";
   }
@@ -662,7 +631,7 @@ document.getElementById("doc-assurance").addEventListener("change", function() {
   if (this.files.length === 0) {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errpdfasr").innerHTML = "Obligatoire";
+    document.getElementById("errpdfasr").innerHTML = "Veuillez importer un fichier.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -670,10 +639,10 @@ document.getElementById("doc-assurance").addEventListener("change", function() {
   }
 });
 document.getElementById("date-achat-vignette").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errdebvig").innerHTML = "Obligatoire";
+    document.getElementById("errdebvig").innerHTML = "Veuillez saisir la date d'achat.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -681,10 +650,10 @@ document.getElementById("date-achat-vignette").addEventListener("input", functio
   }
 });
 document.getElementById("date-expiration-vignette").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errexpvig").innerHTML = "Obligatoire";
+    document.getElementById("errexpvig").innerHTML = "Veuillez saisir la date d'expiration.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -692,10 +661,10 @@ document.getElementById("date-expiration-vignette").addEventListener("input", fu
   }
 });
 document.getElementById("montant-vignette").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errmtvig").innerHTML = "Obligatoire";
+    document.getElementById("errmtvig").innerHTML = "Veuillez saisir le montant.";
   } else if (isNaN(this.value)) {
     this.classList.add("is-invalid"); this.classList.remove("is-valid");
     document.getElementById("errmtvig").innerHTML = "Le montant doit contenir une valeur numérique.";
@@ -710,7 +679,7 @@ document.getElementById("doc-vignette").addEventListener("change", function() {
   if (this.files.length === 0) {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errpdfvig").innerHTML = "Obligatoire";
+    document.getElementById("errpdfvig").innerHTML = "Veuillez importer un fichier.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -719,10 +688,10 @@ document.getElementById("doc-vignette").addEventListener("change", function() {
 });
 
 document.getElementById("date-controle").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errdatcntrl").innerHTML = "Obligatoire";
+    document.getElementById("errdatcntrl").innerHTML = "Veuillez saisir la date du contrôle.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -730,10 +699,10 @@ document.getElementById("date-controle").addEventListener("input", function() {
   }
 });
 document.getElementById("centre-controle").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errcentre").innerHTML = "Obligatoire";
+    document.getElementById("errcentre").innerHTML = "Veuillez saisir le centre de contrôle.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -741,10 +710,10 @@ document.getElementById("centre-controle").addEventListener("input", function() 
   }
 });
 document.getElementById("resultat-controle").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errrescntrl").innerHTML = "Obligatoire";
+    document.getElementById("errrescntrl").innerHTML = "Veuillez saisir le résultat du contrôle.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -752,10 +721,10 @@ document.getElementById("resultat-controle").addEventListener("input", function(
   }
 });
 document.getElementById("montant-controle").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errmtcntrl").innerHTML = "Obligatoire";
+    document.getElementById("errmtcntrl").innerHTML = "Veuillez saisir le montant.";
   } else if (isNaN(this.value)) {
     this.classList.add("is-invalid"); this.classList.remove("is-valid");
     document.getElementById("errmtcntrl").innerHTML = "Le montant doit contenir une valeur numérique.";
@@ -767,10 +736,10 @@ document.getElementById("montant-controle").addEventListener("input", function()
   }
 });
 document.getElementById("prochain-controle").addEventListener("input", function() {
-  if (this.value === "") {
+  if (this.value.trim() === "") {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errprccntrl").innerHTML = "Obligatoire";
+    document.getElementById("errprccntrl").innerHTML = "Veuillez saisir la date du prochain contrôle.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");
@@ -781,7 +750,7 @@ document.getElementById("doc-controle").addEventListener("change", function() {
   if (this.files.length === 0) {
     this.classList.add("is-invalid");
      this.classList.remove("is-valid");
-    document.getElementById("errpdfcntrl").innerHTML = "Obligatoire";
+    document.getElementById("errpdfcntrl").innerHTML = "Veuillez importer un fichier.";
   } else {
     this.classList.remove("is-invalid"); 
     this.classList.add("is-valid");

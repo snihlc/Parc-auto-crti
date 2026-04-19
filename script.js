@@ -391,7 +391,6 @@ function filtrerMaintenanceDate() {
         card.style.display = (typeOk && anneeOk) ? '' : 'none';
     });
 }
-
 let filtreDct = 'tout';
 
 function filtrerDocument(dct) {
@@ -423,7 +422,6 @@ function filtrerDocumentDate() {
             card.style.display = typeOk ? '' : 'none';
             return;
         }
-
         let anneeCard = '';
         const match = liExpiration.textContent.match(/\d{2}-\d{2}-(\d{4})/);
         if (match) {
@@ -435,6 +433,40 @@ function filtrerDocumentDate() {
         card.style.display = (typeOk && anneeOk) ? '' : 'none';
     });
 }
+function afficherChamps() {
+
+    let type = document.getElementById("type-doc").value;
+
+    if (type == "assurance")
+    {
+        document.querySelector("#assurance").style.display="block";
+    }
+else {
+        document.querySelector("#assurance").style.display="none";
+}
+    if (type == "vignette")
+    {
+        document.querySelector("#vignette").style.display="block";
+    }
+    else {
+        document.querySelector("#vignette").style.display="none";
+}
+    if (type == "controle-tech")
+    {
+        document.querySelector("#controle").style.display="block";
+    }
+    else {
+        document.querySelector("#controle").style.display="none";
+}
+    if (type == "carte-grise")
+    {
+        document.querySelector("#cartegrise").style.display="block";
+}
+    else {
+        document.querySelector("#cartegrise").style.display="none";
+}
+}
+
   function setAction(el) {
     const btn = el.closest('.btn-group').querySelector('.btn:first-child');
     btn.textContent = el.textContent;
@@ -448,11 +480,6 @@ function handleAction(btn) {
     } else if (action === 'Signaler chauffeur') {
       new bootstrap.Modal(document.getElementById('ConvocationModal')).show();    }
   }
-
-document.addEventListener('DOMContentLoaded', function () {
-    const aujourd_hui = new Date().toISOString().split('T')[0];
-    document.getElementById('date-signalement').value = aujourd_hui;
-});
 
 function confirminout(btn){
     btn.closest(".inout").style.background="#85ff9d41";
@@ -542,16 +569,16 @@ function rechercheAnomalie(){
 function validerFormulaireVehicule(event){
   event.preventDefault();
 
-let matricule=document.getElementById("immatric-vehicule").value;
-let marque=document.getElementById("marque-vehicule").value;
-let modele=document.getElementById("modele-vehicule").value;
-let typeV=document.getElementById("type-vehicul").value;
-let annee = document.getElementById("annee-vehicule").value;
-let kilometrage = document.getElementById("kilometrage").value;
-let nombre = document.getElementById("NbPlaces").value;
-let etat = document.getElementById("etat-vehicule").value;
-let carburant = document.getElementById("carburant").value;
-let dateDispo = document.getElementById("date-circulation").value;
+let matricule=document.getElementById("immatric-vehicule").value.trim();
+let marque=document.getElementById("marque-vehicule").value.trim();
+let modele=document.getElementById("modele-vehicule").value.trim();
+let typeV=document.getElementById("type-vehicul").value.trim();
+let annee = document.getElementById("annee-vehicule").value.trim();
+let kilometrage = document.getElementById("kilometrage").value.trim();
+let nombre = document.getElementById("NbPlaces").value.trim();
+let etat = document.getElementById("etat-vehicule").value.trim();
+let carburant = document.getElementById("carburant").value.trim();
+let dateDispo = document.getElementById("date-circulation").value.trim();
 let carteGr = document.getElementById("carte-grisev").files;
 
 let erreur=false;
@@ -665,119 +692,16 @@ document.getElementById("NbPlaces").classList.add("is-valid");
   }
   event.target.submit();
 }
-// Live validation 
-document.getElementById("immatric-vehicule").addEventListener("input", function() {
-  if (this.value.trim() === "") {
-    this.classList.add("is-invalid"); this.classList.remove("is-valid");
-    document.getElementById("errmat").innerHTML = "L'immatriculation est obligatoire.";
-  } else {
-    this.classList.remove("is-invalid"); this.classList.add("is-valid");
-    document.getElementById("errmat").innerHTML = "";
-  }
-});
 
-document.getElementById("marque-vehicule").addEventListener("input", function() {
-  if (this.value.trim() === "") {
-    this.classList.add("is-invalid"); this.classList.remove("is-valid");
-    document.getElementById("errmarque").innerHTML = "La marque du véhicule est obligatoire";
-  } else {
-    this.classList.remove("is-invalid"); this.classList.add("is-valid");
-    document.getElementById("errmarque").innerHTML = "";
-  }
-});
-
-document.getElementById("modele-vehicule").addEventListener("input", function() {
-  if (this.value.trim() === "") {
-    this.classList.add("is-invalid"); this.classList.remove("is-valid");
-    document.getElementById("errmodele").innerHTML = "Le modèle du véhicule est obligatoire.";
-  } else {
-    this.classList.remove("is-invalid"); this.classList.add("is-valid");
-    document.getElementById("errmodele").innerHTML = "";
-  }
-});
-
-document.getElementById("kilometrage").addEventListener("input", function() {
-  if (this.value.trim() === "") {
-    this.classList.add("is-invalid"); this.classList.remove("is-valid");
-    document.getElementById("errkm").innerHTML = "Le kilométrage est obligatoire.";
-  } else if (isNaN(this.value)) {
-    this.classList.add("is-invalid"); this.classList.remove("is-valid");
-    document.getElementById("errkm").innerHTML = "Le kilométrage doit contenir une valeur numérique.";
-  } else {
-    this.classList.remove("is-invalid"); this.classList.add("is-valid");
-    document.getElementById("errkm").innerHTML = "";
-  }
-});
-
-document.getElementById("annee-vehicule").addEventListener("input", function() {
-  if (this.value !== "" && isNaN(this.value)) {
-    this.classList.add("is-invalid"); this.classList.remove("is-valid");
-    document.getElementById("errannee").innerHTML = "L'année doit contenir une valeur numérique.";
-  } else {
-    this.classList.remove("is-invalid");
-    if (this.value !== "") this.classList.add("is-valid");
-    document.getElementById("errannee").innerHTML = "";
-  }
-});
-
-document.getElementById("NbPlaces").addEventListener("input", function() {
-  if (this.value !== "" && isNaN(this.value)) {
-    this.classList.add("is-invalid"); this.classList.remove("is-valid");
-    document.getElementById("errnombre").innerHTML = "Le nombre de places doit contenir une valeur numérique.";
-  } else {
-    this.classList.remove("is-invalid");
-    if (this.value !== "") this.classList.add("is-valid");
-    document.getElementById("errnombre").innerHTML = "";
-  }
-});
-
-document.getElementById("type-vehicul").addEventListener("change", function() {
-  if (this.value === "" || this.value === "Selectionnez le type du véhicule") {
-    this.classList.add("is-invalid"); this.classList.remove("is-valid");
-    document.getElementById("errtypeV").innerHTML = "Le type du véhicule est obligatoire.";
-  } else {
-    this.classList.remove("is-invalid"); this.classList.add("is-valid");
-    document.getElementById("errtypeV").innerHTML = "";
-  }
-});
-document.getElementById("etat-vehicule").addEventListener("change",function(){
-    if (this.value !== ""){
-        this.classList.add("is-valid");
-    }else {
-        this.classList.remove("is-valid");
-    }
-});
-
-document.getElementById("carburant").addEventListener("change",function(){
-    if (this.value !== ""){
-        this.classList.add("is-valid");
-    }else {
-        this.classList.remove("is-valid");
-    }
-});
-document.getElementById("date-circulation").addEventListener("change",function(){
-    if (this.value !== ""){
-        this.classList.add("is-valid");
-    }else {
-        this.classList.remove("is-valid");
-    }
-});
-document.getElementById("carte-grisev").addEventListener("change",function(){
-    if (this.files.length !== 0){
-        this.classList.add("is-valid");
-    }else {
-        this.classList.remove("is-valid");
-    }
-});
 function validerFormulaireCarburant(event){
     event.preventDefault();
 
-    let datePlein = document.getElementById("date-plein").value;
-    let Station = document.getElementById("station").value;
-    let TypeCarb = document.getElementById("type-carburant").value;
-    let QteCarb = document.getElementById("qte-carb").value;
-    let kmCarb = document.getElementById("kilometrage-carb").value;
-    let montantCarb = document.getElementById("montant-carb").value;
+    let datePlein = document.getElementById("date-plein").value.trim();
+    let Station = document.getElementById("station").value.trim();
+    let TypeCarb = document.getElementById("type-carburant").value.trim();
+    let QteCarb = document.getElementById("qte-carb").value.trim();
+    let kmCarb = document.getElementById("kilometrage-carb").value.trim();
+    let montantCarb = document.getElementById("montant-carb").value.trim();
 
     let erreur = false;
 
@@ -789,7 +713,7 @@ function validerFormulaireCarburant(event){
     document.getElementById("errmtcarb").innerHTML="";
 
     if (datePlein === ""){
-        document.getElementById("errplein").innerHTML="Obligatoire.";
+        document.getElementById("errplein").innerHTML="Veuillez saisir la date de plein.";
         document.getElementById("date-plein").classList.add("is-invalid");
         erreur=true;
     } else {
@@ -798,7 +722,7 @@ function validerFormulaireCarburant(event){
     }
 
     if (Station === ""){
-        document.getElementById("errstation").innerHTML="Obligatoire.";
+        document.getElementById("errstation").innerHTML="Veuillez saisir la station.";
         document.getElementById("station").classList.add("is-invalid");
         erreur=true;
     } else {
@@ -807,7 +731,7 @@ function validerFormulaireCarburant(event){
     }
 
     if (TypeCarb === ""){
-        document.getElementById("errtypecarb").innerHTML="Obligatoire.";
+        document.getElementById("errtypecarb").innerHTML="Veuillez choisir un type de carburant.";
         document.getElementById("type-carburant").classList.add("is-invalid");
         erreur=true;
     } else {
@@ -816,7 +740,7 @@ function validerFormulaireCarburant(event){
     }
 
     if (QteCarb === ""){
-        document.getElementById("errqtecarb").innerHTML="Obligatoire.";
+        document.getElementById("errqtecarb").innerHTML="Veuillez saisir la quantité de carburant.";
         document.getElementById("qte-carb").classList.add("is-invalid");
         erreur=true;
     } else if(isNaN(QteCarb)){
@@ -829,7 +753,7 @@ function validerFormulaireCarburant(event){
     }
 
     if (kmCarb === ""){
-        document.getElementById("errkmcarb").innerHTML="Obligatoire.";
+        document.getElementById("errkmcarb").innerHTML="Veuillez saisir le kilométrage.";
         document.getElementById("kilometrage-carb").classList.add("is-invalid");
         erreur=true;
     } else if(isNaN(kmCarb)){
@@ -842,7 +766,7 @@ function validerFormulaireCarburant(event){
     }
 
     if (montantCarb === ""){
-        document.getElementById("errmtcarb").innerHTML="Obligatoire.";
+        document.getElementById("errmtcarb").innerHTML="Veuillez saisir le montant.";
         document.getElementById("montant-carb").classList.add("is-invalid");
         erreur=true;
     } else if(isNaN(montantCarb)){
@@ -861,13 +785,13 @@ function validerFormulaireCarburant(event){
 
 function validerFormulaireMaintenancePer(event){
     event.preventDefault();
-    let typeMT = document.getElementById("type-periodique").value;
-    let typeAutre = document.getElementById("autres").value;
-    let typefreq = document.getElementById("freq").value;
-    let typehuile = document.getElementById("huile").value;
-    let dateMT = document.getElementById("date-maintenance").value;
-    let montantper = document.getElementById("prix").value;
-    let statMT = document.getElementById("statut-maintenance").value;
+    let typeMT = document.getElementById("type-periodique").value.trim();
+    let typeAutre = document.getElementById("autres").value.trim();
+    let typefreq = document.getElementById("freq").value.trim();
+    let typehuile = document.getElementById("huile").value.trim();
+    let dateMT = document.getElementById("date-maintenance").value.trim();
+    let montantper = document.getElementById("prix").value.trim();
+    let statMT = document.getElementById("statut-maintenance").value.trim();
 
     let erreur = false;
 
@@ -959,7 +883,7 @@ if (erreur) {
 function validerFormulaireModifMTPER(event) {
     event.preventDefault();
 
-    let newStat    = document.getElementById("nouveau-statut").value;
+    let newStat    = document.getElementById("nouveau-statut").value.trim();
     let plaq       = document.getElementById("plaquettesmodif");
     let disq       = document.getElementById("disquesmodif");
     let montantMod = document.getElementById("prixmodif");
@@ -994,9 +918,9 @@ function validerFormulaireModifMTPER(event) {
     }
 
     // Lire les valeurs après activation
-    let PlaqModif    = plaq.value;
-    let DisqModif    = disq.value;
-    let montantModif = montantMod.value;
+    let PlaqModif    = plaq.value.trim();
+    let DisqModif    = disq.value.trim();
+    let montantModif = montantMod.value.trim();
     let reçuMT       = reçuMTMod.files;
 
     // Validation statut
@@ -1063,8 +987,8 @@ function validerFormulaireModifMTPER(event) {
 function validerFormulaireMaintenanceCor(event){
     event.preventDefault();
 
-    let datePanneMt = document.getElementById("date-maintenance-cor").value;
-    let StatutMtCor = document.getElementById("statut-maintenance-cor").value;
+    let datePanneMt = document.getElementById("date-maintenance-cor").value.trim();
+    let StatutMtCor = document.getElementById("statut-maintenance-cor").value.trim();
 
     let erreur = false;
 
@@ -1095,7 +1019,7 @@ function validerFormulaireMaintenanceCor(event){
 
 function validerFormulaireConvocation(event){
     event.preventDefault();
-    let motifConvo=document.getElementById("motifconvo").value;
+    let motifConvo=document.getElementById("motifconvo").value.trim();
 
     let erreur = false;
     
@@ -1119,11 +1043,11 @@ function validerFormulaireConvocation(event){
 function validerFormulaireChauffeurModif(event){
     event.preventDefault();
 
-    let EtatSante=document.getElementById("etat-sante").value;
-    let CategPermis=document.getElementById("permis").value;
-    let NumPermis=document.getElementById("numPermis").value;
-    let DateExpPermis=document.getElementById("dateExpPermis").value;
-    let DateDispoChauff=document.getElementById("dateDispoChauff").value;
+    let EtatSante=document.getElementById("etat-sante").value.trim();
+    let CategPermis=document.getElementById("permis").value.trim();
+    let NumPermis=document.getElementById("numPermis").value.trim();
+    let DateExpPermis=document.getElementById("dateExpPermis").value.trim();
+    let DateDispoChauff=document.getElementById("dateDispoChauff").value.trim();
 
 
     let erreur = false;
@@ -1189,8 +1113,8 @@ function validerTraitementDemande(event){
         event.preventDefault();
 
 
-    let ChauffeurDispo=document.getElementById("chauf-dispo").value;
-    let VehiculeDispo=document.getElementById("vehicule-dispo").value;
+    let ChauffeurDispo=document.getElementById("chauf-dispo").value.trim();
+    let VehiculeDispo=document.getElementById("vehicule-dispo").value.trim();
 
     let erreur = false;
     
@@ -1224,7 +1148,7 @@ function validerTraitementDemande(event){
 function validerMotifRefus(event){
     event.preventDefault();
 
-    let MotifRefus=document.getElementById("motifRefus").value;
+    let MotifRefus=document.getElementById("motifRefus").value.trim();
 
     let erreur = false;
     
