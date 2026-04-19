@@ -1110,6 +1110,80 @@ function validerFormulaireConvocation(event){
         document.getElementById("motifconvo").classList.add("is-valid");        
     }
 
-       if (erreur) return;
+    if (erreur) return;
+
+
+    event.target.submit();
+}
+
+function validerFormulaireChauffeurModif(event){
+    event.preventDefault();
+
+    let EtatSante=document.getElementById("etat-sante").value;
+    let CategPermis=document.getElementById("permis").value;
+    let NumPermis=document.getElementById("numPermis").value;
+    let DateExpPermis=document.getElementById("dateExpPermis").value;
+    let DateDispoChauff=document.getElementById("dateDispoChauff").value;
+
+
+    let erreur = false;
+    
+    document.getElementById("erretatsante").innerHTML="";
+    document.getElementById("errpermis").innerHTML="";
+    document.getElementById("errnumPermis").innerHTML="";
+    document.getElementById("errdateExpPermis").innerHTML="";
+    document.getElementById("errdateDispoChauff").innerHTML="";
+
+
+    if (EtatSante === ""){
+        document.getElementById("erretatsante").innerHTML = "Veuillez saisir l'état de santé.";
+        document.getElementById("etat-sante").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("etat-sante").classList.remove("is-invalid");
+        document.getElementById("etat-sante").classList.add("is-valid");        
+    }
+
+    if (CategPermis === ""){
+        document.getElementById("errpermis").innerHTML = "Veuillez choisir une catégorie.";
+        document.getElementById("permis").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("permis").classList.remove("is-invalid");
+        document.getElementById("permis").classList.add("is-valid");        
+    }
+
+    if (NumPermis === ""){
+        document.getElementById("errnumPermis").innerHTML = "Veuillez saisir le numéro de permis.";
+        document.getElementById("numPermis").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("numPermis").classList.remove("is-invalid");
+        document.getElementById("numPermis").classList.add("is-valid");        
+    }
+    
+    if (DateExpPermis === ""){
+        document.getElementById("errdateExpPermis").innerHTML = "Veuillez saisir la date d'expiration du permis.";
+        document.getElementById("errdateExpPermis").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("errdateExpPermis").classList.remove("is-invalid");
+        document.getElementById("errdateExpPermis").classList.add("is-valid");        
+    }
+
+    if (DateDispoChauff === ""){
+        document.getElementById("errdateDispoChauff").innerHTML = "Veuillez saisir la date de mise à disposition.";
+        document.getElementById("dateDispoChauff").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("dateDispoChauff").classList.remove("is-invalid");
+        document.getElementById("dateDispoChauff").classList.add("is-valid");        
+    }
+
+
+
+    if (erreur) return;
+
+
     event.target.submit();
 }

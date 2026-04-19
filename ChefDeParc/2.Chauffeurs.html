@@ -59,38 +59,38 @@
  </form>           
                              
                         
-<div class="modal fade" tabindex="-1" id="ajout-Chauff">
+<div class="modal fade" tabindex="-1" id="modif-Chauff">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title fw-bold">Nouveau Chauffeur</h5>
+        <h5 class="modal-title fw-bold">Modifier Chauffeur</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-<form>
+<form onsubmit="validerFormulaireChauffeurModif(event)">
 
     <div class="row">
     <div class="col-md-6 mb-3">
        <label for="genre" class="form-label fw-semibold">Genre</label>
-       <select class="form-select">
+       <select class="form-select" disabled>
         <option>Homme</option>
         <option>Femme</option>
        </select>
     </div>
       <div class="col-md-6 mb-3">
     <label for="name" class="form-label fw-semibold">Nom</label>
-    <input type="text" class="form-control" id="name">
+    <input type="text" class="form-control" id="name" disabled>
   </div>
 </div>
 
     <div class="row">
   <div class="col-md-6 mb-3">
         <label for="prenom" class="form-label fw-semibold">Prénom</label>
-    <input type="text" class="form-control" id="prenom">
+    <input type="text" class="form-control" id="prenom" disabled>
   </div>
   <div class="col-md-6 mb-3">
         <label for="telChauff" class="form-label fw-semibold">Numéro de téléphone</label>
-    <input type="tel" class="form-control" id="telChauff" required>
+    <input type="tel" class="form-control" id="telChauff" disabled>
 </div>
     </div>
     <div class="row">
@@ -98,30 +98,32 @@
 
 <div class="col-md-6 mb-3">
     <label for="mailChauff" class="form-label fw-semibold">Adresse mail</label>
-    <input type="email" class="form-control" id="mailChauff">
+    <input type="email" class="form-control" id="mailChauff" disabled>
   </div>
   
 <div class="col-md-6 mb-3">
     <label for="age" class="form-label fw-semibold">Date de naissance</label>
-    <input type="date" class="form-control" id="age">
+    <input type="date" class="form-control" id="age" disabled>
     </div>  
 </div>
 <div class="row">
     
       <div class="col-md-6 mb-3">
-        <label for="prenom" class="form-label fw-semibold">Etat de santé</label>
-    <input type="text" class="form-control" id="prenom">
+        <label for="etat-sante" class="form-label fw-semibold">Etat de santé <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="etat-sante" >
+<div class="text-danger" id="erretatsante"></div>
   </div>
 
 <div class="col-md-6 mb-3">
-<label for="permis" class="form-label fw-semibold">Catégorie de permis</label>
-<select id="permis" class="form-select" required>
-    <option selected hidden>Selectionnez la catégorie</option>
-    <option>A</option>
-    <option>B</option>
-    <option>C</option>
-    <option>D</option>
+<label for="permis" class="form-label fw-semibold">Catégorie de permis <span class="text-danger">*</span></label>
+<select id="permis" class="form-select">
+    <option selected hidden value="">Selectionnez la catégorie</option>
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
 </select>
+<div class="text-danger" id="errpermis"></div>
 </div> 
 
 </div>
@@ -129,13 +131,15 @@
     <div class="row">
 
         <div class="col-md-6 mb-3">
-    <label for="numPermis" class="form-label fw-semibold">Numéro de permis</label>
-    <input type="text" class="form-control" id="numPermis" required>
+    <label for="numPermis" class="form-label fw-semibold">Numéro de permis <span class="text-danger">*</span></label>
+    <input type="text" class="form-control" id="numPermis">
+<div class="text-danger" id="errnumPermis"></div>
 </div>
 
 <div class="col-md-6 mb-3">
-    <label for="dateExp" class="form-label fw-semibold">Date d'expiration du permis</label>
-    <input type="date" class="form-control" id="dateExp">
+    <label for="dateExpPermis" class="form-label fw-semibold">Date d'expiration du permis <span class="text-danger">*</span></label>
+    <input type="date" class="form-control" id="dateExpPermis">
+<div class="text-danger" id="errdateExpPermis"></div>
 </div>
 
 </div>
@@ -143,18 +147,19 @@
     <div class="row">
 
 <div class="col-md-12 mb-3">
-    <label for="dateExp" class="form-label fw-semibold">Date de mise à disposition</label>
-    <input type="date" class="form-control" id="dateExp">
+    <label for="dateDispoChauff" class="form-label fw-semibold">Date de mise à disposition <span class="text-danger">*</span></label>
+    <input type="date" class="form-control" id="dateDispoChauff">
+<div class="text-danger" id="errdateDispoChauff"></div>
 </div>
 
 </div>
-</form>
-
     </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn " style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
+        <button type="submit" class="btn" style="background-color: #2c3368;color:aliceblue;">Enregistrer</button>
       </div>
+</form>
+
     </div>
   </div>
 </div>
@@ -183,7 +188,7 @@
                                     <td class="text-center">-</td>                                        
 
                                     <td class="text-center"><a href="2.detail-chauffeur.html" class="btn btn-primary btn-sm w-md-auto">Consulter</a>
-                                        <a class="btn btn-warning btn-sm  w-md-auto" data-bs-toggle="modal" data-bs-target="#ajout-Chauff">Modifier</a>
+                                        <a class="btn btn-warning btn-sm  w-md-auto" data-bs-toggle="modal" data-bs-target="#modif-Chauff">Modifier</a>
                                         <a class="btn btn-danger btn-sm w-md-auto">Supprimer</a>
 
 </td>
@@ -230,6 +235,63 @@
             </div></div></div></div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
             <script src="../script.js"></script>
+            <script>
+document.getElementById("etat-sante").addEventListener("input", function() {
+  if (this.value === "") {
+     this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("erretatsante").innerHTML  = "Veuillez saisir l'état de santé.";
+  } else {
+    this.classList.add("is-valid"); 
+    this.classList.remove("is-invalid");
+    document.getElementById("erretatsante").innerHTML  = "";
+  }
+});
+document.getElementById("permis").addEventListener("change", function() {
+  if (this.value === "") {
+     this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errpermis").innerHTML  = "Veuillez choisir une catégorie.";
+  } else {
+    this.classList.add("is-valid"); 
+    this.classList.remove("is-invalid");
+    document.getElementById("errpermis").innerHTML  = "";
+  }
+});
+document.getElementById("numPermis").addEventListener("input", function() {
+  if (this.value === "") {
+     this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errnumPermis").innerHTML  = "Veuillez saisir le numéro de permis.";
+  } else {
+    this.classList.add("is-valid"); 
+    this.classList.remove("is-invalid");
+    document.getElementById("errnumPermis").innerHTML  = "";
+  }
+});
+document.getElementById("dateExpPermis").addEventListener("input", function() {
+  if (this.value === "") {
+     this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errdateExpPermis").innerHTML  = "Veuillez saisir la date d'expiration du permis.";
+  } else {
+    this.classList.add("is-valid"); 
+    this.classList.remove("is-invalid");
+    document.getElementById("errdateExpPermis").innerHTML  = "";
+  }
+});
+document.getElementById("dateDispoChauff").addEventListener("input", function() {
+  if (this.value === "") {
+     this.classList.add("is-invalid");
+     this.classList.remove("is-valid");
+    document.getElementById("errdateDispoChauff").innerHTML  = "Veuillez saisir la date de mise à disposition.";
+  } else {
+    this.classList.add("is-valid"); 
+    this.classList.remove("is-invalid");
+    document.getElementById("errdateDispoChauff").innerHTML  = "";
+  }
+});
 
+            </script>
         </body>
 </html>
