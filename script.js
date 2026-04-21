@@ -1166,3 +1166,66 @@ function validerMotifRefus(event){
 
     event.target.submit();
 }
+
+function validerFormulaireAnomalieAgent(event){
+     event.preventDefault();
+
+    let typeAnomalie= document.getElementById("type-anomalie").value.trim();
+    let chaufConcerne = document.getElementById("chauf-anomalie").value.trim();
+    let vehicConcerne = document.getElementById("vec-anomalie").value.trim();
+    let nivUrgence = document.getElementById("nv-urgence").value.trim();
+    let pieceJointe = document.getElementById("piecejointe").files;
+
+    let erreur = false;
+    
+    document.getElementById("errvecConcerne").innerHTML="";
+    document.getElementById("errchaufConcerne").innerHTML="";
+    document.getElementById("errTypeAnomalie").innerHTML="";
+    document.getElementById("errnvUrgence").innerHTML="";
+    document.getElementById("errPieceJointe").innerHTML="";
+
+    if (typeAnomalie === ""){
+        document.getElementById("errTypeAnomalie").innerHTML = "Veuillez saisir le type d'anomalie.";
+        document.getElementById("type-anomalie").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("type-anomalie").classList.remove("is-invalid");
+        document.getElementById("type-anomalie").classList.add("is-valid");        
+    }
+    if (chaufConcerne === ""){
+        document.getElementById("errchaufConcerne").innerHTML = "Veuillez choisir un chauffeur.";
+        document.getElementById("chauf-anomalie").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("chauf-anomalie").classList.remove("is-invalid");
+        document.getElementById("chauf-anomalie").classList.add("is-valid");        
+    }
+    if (vehicConcerne === ""){
+        document.getElementById("errvecConcerne").innerHTML = "Veuillez choisir un véhicule.";
+        document.getElementById("vec-anomalie").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("vec-anomalie").classList.remove("is-invalid");
+        document.getElementById("vec-anomalie").classList.add("is-valid");        
+    }
+    if (nivUrgence === ""){
+        document.getElementById("errnvUrgence").innerHTML = "Veuillez choisir un niveau d'urgence.";
+        document.getElementById("nv-urgence").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("nv-urgence").classList.remove("is-invalid");
+        document.getElementById("nv-urgence").classList.add("is-valid");        
+    }
+    if (pieceJointe.length === 0 ){
+        document.getElementById("errPieceJointe").innerHTML = "Veuillez importer un fichier.";
+        document.getElementById("piecejointe").classList.add("is-invalid");
+    erreur = true;        
+    }else {
+       document.getElementById("piecejointe").classList.remove("is-invalid");
+        document.getElementById("piecejointe").classList.add("is-valid");        
+    }
+
+    if (erreur) return;
+
+    event.target.submit();
+}

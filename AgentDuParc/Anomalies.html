@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
                 <link rel="stylesheet" href="../style.css">
 
-        <Title>Agent du parc</Title>
+        <title>Agent du parc</title>
       
     </head>
         <body> 
@@ -42,6 +42,7 @@
                         
                             <div class="p-4" id="content">
                                 <h2 class="mb-5 text-center">Signaler une anomalie</h2>
+<form onsubmit="validerFormulaireAnomalieAgent(event)">
 <div class="d-flex justify-content-center align-items-stretch gap-4">
             <div class="card w-75 mb-3" style="border-left:4px #30447d solid;">
   <div class="card-body">
@@ -49,17 +50,20 @@
     <div class="col-md-12 mb-3">
     <label for="vec-anomalie" class="form-label fw-semibold">Véhicule concerné</label>
         <select id="vec-anomalie" class="form-select">
-            <option></option>
-            <option></option>
-
+            <option value="">Selectionner un véhicule</option>
+            <option>test</option>
+            <option>test</option>
         </select>
+     <div class="text-danger" id="errvecConcerne"></div>
 </div>    
 <div class="col-md-12 mb-3">
     <label for="chauf-anomalie" class="form-label fw-semibold">Chauffeur concerné</label>
     <select id="chauf-anomalie" class="form-select">
-        <option></option>
-        <option></option>
+        <option value="">Selectionner un chauffeur</option>
+        <option>test</option>
+        <option>test</option>
     </select>
+    <div class="text-danger" id="errchaufConcerne"></div>
 </div>
   </div>
 </div>
@@ -74,6 +78,7 @@
     <div class="col-md-6 mb-3">
     <label class="form-label fw-semibold" for="type-anomalie">Type d'anomalie</label>
     <input type="text" class="form-control" id="type-anomalie">
+    <div class="text-danger" id="errTypeAnomalie"></div>
 </div>
 </div>
 <div class="row">
@@ -83,12 +88,14 @@
     <option>Faible</option>
     <option>Moyenne</option>
     <option>Grave</option>
-
    </select>
+    <div class="text-danger" id="errnvUrgence"></div>
+
 </div>
 <div class="col-md-6 mb-3">
     <label class="form-label fw-semibold" for="piecejointe">Pièce jointe</label>
     <input type="file" class="form-control" id="piecejointe">
+    <div class="text-danger" id="errPieceJointe"></div>
 </div>
 </div>
     <div class="col-md-12 mb-3">
@@ -98,7 +105,7 @@
 
     <button type="submit" class="btn w-100 btn-danger mt-2 mb-2">Signaler</button>
   </div>
-</div>
+</div></form>
          </div>
                                 
                 
@@ -110,9 +117,82 @@
             <script src="../script.js"></script>
             <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const aujourd_hui = new Date().toISOString().split('T')[0];
-    document.getElementById('date-signalement').value = aujourd_hui;
-});
+    let inputDate = document.getElementById('date-signalement');
 
+    let aujourd_hui = new Date().toISOString().split('T')[0];
+    document.getElementById('date-signalement').value = aujourd_hui;
+
+    inputDate.classList.add("is-valid");
+
+});
+document.getElementById("type-anomalie").addEventListener("input",function(){
+    if (this.value !== ""){
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+        document.getElementById("errTypeAnomalie").innerHTML="";
+    } else {
+        this.classList.remove("is-valid");
+        this.classList.add("is-invalid");
+        document.getElementById("errTypeAnomalie").innerHTML="Veuillez saisir le type d'anomalie.";
+    }
+});
+document.getElementById("chauf-anomalie").addEventListener("change",function(){
+    if (this.value !== ""){
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+        document.getElementById("errchaufConcerne").innerHTML="";
+    } else {
+        this.classList.remove("is-valid");
+        this.classList.add("is-invalid");
+        document.getElementById("errchaufConcerne").innerHTML="Veuillez choisir un chauffeur.";
+    }
+});
+document.getElementById("vec-anomalie").addEventListener("change",function(){
+    if (this.value !== ""){
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+        document.getElementById("errvecConcerne").innerHTML="";
+    } else {
+        this.classList.remove("is-valid");
+        this.classList.add("is-invalid");
+        document.getElementById("errvecConcerne").innerHTML="Veuillez choisir un véhicule.";
+    }
+});
+document.getElementById("nv-urgence").addEventListener("change",function(){
+    if (this.value !== ""){
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+        document.getElementById("errnvUrgence").innerHTML="";
+    } else {
+        this.classList.remove("is-valid");
+        this.classList.add("is-invalid");
+        document.getElementById("errnvUrgence").innerHTML="Veuillez choisir un niveau d'urgence.";
+    }
+});
+document.getElementById("piecejointe").addEventListener("input",function(){
+    if (this.value !== ""){
+        this.classList.remove("is-invalid");
+        this.classList.add("is-valid");
+        document.getElementById("errPieceJointe").innerHTML="";
+    } else {
+        this.classList.remove("is-valid");
+        this.classList.add("is-invalid");
+        document.getElementById("errPieceJointe").innerHTML="Veuillez importer un fichier.";
+    }
+});
+document.getElementById("date-signalement").addEventListener("input",function(){
+    if (this.value !== ""){
+        this.classList.add("is-valid");
+    } else {
+        this.classList.remove("is-valid");
+    }
+});
+document.getElementById("desc-anomalie").addEventListener("input",function(){
+    if (this.value !== ""){
+        this.classList.add("is-valid");
+    } else {
+        this.classList.remove("is-valid");
+    }
+});
             </script>
 </body>
