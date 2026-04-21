@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 document.getElementById("type-anomalie").addEventListener("input",function(){
-    if (this.value !== ""){
+    if (this.value.trim() !== ""){
         this.classList.remove("is-invalid");
         this.classList.add("is-valid");
         document.getElementById("errTypeAnomalie").innerHTML="";
@@ -137,7 +137,7 @@ document.getElementById("type-anomalie").addEventListener("input",function(){
     }
 });
 document.getElementById("chauf-anomalie").addEventListener("change",function(){
-    if (this.value !== ""){
+    if (this.value.trim() !== ""){
         this.classList.remove("is-invalid");
         this.classList.add("is-valid");
         document.getElementById("errchaufConcerne").innerHTML="";
@@ -148,7 +148,7 @@ document.getElementById("chauf-anomalie").addEventListener("change",function(){
     }
 });
 document.getElementById("vec-anomalie").addEventListener("change",function(){
-    if (this.value !== ""){
+    if (this.value.trim() !== ""){
         this.classList.remove("is-invalid");
         this.classList.add("is-valid");
         document.getElementById("errvecConcerne").innerHTML="";
@@ -159,7 +159,7 @@ document.getElementById("vec-anomalie").addEventListener("change",function(){
     }
 });
 document.getElementById("nv-urgence").addEventListener("change",function(){
-    if (this.value !== ""){
+    if (this.value.trim() !== ""){
         this.classList.remove("is-invalid");
         this.classList.add("is-valid");
         document.getElementById("errnvUrgence").innerHTML="";
@@ -170,7 +170,7 @@ document.getElementById("nv-urgence").addEventListener("change",function(){
     }
 });
 document.getElementById("piecejointe").addEventListener("input",function(){
-    if (this.value !== ""){
+    if (this.value.trim() !== ""){
         this.classList.remove("is-invalid");
         this.classList.add("is-valid");
         document.getElementById("errPieceJointe").innerHTML="";
@@ -181,14 +181,14 @@ document.getElementById("piecejointe").addEventListener("input",function(){
     }
 });
 document.getElementById("date-signalement").addEventListener("input",function(){
-    if (this.value !== ""){
+    if (this.value.trim() !== ""){
         this.classList.add("is-valid");
     } else {
         this.classList.remove("is-valid");
     }
 });
 document.getElementById("desc-anomalie").addEventListener("input",function(){
-    if (this.value !== ""){
+    if (this.value.trim() !== ""){
         this.classList.add("is-valid");
     } else {
         this.classList.remove("is-valid");
