@@ -198,6 +198,21 @@
                     margin-bottom:5px;
 
                 }
+                .navbar {
+                    display: flex;
+                    align-items: center;
+                    position: relative;        /* pour le centrage absolu du logo */
+                }
+
+                #top-navbar .navbar-brand {
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    margin: 0;                 /* annule le margin-left: 250px inline */
+                }
+                .navbar-brand img {
+                    margin-left: 0 !important;  /* écrase le style inline */
+                }
         
         }
            
