@@ -149,7 +149,18 @@
             input[type="file"].is-valid {
                 border-color: #198754;
             }
+            .notif-unread {
+                font-weight: 600;
+                background-color: white;
+            }
 
+            .notif-read {
+                 opacity: 0.6;
+            }
+            .notif-unread:hover{
+                background-color: rgba(239, 239, 239, 0.345);
+                cursor:pointer;
+            }
              @media (max-width: 768px) {
                 #sidebar {
                     position: fixed;
@@ -164,7 +175,6 @@
                 .col-md-9.col-lg-10 {
                 margin-left: 0;
             }
-
 
                 #sidebar-overlay {
                     position: fixed;

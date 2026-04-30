@@ -17,8 +17,73 @@
                                 <img src="../CRTI-logo-removebg-preview.png" class="logo " width="60" style="margin-left: 250px;">
                             </span>
                             <div class="ms-auto d-flex align-items-end gap-4">
-                                <i class="bi bi-envelope fs-5"></i>
-                                <i class="bi bi-bell fs-5"></i>
+                                <a href="https://mail.crti.dz/" target="_blank" rel="noopener noreferrer" style="color:black;">
+                                <i class="bi bi-envelope fs-5"></i></a>
+<!-- Notifications -->
+<div class="dropdown">
+    <i class="bi bi-bell fs-5" data-bs-toggle="dropdown" style="cursor:pointer;"></i>
+<span id="notif-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:10px;"></span>
+   <div class="dropdown-menu dropdown-menu-end p-3" style="width:355px; border-radius:12px;overflow:hidden;"onclick="event.stopPropagation()">
+    <div class="d-flex justify-content-between border-bottom mb-3">
+    <h5 class="fw-bold">Notifications</h5>
+    <a class="text-primary" style="font-size: 14px;cursor:pointer;" onclick="markAllRead()">Tout marquer comme lu</a>
+</div>
+
+        <div class="notifications" style="max-height:350px; overflow-y:auto;">
+
+    <!-- Avertissement -->
+    <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this)">
+        <i class="bi bi-circle-fill text-warning" style="font-size:8px; margin-top:6px;"></i>
+        <div>
+            <p class="mb-0 fw-semibold">Renault Clio 4 — Vidange requise</p>
+            <small class="text-muted">À faire avant 10/05 • Il y a 5 min</small>
+        </div>
+    </div>
+        <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this)">
+        <i class="bi bi-circle-fill text-warning" style="font-size:8px; margin-top:6px;"></i>
+        <div>
+            <p class="mb-0 fw-semibold">Mercedes Actros — Contrôle de freins requis</p>
+            <small class="text-muted">À faire avant 10/05 • Il y a 5 min</small>
+        </div>
+    </div>
+    <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this)">
+        <i class="bi bi-circle-fill text-warning" style="font-size:8px; margin-top:6px;"></i>
+        <div>
+            <p class="mb-0 fw-semibold">Peugeot 208 — Vignette expire bientôt</p>
+            <small class="text-muted">Expire dans 7 jours</small>
+        </div>
+    </div>
+
+    <!-- Urgent -->
+    <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this)">
+        <i class="bi bi-circle-fill text-danger" style="font-size:8px; margin-top:6px;"></i>
+        <div>
+            <p class="mb-0 fw-semibold">Volkswagen Golf — Vidange en retard</p>
+            <small class="text-muted">Dépassement de 1200 km</small>
+        </div>
+    </div>
+
+    <!-- Anomalie -->
+    <div class="d-flex gap-2 mb-2 notif-unread" onclick="markAsRead(this)">
+        <i class="bi bi-circle-fill text-danger" style="font-size:8px; margin-top:6px;"></i>
+        <div>
+            <p class="mb-0 fw-semibold">Bus Iveco — Anomalie signalée</p>
+            <small class="text-muted">Freinage défectueux • Il y a 1 min</small>
+        </div>
+    </div>
+
+        <!-- Nouvelle demande -->
+
+        <div class="d-flex gap-2 mb-2 notif-unread" onclick="markAsRead(this)">
+        <i class="bi bi-circle-fill text-primary" style="font-size:8px; margin-top:6px;"></i>
+        <div>
+            <p class="mb-0 fw-semibold">Halliche Ines — Nouvelle demande</p>
+            <small class="text-muted">Demande personnel • Il y a 1 min</small>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
                             </div>
                         </nav>         
             <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
@@ -49,7 +114,7 @@
             <i class="bi bi-arrow-left"></i> Retour
         </a>
 
-        <h2 class="m-0 text-center">Nom du véhicule</h2>
+        <h2 class="mt-3 text-center">Nom du véhicule</h2>
 
         <div style="width: 100px;"></div> 
     </div>
@@ -65,7 +130,7 @@
 <div class="details">
     <div class="d-flex justify-content-between align-items-center">
         <h4 style="color:#0c183b;" ><i class="bi bi-tools"></i> Historique des maintenances</h4>
-                <button type="button" class="btn" style="background-color: #2c3368;color:aliceblue;  white-space: nowrap;" data-bs-toggle="modal" data-bs-target="#ajout-maintenance"> + Maintenance périodique</button>
+                <button type="button" class="btn" style="background-color: #2c3368;color:aliceblue;  white-space: nowrap;" data-bs-toggle="modal" data-bs-target="#ajout-maintenance"><i class="bi bi-plus-circle" ></i> Maintenance périodique</button>
     </div>
  <div class="modal fade" tabindex="-1" id="ajout-maintenance">
   <div class="modal-dialog modal-dialog-centered modal-lg">

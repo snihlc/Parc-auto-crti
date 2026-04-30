@@ -17,8 +17,39 @@
                                 <img src="../CRTI-logo-removebg-preview.png" class="logo" width="60" style="margin-left :250px;">
                             </span>
                             <div class="ms-auto d-flex align-items-end gap-4">
-                                <i class="bi bi-envelope fs-5"></i>
-                                <i class="bi bi-bell fs-5"></i>
+    <a href="https://mail.crti.dz/" target="_blank" rel="noopener noreferrer" style="color:black;">
+                                <i class="bi bi-envelope fs-5"></i></a>
+<!-- Notifications -->
+<div class="dropdown">
+    <i class="bi bi-bell fs-5" data-bs-toggle="dropdown" style="cursor:pointer;"></i>
+<span id="notif-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:10px;"></span>
+   <div class="dropdown-menu dropdown-menu-end p-3" style="width:355px; border-radius:12px;overflow:hidden;"onclick="event.stopPropagation()">
+    <div class="d-flex justify-content-between border-bottom mb-3">
+    <h5 class="fw-bold">Notifications</h5>
+    <a class="text-primary" style="font-size: 14px;cursor:pointer;" onclick="markAllRead()">Tout marquer comme lu</a>
+</div>
+
+        <div class="notifications" style="max-height:350px; overflow-y:auto;">
+    <h6 class="fw-bold">Aujourd'hui</h6>
+
+            <div class="d-flex gap-2 mb-2 notif-unread" onclick="markAsRead(this)">
+        <i class="bi bi-circle-fill text-success" style="font-size:8px; margin-top:6px;"></i>
+        <div>
+            <p class="mb-0 fw-semibold">9 Véhicules sortant</p>
+            <small class="text-muted">Il y a 10 min</small>
+        </div>
+    </div>
+
+    <div class="d-flex gap-2 mb-2 notif-unread" onclick="markAsRead(this)">
+        <i class="bi bi-circle-fill text-success" style="font-size:8px; margin-top:6px;"></i>
+        <div>
+            <p class="mb-0 fw-semibold">8 Véhicules entrant</p>
+            <small class="text-muted">Il y a 10 min</small>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
                             </div>
                         </nav>
             <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
@@ -41,10 +72,10 @@
                                    
                         
                             <div class="p-4" id="content">
-                                <h2 class="mb-5 text-center">Signaler une anomalie</h2>
+                                <h2 class="mb-5 text-center mt-3">Signaler une anomalie</h2>
 <form onsubmit="validerFormulaireAnomalieAgent(event)">
 <div class="d-flex justify-content-center align-items-stretch gap-4">
-            <div class="card w-75 mb-3" style="border-left:4px #30447d solid;">
+            <div class="card w-75 mb-3" style="border-left:4px #2c3368 solid;">
   <div class="card-body">
     <h5 class="card-title fw-bold mb-4" style="color:#0c183b;"><i class="bi bi-info-circle"></i> Informations de la mission</h5>
     <div class="col-md-12 mb-3">
@@ -67,7 +98,7 @@
 </div>
   </div>
 </div>
-          <div class="card w-75 mb-3" style="border-left:4px #30447d solid;">
+        <div class="card w-75 mb-3" style="border-left:4px #2c3368 solid;">
   <div class="card-body">
     <h5 class="card-title fw-bold mb-3" style="color:#0c183b;"><i class="bi bi-gear-fill"></i> Détails de l'anomalie</h5>
     <div class="row">

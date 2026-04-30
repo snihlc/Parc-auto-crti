@@ -151,7 +151,6 @@ function resetFiltre() {
     let urgenceAnomalie = document.getElementById("gravite-panne");
     if (urgenceAnomalie) urgenceAnomalie.value="";
 
-
     let lignes = document.querySelectorAll("table tbody tr");
     lignes.forEach(ligne => ligne.style.display = "");
         
@@ -1228,4 +1227,31 @@ function validerFormulaireAnomalieAgent(event){
     if (erreur) return;
 
     event.target.submit();
+}
+
+function markAsRead(notif) {
+    notif.classList.remove("notif-unread");
+    notif.classList.add("notif-read");
+        updateBadge();
+}
+function updateBadge() {
+    let unread = document.querySelectorAll(".notif-unread").length;
+    let badge = document.getElementById("notif-badge");
+
+    if (unread === 0) {
+        badge.style.display = "none";
+    } else {
+        badge.style.display = "inline-block";
+        badge.textContent = unread;
+    }
+}
+document.addEventListener("DOMContentLoaded", function () {
+    updateBadge();
+});
+function markAllRead() {
+    document.querySelectorAll(".notif-unread").forEach(notif => {
+        notif.classList.remove("notif-unread");
+        notif.classList.add("notif-read");
+    });
+    updateBadge();
 }
