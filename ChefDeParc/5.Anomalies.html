@@ -258,6 +258,133 @@
 </div>
 
 </td>
+
+    </tr>
+        <tr>
+        <td>12-05-2025</td>
+        <td>Renault Clio 4</td>
+        <td>Aliouane Sabrina<br><small class="text-muted">Chauffeur</small></td>
+        <td><div class="faible">Faible</div></td>
+        <td>Problème de freins</td>
+        <td><div class="signalee">Signalée</div></td>
+        <td>
+                        <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#infos-anomalie1">Détails</button>
+                        <button type="button" class="btn btn-sm btn-warning">Modifier</button>
+<div class="btn-group btn-group-sm">   
+  <button class="btn btn-primary btn-sm" onclick="handleAction(this)">Action</button>
+  <button class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown"></button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item small" href="#" onclick="setAction(this)">Planifier maintenance</a></li>
+    <li><a class="dropdown-item small" href="#" onclick="setAction(this)">Signaler chauffeur</a></li>
+  </ul>
+</div>
+
+</td>
+<div class="modal fade" id="infos-anomalie1" tabindex="-1" aria-labelledby="info-mission" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 fw-bold">Détails de l'anomalie</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<ul style="list-style-type: circle;">
+    
+    <li><strong>Description : </strong>Le véhicule présente un dysfonctionnement au niveau du système de freinage (bruit anormal, pédale dure ou faible efficacité).
+ Une vérification technique est recommandée pour garantir la sécurité du véhicule.</li>
+        <li><strong>Pièce jointe : </strong></li>
+
+
+</ul>
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+    </tr>
+        <tr>
+        <td>12-05-2025</td>
+        <td>Volkswagen	Golf 8</td>
+        <td>Halliche Ines <br><small class="text-muted">Agent du parking</small></td>
+        <td><div class="moyenne">Moyenne</div></td>
+
+        <td>Rayure carrosserie</td>
+        <td><div class="reparee">Réparée</div></td>
+        <td>
+                        <button type="button" class="btn btn-sm btn-success">Détails</button>
+                        <button type="button" class="btn btn-sm btn-warning">Modifier</button>
+<div class="btn-group btn-group-sm">   
+  <button class="btn btn-primary btn-sm" onclick="handleAction(this)">Action</button>
+  <button class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown"></button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item small" href="#"onclick="setAction(this)">Planifier maintenance</a></li>
+    <li><a class="dropdown-item small" href="#"onclick="setAction(this)">Signaler chauffeur</a></li>
+  </ul>
+</div>
+
+</td>
+
+
+
+    </tr>    
+    <tr>
+        <td>12-05-2025</td>
+        <td>Toyota	Hilux</td>
+        <td>Boucherou Sarah<br><small class="text-muted">Chauffeur</small></td>
+      <td><div class="grave">Grave</div></td>
+  
+        <td>Problème moteur</td>
+        <td><div class="en-cours-rep">En cours de réparation</div></td>
+        <td>
+                        <button type="button" class="btn btn-sm btn-success">Détails</button>
+                        <button type="button" class="btn btn-sm btn-warning">Modifier</button>
+<div class="btn-group btn-group-sm">   
+  <button class="btn btn-primary btn-sm" onclick="handleAction(this)">Action</button>
+  <button class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown"></button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item small" href="#" onclick="setAction(this)">Planifier maintenance</a></li>
+    <li><a class="dropdown-item small" href="#" onclick="setAction(this)">Signaler chauffeur</a></li>
+  </ul>
+</div>
+
+</td>
+
+    </tr>
+        <tr>
+        <td>12-05-2025</td>
+        <td>Peugeot	Partner</td>
+        <td>Amimour yasmine<br><small class="text-muted">Agent du parking</small></td>
+                <td><div class="moyenne">Moyenne</div></td>
+
+        <td>Chauffeur différent retour</td>
+        <td><div class="signalee">Signalée</div></td>
+        <td>
+                        <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#infos-anomalie">Détails</button>
+                        <button type="button" class="btn btn-sm btn-warning">Modifier</button>
+<div class="btn-group btn-group-sm">   
+  <button class="btn btn-primary btn-sm" onclick="handleAction(this)">Action</button>
+  <button class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown"></button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item small" href="#" onclick="setAction(this)">Planifier maintenance</a></li>
+    <li><a class="dropdown-item small" href="#" onclick="setAction(this)">Signaler chauffeur</a></li>
+  </ul>
+</div>
+
+</td>
+
+    </tr>
+<tr id="no-result" style="display:none;">
+  <td colspan="7" class="text-muted">Aucune anomalie trouvée</td>
+</tr>
+</tbody>
+
+            </table></div>
+            <nav class="mt-4">
+<ul class="pagination justify-content-center" id="pagination"></ul>
+</nav>
+            <!-- Details anomalie -->
+
 <div class="modal fade" id="infos-anomalie" tabindex="-1" aria-labelledby="info-mission" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -280,13 +407,8 @@
     </div>
   </div>
 </div>
-    </tr>
-<tr id="no-result" style="display:none;">
-  <td colspan="7" class="text-muted">Aucune anomalie trouvée</td>
-</tr>
-</tbody>
-
-            </table></div>
+ 
+<!-- Planifier une maintenance-->
 
     <div class="modal fade" id="maintenanceModal" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -339,6 +461,8 @@
     </div>
   </div>
 </div>
+
+<!--Convoquer chauffeur-->
 
 <div class="modal fade" id="ConvocationModal" tabindex="-1" aria-labelledby="ConvocationChauffeur" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">

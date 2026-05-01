@@ -66,61 +66,37 @@ function ouvrirModif(type) {
     document.getElementById("nouveau-statut").classList.remove("is-valid", "is-invalid");
 }
 
-
 function filtrerChauffeurs() {
-    let stat = document.getElementById("stat-chauf").value;
-    let lignes = document.querySelectorAll("table tbody tr:not(#no-result)");
-    let noResult = document.querySelector("#no-result");
+    let statutFiltre = document.getElementById("stat-chauf").value;
 
-    let trouve = false;
-
-    lignes.forEach(ligne => {
+    filteredRows = allRows.filter(ligne => {
         let statut = ligne.querySelector("td:nth-child(4)").innerText.trim();
-
-        if (stat === "") {
-            ligne.style.display = ""; trouve = true;
-        } else if (stat === "dispo" && statut === "Disponible") {
-            ligne.style.display = ""; trouve = true;
-        } else if (stat === "mission" && statut === "En mission") {
-            ligne.style.display = ""; trouve = true;
-        } else if (stat === "conge" && statut === "En congé") {
-            ligne.style.display = ""; trouve = true;
-        } else {
-            ligne.style.display = "none";
-        }
+        if (statutFiltre === "") return true;
+        if (statutFiltre === "dispo" && statut === "Disponible") return true;
+        if (statutFiltre === "mission" && statut === "En mission") return true;
+        if (statutFiltre === "conge" && statut === "En congé") return true;
+        return false;
     });
-    if (trouve){
-        noResult.style.display="none";
-    } else {
-        noResult.style.display="";
-    }
+
+    currentPage = 1;
+    afficherPage();
 }
 
-function rechercheChauffeur(){
-    let recherche = document.getElementById("search-input").value.toLowerCase();
-    let lignes = document.querySelectorAll("table tbody tr:not(#no-result)");
-    let noResult =  document.getElementById("no-result");
+function rechercheChauffeur() {
+    let recherche = document.getElementById("search-input").value.toLowerCase().trim();
 
-    let trouve = false;
+    filteredRows = allRows.filter(ligne => {
+        let nom = ligne.querySelector("td:nth-child(1)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        let email = ligne.querySelector("td:nth-child(2)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        let numTel = ligne.querySelector("td:nth-child(3)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-    lignes.forEach(ligne => {
-        let nom = ligne.querySelector("td:nth-child(1)").innerText.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-
-        if (nom.includes(recherche)){
-            ligne.style.display="";
-            trouve = true;
-        }
-        else {
-            ligne.style.display="none";
-        }
+        return nom.includes(recherche) || email.includes(recherche) || numTel.includes(recherche);    
     });
-    if (trouve){
-        noResult.style.display="none";
-    } else {
-        noResult.style.display="";
-    }
 
+    currentPage = 1;
+    afficherPage();
 }
+
 function resetFiltre() {
     let statChauf = document.getElementById("stat-chauf");
     if (statChauf) statChauf.value="";
@@ -156,194 +132,130 @@ function resetFiltre() {
         
     let noResult = document.getElementById("no-result");
     if (noResult) noResult.style.display = "none";
+
+
+    filteredRows = [...allRows];
+    currentPage = 1;
+    afficherPage();
 }
 
-function filtrerVehicules(){
-    let stat = document.getElementById("stat-vehicule").value;
-    let typevehicule = document.getElementById("type-vehicule").value
-    let lignes = document.querySelectorAll("table tbody tr:not(#no-result)");
-    let noResult = document.querySelector("#no-result");
+function filtrerVehicules() {
+    let typeFilter = document.getElementById("type-vehicule").value;
+    let statutFilter = document.getElementById("stat-vehicule").value;
 
-    let trouve = false;
-
-    lignes.forEach(ligne => {
-        let statut = ligne.querySelector("td:nth-child(6)").innerText.trim();
+    filteredRows = allRows.filter(ligne => {
         let type = ligne.querySelector("td:nth-child(2)").innerText.trim();
+        let statut = ligne.querySelector("td:nth-child(6)").innerText.trim();
 
-        let typeV = (typevehicule ==="" )|| (typevehicule === "voiture" && type === "Voiture") ||
-        (typevehicule ==="camion" && type === "Camion") || (typevehicule ==="bus" && type === "Bus") ||
-        (typevehicule ==="utilitaire" && type === "Utilitaire") || (typevehicule ==="moto" && type === "Moto");
+        // Correspondance type
+        let matchType = (typeFilter === "") ||
+                        (typeFilter === "voiture" && type === "Voiture") ||
+                        (typeFilter === "camion" && type === "Camion") ||
+                        (typeFilter === "bus" && type === "Bus") ||
+                        (typeFilter === "utilitaire" && type === "Utilitaire") ||
+                        (typeFilter === "moto" && type === "Moto");
 
-        let statutV = (stat ==="") || (stat === "car-dispo" && statut === "Disponible") ||
-        (stat === "car-mission" && statut === "En mission") || (stat === "car-mt" && statut === "En maintenance")
-        || (stat === "car-hs" && statut === "Hors service");
+        // Correspondance statut
+        let matchStatut = (statutFilter === "") ||
+                          (statutFilter === "car-dispo" && statut === "Disponible") ||
+                          (statutFilter === "car-mission" && statut === "En mission") ||
+                          (statutFilter === "car-mt" && statut === "En maintenance") ||
+                          (statutFilter === "car-hs" && statut === "Hors service");
 
-        if (typeV && statutV) {
-            ligne.style.display = "";
-            trouve = true;
-        } else {
-            ligne.style.display = "none";
-        }
+        return matchType && matchStatut;
     });
-        if (trouve){
-        noResult.style.display="none";
-    } else {
-        noResult.style.display="";
-    }
+
+    currentPage = 1;
+    afficherPage();
 }
-function rechercheVehicule(){
+
+function rechercheVehicule() {
     let recherche = document.getElementById("search-input").value.toLowerCase().trim();
-    let lignes = document.querySelectorAll("table tbody tr:not(#no-result)");
-    let noResult = document.getElementById("no-result");
 
-    let trouve = false;
-
-    lignes.forEach(ligne => {
+    filteredRows = allRows.filter(ligne => {
         let marque = ligne.querySelector("td:nth-child(3)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         let modele = ligne.querySelector("td:nth-child(4)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        let KM = ligne.querySelector("td:nth-child(5)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        let matricule = ligne.querySelector("td:nth-child(1)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-        let marquemodele = marque + " " + modele;
+        let marqueModele = marque + " " + modele;
+        return marqueModele.includes(recherche) || KM.includes(recherche) || matricule.includes(recherche) ;
+    });
 
-        if(marquemodele.includes(recherche)){
-            ligne.style.display="";
-            trouve = true;
-        } else {
-            ligne.style.display="none";
-        }
-    })
-    if (trouve){
-        noResult.style.display="none";
-    }else{
-        noResult.style.display="";
-    }
-
+    currentPage = 1;
+    afficherPage();
 }
 
 
 function filtrerDemandes() {
     let typedm = document.getElementById("type-demande").value.trim().toLowerCase();
     let etatdm = document.getElementById("etat-demande").value.trim().toLowerCase();
-    let lignes = document.querySelectorAll("table tbody tr:not(#no-result)");
-    let noResult = document.getElementById("no-result");
-    let trouve = false;
 
-    lignes.forEach(ligne => {
+    filteredRows = allRows.filter(ligne => {
         let typeDemande = ligne.querySelector("td:nth-child(2)").innerText.trim().toLowerCase();
-        let statDemmande = ligne.querySelector("td:nth-child(6)").innerText.trim().toLowerCase();
+        let statDemande = ligne.querySelector("td:nth-child(6)").innerText.trim().toLowerCase();
 
-        // Vérification du type
-        let matchType = (typedm === "") || 
+        let matchType = (typedm === "") ||
                         (typedm === "dem-personnel" && typeDemande === "personnel") ||
                         (typedm === "dem-materiel" && typeDemande === "materiel");
 
-        // Vérification de l'état
         let matchEtat = (etatdm === "") ||
-                        (etatdm === "dem-encours" && statDemmande === "en attente") ||
-                        (etatdm === "dem-acceptee" && statDemmande === "acceptée") ||
-                        (etatdm === "dem-refusee" && statDemmande === "rejetée") ||
-                        (etatdm === "dem-annulee" && statDemmande === "annulée") ||
-                        (etatdm === "dem-cloturee" && statDemmande === "clôturée");
+                        (etatdm === "dem-encours" && statDemande === "en attente") ||
+                        (etatdm === "dem-acceptee" && statDemande === "acceptée") ||
+                        (etatdm === "dem-refusee" && statDemande === "rejetée") ||
+                        (etatdm === "dem-annulee" && statDemande === "annulée") ||
+                        (etatdm === "dem-cloturee" && statDemande === "clôturée");
 
-        if (matchType && matchEtat) {
-            ligne.style.display = "";
-            trouve = true;
-        } else {
-            ligne.style.display = "none";
-        }
+        return matchType && matchEtat;
     });
-    if (trouve){
-        noResult.style.display="none";
-    }else{
-        noResult.style.display="";
-    }
+
+    currentPage = 1;
+    afficherPage();
 }
 
-function filtrerEtatMissions(){
-    let etatMission = document.getElementById("stat-mission").value.trim();
-    let noResult = document.getElementById("no-result");
-    let trouve = false;
+function filtrerEtatMissions() {
+    let etatMission = document.getElementById("stat-mission").value.trim().toLowerCase();
 
-    let lignes = document.querySelectorAll("table tbody tr:not(#no-result)");
-
-    lignes.forEach(ligne =>{
-
-        let statut = ligne.querySelector("td:nth-child(5)").innerText.trim();
-
-   if (etatMission === "")
-        { ligne.style.display=""; trouve = true;
-    }
-    else if (etatMission=== "mis-encours" && statut === "En cours")
-        { ligne.style.display=""; trouve = true;
-
-    }else if(etatMission === "mis-validee" && statut === "Validée")
-        { ligne.style.display=""; trouve = true;
-
-    }else if(etatMission === "mis-annulee" && statut === "Annulée")
-        { 
-        ligne.style.display=""; trouve = true;
-    }else if (etatMission ==="mis-terminee" && statut === "Terminée") {
-        ligne.style.display=""; trouve = true;
-    }else {
-         ligne.style.display="none";
-    }       
-    });
-    if (trouve){
-        noResult.style.display="none";
-    } else{
-        noResult.style.display="";
-    }
-}
-
-function rechercherMissions(){
-    let recherche=document.getElementById("search-input").value.toLowerCase().trim();
-    let lignes = document.querySelectorAll("table tbody tr:not(#no-result)");
-    let noResult = document.getElementById("no-result");
-
-    let trouve = false;
-
-    lignes.forEach(ligne => {
-        let demandeur=ligne.querySelector("td:nth-child(1)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-        let chauffeur=ligne.querySelector("td:nth-child(2)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-        let vehicule=ligne.querySelector("td:nth-child(3)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    filteredRows = allRows.filter(ligne => {
+        let statut = ligne.querySelector("td:nth-child(5)").innerText.trim().toLowerCase();
         
-        let search = demandeur +" "+ chauffeur +" "+ vehicule;
-
-        if(search.includes(recherche)){
-            ligne.style.display="";
-            trouve = true;
-        }else {
-            ligne.style.display="none";
-        }
+        if (etatMission === "") return true;
+        if (etatMission === "mis-encours" && statut === "en cours") return true;
+        if (etatMission === "mis-validee" && statut === "validée") return true;
+        if (etatMission === "mis-annulee" && statut === "annulée") return true;
+        if (etatMission === "mis-terminee" && statut === "terminée") return true;
+        return false;
     });
-    if (trouve){
-        noResult.style.display="none";
-    } else{
-        noResult.style.display="";
-    }
 
+    currentPage = 1;
+    afficherPage();
 }
-function rechercheDemandes(){
-    let recherche=document.getElementById("search-input").value.toLowerCase().trim();
-    let lignes = document.querySelectorAll("table tbody tr");
-    let noResult = document.getElementById("no-result");
 
-    let trouve = false;
+function rechercherMissions() {
+    let recherche = document.getElementById("search-input").value.toLowerCase().trim();
 
-    lignes.forEach(ligne => {
+    filteredRows = allRows.filter(ligne => {
+        let demandeur = ligne.querySelector("td:nth-child(1)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        let chauffeur = ligne.querySelector("td:nth-child(2)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        let vehicule  = ligne.querySelector("td:nth-child(3)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        
+        let searchText = demandeur + " " + chauffeur + " " + vehicule;
+        return searchText.includes(recherche);
+    });
+
+    currentPage = 1;
+    afficherPage();
+}
+function rechercheDemandes() {
+    let recherche = document.getElementById("search-input").value.toLowerCase().trim();
+
+    filteredRows = allRows.filter(ligne => {
         let emp = ligne.querySelector("td:nth-child(1)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        return emp.includes(recherche);
+    });
 
-        if(emp.includes(recherche)){
-            ligne.style.display="";
-            trouve=true;
-        } else {
-            ligne.style.display="none";
-        }
-    })
-    if (!trouve){
-        noResult.style.display="";
-    }else{
-        noResult.style.display="none";
-    }
+    currentPage = 1;
+    afficherPage();
 }
 
 function affChampsMission(){
@@ -486,83 +398,46 @@ function confirminout(btn){
 }
 
 function filtrerAnomalies() {
-    let statut = document.getElementById("stat-panne").value.trim().toLowerCase();
-    let urgence = document.getElementById("gravite-panne").value.trim().toLowerCase();
-    let lignes = document.querySelectorAll("table tbody tr:not(#no-result)");
-    let noResult = document.getElementById("no-result");
+    let urgenceFilter = document.getElementById("gravite-panne").value.trim().toLowerCase();
+    let statutFilter = document.getElementById("stat-panne").value.trim().toLowerCase();
 
-    let trouve = false;
+    filteredRows = allRows.filter(ligne => {
+        let urgence = ligne.querySelector("td:nth-child(4)").innerText.trim().toLowerCase();
+        let statut = ligne.querySelector("td:nth-child(6)").innerText.trim().toLowerCase();
 
-    lignes.forEach(ligne => {
-        let stat = ligne.querySelector("td:nth-child(6)").innerText.trim().toLowerCase();
-        let urg = ligne.querySelector("td:nth-child(4)").innerText.trim().toLowerCase();
+        // Correspondance urgence
+        let matchUrgence = (urgenceFilter === "") ||
+                           (urgenceFilter === "faible" && urgence === "faible") ||
+                           (urgenceFilter === "moyenne" && urgence === "moyenne") ||
+                           (urgenceFilter === "grave" && urgence === "grave");
 
-        // Vérification du statut
-        let matchStatut = false;
-        if (statut === "") {
-            matchStatut = true;
-        } else if (statut === "signalee" && stat === "signalée") {
-            matchStatut = true;
-        } else if (statut === "en-cours-rep" && stat === "en cours de réparation") {
-            matchStatut = true;
-        } else if (statut === "reparee" && stat === "réparée") {
-            matchStatut = true;
-        }
+        // Correspondance statut
+        let matchStatut = (statutFilter === "") ||
+                          (statutFilter === "signalee" && statut === "signalée") ||
+                          (statutFilter === "en-cours-rep" && statut === "en cours de réparation") ||
+                          (statutFilter === "reparee" && statut === "réparée");
 
-        // Vérification de l'urgence
-        let matchUrgence = false;
-        if (urgence === "") {
-            matchUrgence = true;
-        } else if (urgence === "faible" && urg === "faible") {
-            matchUrgence = true;
-        } else if (urgence === "moyenne" && urg === "moyenne") {
-            matchUrgence = true;
-        } else if (urgence === "grave" && urg === "grave") {
-            matchUrgence = true;
-        }
-
-        // Affichage ou non
-        if (matchStatut && matchUrgence) {
-            ligne.style.display = "";
-            trouve = true;
-        } else {
-            ligne.style.display = "none";
-        }
+        return matchUrgence && matchStatut;
     });
 
-    if (trouve) {
-        noResult.style.display="none";
-    }else{
-        noResult.style.display="";
-    }
+    currentPage = 1;
+    afficherPage();
 }
 
-function rechercheAnomalie(){
+function rechercheAnomalie() {
     let recherche = document.getElementById("search-input").value.toLowerCase().trim();
-    let lignes = document.querySelectorAll("table tbody tr:not(#no-result)");
-    let noResult = document.getElementById("no-result");
 
-    let trouve = false;
-
-    lignes.forEach(ligne => {
+    filteredRows = allRows.filter(ligne => {
         let type = ligne.querySelector("td:nth-child(5)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         let vehicule = ligne.querySelector("td:nth-child(2)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         let personne = ligne.querySelector("td:nth-child(3)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-        let recherches = type + " " + vehicule +" "+ personne;
+        let searchText = type + " " + vehicule + " " + personne;
+        return searchText.includes(recherche);
+    });
 
-        if(recherches.includes(recherche)){
-            ligne.style.display="";
-            trouve = true;
-        } else {
-            ligne.style.display="none";
-        }
-    })
-    if (trouve){
-        noResult.style.display="none";
-    }else{
-        noResult.style.display="";
-    }
+    currentPage = 1;
+    afficherPage();
 }
 
 function validerFormulaireVehicule(event){
@@ -1254,4 +1129,142 @@ function markAllRead() {
         notif.classList.add("notif-read");
     });
     updateBadge();
+}
+
+
+let allRows = [];           // toutes les lignes du tableau (sans la ligne "aucun résultat")
+let filteredRows = [];      // lignes après filtrage/recherche
+let currentPage = 1;
+let rowsPerPage = 5;        // nombre de lignes par page
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Récupérer toutes les lignes du corps du tableau (sans #no-result)
+    allRows = Array.from(document.querySelectorAll("table tbody tr:not(#no-result)"));
+    filteredRows = [...allRows];
+    currentPage = 1;
+    afficherPage();
+    updateBadge();  // pour les notifications
+});
+
+   // ===== AFFICHAGE =====
+function afficherPage() {
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+
+    allRows.forEach(row => row.style.display = "none");
+    filteredRows.slice(start, end).forEach(row => row.style.display = "");
+
+    // Gestion du message "aucun résultat"
+    const noResult = document.getElementById("no-result");
+    if (filteredRows.length === 0) {
+        noResult.style.display = "";
+    } else {
+        noResult.style.display = "none";
+    }
+
+    creerPagination();
+}
+
+    // ===== PAGINATION =====
+    function creerPagination() {
+
+        pagination.innerHTML = "";
+
+        const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
+        if (totalPages === 0) return;
+
+        pagination.innerHTML += `
+        <li class="page-item ${currentPage===1?"disabled":""}">
+            <a class="page-link" href="#" onclick="changerPage(${currentPage-1})">Précédent</a>
+        </li>`;
+
+        for (let i = 1; i <= totalPages; i++) {
+            pagination.innerHTML += `
+            <li class="page-item ${currentPage===i?"active":""}">
+                <a class="page-link" href="#" onclick="changerPage(${i})">${i}</a>
+            </li>`;
+        }
+
+        pagination.innerHTML += `
+        <li class="page-item ${currentPage===totalPages?"disabled":""}">
+            <a class="page-link" href="#" onclick="changerPage(${currentPage+1})">Suivant</a>
+        </li>`;
+    }
+
+    // ===== CHANGER PAGE =====
+    window.changerPage = function(page) {
+
+        const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
+        if (page < 1 || page > totalPages) return;
+
+        currentPage = page;
+        afficherPage();
+    };
+
+
+
+    // Variables pour les cartes
+let allCards = [];
+let filteredCards = [];
+let currentPageCards = 1;
+let cardsPerPage = 4;
+
+// Initialisation spécifique à la page maintenance
+function initMaintenancePagination() {
+    allCards = Array.from(document.querySelectorAll('.detail-vt'));
+    filteredCards = [...allCards];
+    currentPageCards = 1;
+    afficherCartes();
+    creerPaginationCartes();
+}
+
+function afficherCartes() {
+    const start = (currentPageCards - 1) * cardsPerPage;
+    const end = start + cardsPerPage;
+
+    // Cacher toutes les cartes
+    allCards.forEach(card => card.style.display = 'none');
+    // Afficher les cartes de la page courante
+    filteredCards.slice(start, end).forEach(card => card.style.display = 'block');
+    creerPaginationCartes();
+}
+
+function creerPaginationCartes() {
+    const paginationContainer = document.getElementById('pagination-cartes');
+    if (!paginationContainer) return;
+
+    const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+    paginationContainer.innerHTML = '';
+
+    if (totalPages <= 1) return;
+
+    // Précédent
+    const prevLi = document.createElement('li');
+    prevLi.className = `page-item ${currentPageCards === 1 ? 'disabled' : ''}`;
+    prevLi.innerHTML = `<a class="page-link" href="#">Précédent</a>`;
+    prevLi.onclick = (e) => { e.preventDefault(); if (currentPageCards > 1) changerPageCartes(currentPageCards - 1); };
+    paginationContainer.appendChild(prevLi);
+
+    // Numéros de pages
+    for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.className = `page-item ${currentPageCards === i ? 'active' : ''}`;
+        li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+        li.onclick = (e) => { e.preventDefault(); changerPageCartes(i); };
+        paginationContainer.appendChild(li);
+    }
+
+    // Suivant
+    const nextLi = document.createElement('li');
+    nextLi.className = `page-item ${currentPageCards === totalPages ? 'disabled' : ''}`;
+    nextLi.innerHTML = `<a class="page-link" href="#">Suivant</a>`;
+    nextLi.onclick = (e) => { e.preventDefault(); if (currentPageCards < totalPages) changerPageCartes(currentPageCards + 1); };
+    paginationContainer.appendChild(nextLi);
+}
+
+function changerPageCartes(page) {
+    currentPageCards = page;
+    afficherCartes();
 }
