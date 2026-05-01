@@ -79,7 +79,7 @@
   <div class="card-body">
     <h5 class="card-title fw-bold mb-4" style="color:#0c183b;"><i class="bi bi-info-circle"></i> Informations de la mission</h5>
     <div class="col-md-12 mb-3">
-    <label for="vec-anomalie" class="form-label fw-semibold">Véhicule concerné</label>
+    <label for="vec-anomalie" class="form-label fw-semibold">Véhicule concerné <span class="text-danger">*</span></label>
         <select id="vec-anomalie" class="form-select">
             <option value="">Selectionner un véhicule</option>
             <option>test</option>
@@ -88,7 +88,7 @@
      <div class="text-danger" id="errvecConcerne"></div>
 </div>    
 <div class="col-md-12 mb-3">
-    <label for="chauf-anomalie" class="form-label fw-semibold">Chauffeur concerné</label>
+    <label for="chauf-anomalie" class="form-label fw-semibold">Chauffeur concerné <span class="text-danger">*</span></label>
     <select id="chauf-anomalie" class="form-select">
         <option value="">Selectionner un chauffeur</option>
         <option>test</option>
@@ -107,7 +107,7 @@
     <input type="date" class="form-control" id="date-signalement" readonly>
 </div>
     <div class="col-md-6 mb-3">
-    <label class="form-label fw-semibold" for="type-anomalie">Type d'anomalie</label>
+    <label class="form-label fw-semibold" for="type-anomalie">Type d'anomalie <span class="text-danger">*</span></label>
     <input type="text" class="form-control" id="type-anomalie">
     <div class="text-danger" id="errTypeAnomalie"></div>
 </div>
@@ -124,7 +124,7 @@
 
 </div>
 <div class="col-md-6 mb-3">
-    <label class="form-label fw-semibold" for="piecejointe">Pièce jointe</label>
+    <label class="form-label fw-semibold" for="piecejointe">Pièce jointe <span class="text-danger">*</span></label>
     <input type="file" class="form-control" id="piecejointe">
     <div class="text-danger" id="errPieceJointe"></div>
 </div>
