@@ -238,8 +238,9 @@ function rechercherMissions() {
         let demandeur = ligne.querySelector("td:nth-child(1)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         let chauffeur = ligne.querySelector("td:nth-child(2)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         let vehicule  = ligne.querySelector("td:nth-child(3)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        let destination  = ligne.querySelector("td:nth-child(4)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         
-        let searchText = demandeur + " " + chauffeur + " " + vehicule;
+        let searchText = demandeur + " " + chauffeur + " " + vehicule + " " + destination;
         return searchText.includes(recherche);
     });
 
@@ -251,7 +252,10 @@ function rechercheDemandes() {
 
     filteredRows = allRows.filter(ligne => {
         let emp = ligne.querySelector("td:nth-child(1)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-        return emp.includes(recherche);
+        let destination = ligne.querySelector("td:nth-child(4)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        let motif = ligne.querySelector("td:nth-child(5)").innerText.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+
+        return emp.includes(recherche) || destination.includes(recherche) || motif.includes(recherche);
     });
 
     currentPage = 1;

@@ -32,21 +32,21 @@
         <div class="notifications" style="max-height:350px; overflow-y:auto;">
 
     <!-- Avertissement -->
-    <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this)">
+    <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this);window.location.href='3.Maintenance.html';">
         <i class="bi bi-circle-fill text-warning" style="font-size:8px; margin-top:6px;"></i>
         <div>
             <p class="mb-0 fw-semibold">Renault Clio 4 — Vidange requise</p>
             <small class="text-muted">À faire avant 10/05 • Il y a 5 min</small>
         </div>
     </div>
-        <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this)">
+        <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this);window.location.href='3.Maintenance.html';">
         <i class="bi bi-circle-fill text-warning" style="font-size:8px; margin-top:6px;"></i>
         <div>
             <p class="mb-0 fw-semibold">Mercedes Actros — Contrôle de freins requis</p>
             <small class="text-muted">À faire avant 10/05 • Il y a 5 min</small>
         </div>
     </div>
-    <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this)">
+    <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this);window.location.href='3.DocumentAdministratifs.html';">
         <i class="bi bi-circle-fill text-warning" style="font-size:8px; margin-top:6px;"></i>
         <div>
             <p class="mb-0 fw-semibold">Peugeot 208 — Vignette expire bientôt</p>
@@ -55,7 +55,7 @@
     </div>
 
     <!-- Urgent -->
-    <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this)">
+    <div class="d-flex gap-2 mb-3 notif-unread" onclick="markAsRead(this);window.location.href='3.Maintenance.html';">
         <i class="bi bi-circle-fill text-danger" style="font-size:8px; margin-top:6px;"></i>
         <div>
             <p class="mb-0 fw-semibold">Volkswagen Golf — Vidange en retard</p>
@@ -64,17 +64,18 @@
     </div>
 
     <!-- Anomalie -->
-    <div class="d-flex gap-2 mb-2 notif-unread" onclick="markAsRead(this)">
+    <div class="d-flex gap-2 mb-2 notif-unread" onclick="markAsRead(this);window.location.href='5.Anomalies.html';">
         <i class="bi bi-circle-fill text-danger" style="font-size:8px; margin-top:6px;"></i>
         <div>
-            <p class="mb-0 fw-semibold">Bus Iveco — Anomalie signalée</p>
+            <p class="mb-0 fw-semibold">Bus Iveco — Anomalie signalée</p>            
+
             <small class="text-muted">Freinage défectueux • Il y a 1 min</small>
         </div>
     </div>
 
         <!-- Nouvelle demande -->
 
-        <div class="d-flex gap-2 mb-2 notif-unread" onclick="markAsRead(this)">
+        <div class="d-flex gap-2 mb-2 notif-unread" onclick="markAsRead(this);window.location.href='1.Demandes.html';" onclick="window.location.href='3.Véhicules.html'">
         <i class="bi bi-circle-fill text-primary" style="font-size:8px; margin-top:6px;"></i>
         <div>
             <p class="mb-0 fw-semibold">Halliche Ines — Nouvelle demande</p>
@@ -93,12 +94,12 @@
                         <div class="p-4">
                             <h4 class="text-center mt-4"><i class="bi bi-person-gear"></i> Chef du parc</h4>
                             <hr>
-                            <a href="ChefDeParc.html" class="sidebar-link mb-2 text-center mt-5" onclick="showdashboard()"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                            <a href="1.Demandes.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-envelope-paper"></i> Demandes</a>
-                            <a href="4.missions.html"class="sidebar-link mb-2 text-center mt-4"><i class="bi bi-bullseye"></i> Missions</a>
-                            <a href="2.Chauffeurs.html" class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-person-badge"></i> Chauffeurs</a>
-                            <a href="3.Véhicules.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-car-front-fill"></i> Véhicules</a>
-                            <a href="5.Anomalies.html" class="sidebar-link mb-2 text-center mt-4"><i class="bi bi-exclamation-triangle"></i> Anomalies</a>
+                <a href="ChefDeParc.html"class="sidebar-link mb-2 text-center mt-5" onclick="showdashboard()"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                <a href="1.Demandes.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-envelope-paper"></i> Demandes <span class="badge bg-danger rounded-pill" style="font-size:10px;">3</span></a>
+                <a href="4.missions.html"class="sidebar-link mb-2 text-center mt-4"><i class="bi bi-bullseye"></i> Missions</a>                            
+                <a href="2.Chauffeurs.html"class="sidebar-link mb-2 text-center mt-4" ><i class="bi bi-person-badge"></i> Chauffeurs</a>
+                <a href="3.Véhicules.html"class="sidebar-link mb-2 text-center mt-4"><i class="bi bi-car-front-fill"></i> Véhicules <span class="badge bg-danger rounded-pill" style="font-size:10px;">1</span></a>
+                <a href="5.Anomalies.html" class="sidebar-link mb-2 text-center mt-4"><i class="bi bi-exclamation-triangle"></i> Anomalies <span class="badge bg-danger rounded-pill" style="font-size:10px;">3</span></a>
 
 
                                                     
@@ -124,8 +125,8 @@
 <div class="col-md-3 mb-2"></div>
 <div class="nav-details">
     <a href="3.detail-vehicule.html" class="btn det clique"><i class="bi bi-info-circle"></i> Informations du véhicules</a>
-    <a href="3.DocumentAdministratif.html" class="btn det"><i class="bi bi-files"></i> Documents administratifs</a>
-    <a href="3.Maintenance.html" class="det btn"><i class="bi bi-tools"></i> Maintenance</a>
+    <a href="3.DocumentAdministratif.html" class="btn det"><i class="bi bi-files"></i> Documents administratifs <span class="badge bg-danger rounded-pill" style="font-size:10px;">!</span></a>
+<a href="3.Maintenance.html" class="det btn"><i class="bi bi-tools"></i> Maintenance <span class="badge bg-danger rounded-pill" style="font-size:10px;">!</span></a>
     <a href="3.Carburant.html" class="btn det"><i class="bi bi-fuel-pump"></i> Carburant</a>
 </div>
 
