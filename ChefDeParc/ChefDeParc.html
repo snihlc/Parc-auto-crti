@@ -145,12 +145,168 @@
                                         </div>
                                     </div>
                                 </div>
+                               <div class="row mt-3 justify-content-center">
+
+  <div class="col-12 col-lg-6">
+<div class="card shadow-sm p-3" style="height: 450px;">
+    
+    <h5 class="fw-bold mb-3 text-center" style="color:#0c183b;">
+        Véhicules les plus utilisés
+    </h5>
+
+    <div style="height:100%">
+        <canvas id="TopVehiculesChart"></canvas>
+    </div>
+
+</div>
+  </div>
+
+  <div class="col-12 col-lg-6  mt-3 mt-lg-0">
+<div class="card shadow-sm p-3" style="height: 450px;">
+    
+    <h5 class="fw-bold mb-3 text-center" style="color:#0c183b">
+        Anomalies les plus fréquentes</h5>
+
+    <div style="height:100%;">
+        <canvas id="TopAnomaliesChart"></canvas>
+    </div>
+
+</div>
+  </div>
+
+</div>
                             </div>
                     </div>
                 </div>
             </div>
-        
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
             <script src="../script.js"></script>
+            <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    function topVehiculesUtilisee() {
+        const stat1 = document.getElementById('TopVehiculesChart');
+
+        new Chart(stat1, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Renault Clio 4',
+                    'Peugeot Partner',
+                    'Mercedes Actros',
+                    'Iveco Crossway',
+                    'Peugeot 208',
+                    'Volkswagen Golf'
+                ],
+                datasets: [{
+                    label: 'Nombre de missions',
+                    data: [111, 85, 80, 71, 66, 45],
+                    backgroundColor: 'rgba(54, 162, 235, 0.4)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    borderWidth: 1,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+
+                animation: {
+                    duration: 1500,
+                    easing: 'easeOutQuart'
+                },
+
+                animations: {
+                    y: {
+                        from: 0
+                    }
+                },
+
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => ctx.raw + ' missions'
+                        }
+                    }
+                },
+
+                scales: {
+                    x: {
+                        ticks: {
+                            maxRotation: 30,
+                            minRotation: 30
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+
+    function topAnomalies() {
+        const stat2 = document.getElementById('TopAnomaliesChart');
+
+        new Chart(stat2, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'Problème de freins',
+                    'Rayure carrosserie',
+                    'Problème moteur',
+                    'Chauffeur différent retour'
+                ],
+                datasets: [{
+                    data: [7, 6, 4, 3],
+                    backgroundColor: [
+                        '#ff6384',
+                        '#36a2eb',
+                        '#ff9f40',
+                        '#4bc0c0'
+                    ],
+                        hoverOffset: 5,
+
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                  animation: {    
+                    animateRotate: true,
+                    duration: 2000
+            },
+                responsive: true,
+                maintainAspectRatio: false,
+              
+
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => ctx.label + ' : ' + ctx.raw + ' cas'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    topAnomalies();
+    topVehiculesUtilisee();
+
+});    
+            </script>
 
 </body>

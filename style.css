@@ -177,6 +177,8 @@
         .pagination .page-item.disabled .page-link{
             color:#9aa0c3 !important;
         }
+
+
              @media (max-width: 768px) {
                 #sidebar {
                     position: fixed;
